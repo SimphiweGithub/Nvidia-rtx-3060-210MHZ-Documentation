@@ -95,6 +95,7 @@ System: Dell G15 5510, i7-10870H, RTX 3060 Laptop 6GB, BIOS 1.38.0 (2025/11), Wi
 | Manual V/F curve tuning beyond +1000 offset | Ruled out as unproductive | Flattening gave worse results; uniform shift gave no change (see Curve Editor Experiments) |
 | NVIDIA Profile Inspector (P-State override at driver profile level) | Ruled out | Tried previously (prior to this write-up); did not resolve the lock |
 | MSI Afterburner OC Scanner | Ruled out | Fails immediately with "Failed to start scanning!" — most likely because OC Scanner requires trustworthy real-time power/voltage telemetry to iteratively test points, which this unit cannot provide (consistent with the root cause) |
+| NVIDIA Profile Inspector — "Power Management - Mode" → "Prefer maximum performance" (retested this session) | Ruled out | Set on Global Driver Profile, driver 610.62, Apply Changes clicked. No change to actual GPU clock. Same driver-level-policy-can't-fix-hardware-telemetry pattern as everything else |
 
 ## Untested — Worth Trying Next
 
@@ -104,11 +105,11 @@ With the simple +1000 offset confirmed as a stable baseline (1207MHz), these are
 2. ~~MSI Afterburner's OC Scanner~~ — fails immediately with "Failed to start scanning!". Ruled out (see table above).
 3. **The dedicated Core (mV) voltage slider** in the main Afterburner window (separate from the curve editor, never tried) — a different control path than both the offset slider and the curve editor.
 4. **Test the same +1000 offset trick on intermediate driver versions** (e.g. 472.12, 516.94, 522.25) rather than only on 610.62 — the offset was only validated on the latest driver; a "less broken" intermediate version might respond differently (better or worse) to the same offset.
-5. **NVIDIA Control Panel → Prefer Maximum Performance**, on whichever driver actually exposes Control Panel.
+5. ~~NVIDIA Control Panel → Prefer Maximum Performance~~ — equivalent setting tested via Profile Inspector's "Power Management - Mode", no effect. Ruled out (see table above).
 6. **Extended power drain**: 15-20s hold + 15-20 minutes fully unplugged (longer than the version already tried).
 7. **Toggle Hybrid vs. Discrete-only GPU mode in BIOS**, if available — one community report found their fix only worked in Hybrid mode.
 8. **Disable the wired Ethernet adapter** — reported as an incidental fix in one community thread, mechanism unknown, costs nothing to test.
-9. **GPU VBIOS reflash** — last resort, real risk, only reported to give temporary relief in community sources.
+9. **GPU VBIOS reflash** — last resort, real risk, only reported to give temporary relief in community sources. **Partially tested on this unit already**: prior to this write-up (before a full OS wipe, so no backup exists of the pre-flash state), a Reddit-recommended MSI-sourced RTX 3060 laptop vBIOS was flashed — it reportedly fixed the original poster's issue but produced **zero change** to this unit's symptoms. That's informative on its own: a full vBIOS swap changing nothing suggests the defect sits below vBIOS-configurable territory (reinforcing the hardware-level EC/telemetry theory over a firmware-table mismatch theory), since a mismatched vBIOS should have changed *something* if the fault lived in vBIOS config. That said, this was a proxy test with a non-Dell-specific vBIOS, not a clean test of a properly-sourced Dell G15 5510-specific dump — left open as a low-priority, high-risk option rather than fully ruled out, given there's no backup to safely fall back on if a future attempt goes wrong.
 
 ## Practical Fallback
 
