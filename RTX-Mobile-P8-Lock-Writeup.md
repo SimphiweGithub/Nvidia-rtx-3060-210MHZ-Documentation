@@ -29,11 +29,48 @@ Spans both Intel and AMD CPU platforms, and at least four OEMs, all sharing NVID
 - Can appear immediately on driver install, or only after the GPU attempts to transition out of P8 under stress (varies by how far past the breaking driver version you are)
 - PCIe link can also degrade (seen dropping to Gen1 2.5GT/s with recoverable link errors in this case)
 
-## Root Cause (working theory, not confirmed by NVIDIA or any OEM)
+## Root Cause — CONFIRMED: Frozen Power-Telemetry Reading + Permanent SW Power Cap
 
-Somewhere after driver ~461.92, NVIDIA changed how the driver queries/validates OEM EC power telemetry during P-state transitions (plausibly tied to Dynamic Boost 2.0 / NVIDIA Platform Controller Firmware (NVPCF) interface changes introduced around this era — unconfirmed, offered as the most plausible mechanism). Older drivers either don't perform this query or tolerate bad data silently. Newer drivers treat implausible EC readings as a real overcurrent/overpower condition and defensively cap the GPU at its lowest P-state as a protective measure, and on some units never recover from that state.
+The GPU's power-measurement channel reports a **frozen, physically impossible ~752.67 W** to the driver (see "Definitive Diagnostic" below for the raw readout). Drivers newer than ~461.92 read this channel and enforce the platform power limit (80 W on this unit) against it: since 752.67 W can never be brought under 80 W, the driver's **SW Power Cap engages permanently** and pins the GPU at the bottom of its V/F curve (~210 MHz). Driver 461.92 and older never read this channel — they display a separate dead 6.1 W value — and therefore boost normally. The defect itself is hardware-level, most likely the current-sense/telemetry circuit on the GPU's power delivery feeding a stuck value, which is why it survives OS reinstalls, driver wipes, EC resets, AWCC removal, and full vBIOS swaps.
 
 Confirmed ruled out on this unit: AWCC (service stopped/disabled, no change), Windows-install corruption (reproduced identically on Linux), stuck volatile EC state (full power-drain reset performed, no change), thermal throttling (temps stay low while locked). This points to a genuine hardware-level defect, most likely in the GPU's power telemetry circuit (e.g. a current-sense IC on the VRM), that only newer drivers act upon.
+
+## Definitive Diagnostic: `nvidia-smi -q -d PERFORMANCE,POWER`
+
+**This should be step one for anyone with this symptom** — one read-only command distinguishes every competing theory. `nvidia-smi.exe` ships with the driver (`C:\Windows\System32`), no admin needed:
+
+```
+nvidia-smi -q -d PERFORMANCE,POWER
+```
+
+Result on this unit (driver 610.62, GPU idle at the desktop):
+
+```
+Performance State                : P0
+Clocks Event Reasons
+    SW Power Cap                 : Active
+    HW Slowdown                  : Not Active
+        HW Thermal Slowdown      : Not Active
+        HW Power Brake Slowdown  : Not Active
+Clocks Event Reasons Counters
+    SW Power Capping             : 4,007,672,629 µs (cumulative)
+    HW Power Braking             : 0 µs
+GPU Power Readings
+    Average Power Draw           : 752.67 W
+    Instantaneous Power Draw     : 752.67 W
+    Current Power Limit          : 80.00 W
+    Max Power Limit              : 95.00 W
+```
+
+What this one readout proves:
+
+- **The power sensor is frozen at 752.67 W.** Average and instantaneous identical to the hundredth of a watt, at desktop idle, on a GPU whose real ceiling is 95 W. This is the phantom ~750 W reading seen in monitoring tools all along — now confirmed as what the driver itself sees and acts on.
+- **SW Power Cap: Active — permanently.** The driver must keep the GPU under 80 W, reads 752.67 W no matter what it does, and so drives clocks to the floor and holds them there. The cap can never release because the reading never changes.
+- **HW Power Brake: lifetime counter of zero.** The physical emergency-brake pin has never been asserted — the board's protection circuit is fine. It is purely the *measurement* that is broken.
+- **Performance State: P0.** The GPU was never "stuck in P8" — it sits in P0, power-capped to the clock floor. Every P-state-forcing tool (Profile Inspector overrides, Prefer Maximum Performance) was aimed at a problem that never existed, which is why they all did nothing.
+- **Why the +1000 offset delivers exactly ~1207 MHz:** the cap crushes the GPU to the bottom of its V/F curve (~210 MHz); a clock offset shifts the entire curve upward, so the same floor lands at ~1207 MHz. The offset never "unlocked boost" — it raised the floor the cap pins you to. This is also why it's rock-stable: the GPU isn't oscillating around a boost target, it's parked.
+- **Platform overrides vBIOS:** this readout was taken with the ASUS vBIOS (115 W / 130 W tables) flashed — yet the driver enforces 80 W / 95 W, Dell's platform values. On this laptop the ACPI/platform interface dictates power limits regardless of vBIOS content: independent proof that no vBIOS swap can ever touch this issue.
+- **`nvidia-smi -pl` is mathematically useless here**: the max settable limit (95 W) can never exceed a frozen 752.67 W reading.
 
 ## Confirmed Workaround: MSI Afterburner Core Clock Offset
 
@@ -115,7 +152,11 @@ System: Dell G15 5510, i7-10870H, RTX 3060 Laptop 6GB, BIOS 1.38.0 (2025/11), Wi
 
 ## Final Conclusion
 
-After this session's testing, **1207MHz (via the MSI Afterburner +1000 Core Clock offset) is the confirmed practical ceiling for this unit**, and it is very unlikely to be improved further by any driver, firmware, or software configuration. The evidence: a full vBIOS swap to a different vendor's genuinely higher-rated firmware (higher power target, higher rated boost clock) produced an identical delivered clock, which rules out vBIOS configuration as the limiting factor. Combined with everything else ruled out this session (AWCC, driver version, Profile Inspector, OC Scanner, curve editing, voltage control being locked entirely), the remaining explanation is that the ceiling is enforced by the actual hardware defect itself (most likely the EC/power-telemetry circuit identified earlier in this document) or a fixed, non-configurable driver/NVAPI constant — neither of which any end-user-accessible setting can change.
+After this session's testing, **1207MHz (via the MSI Afterburner +1000 Core Clock offset) is the confirmed practical ceiling for this unit**, and it is very unlikely to be improved further by any driver, firmware, or software configuration. The evidence: a full vBIOS swap to a different vendor's genuinely higher-rated firmware (higher power target, higher rated boost clock) produced an identical delivered clock, which rules out vBIOS configuration as the limiting factor. Combined with everything else ruled out this session (AWCC, driver version, Profile Inspector, OC Scanner, curve editing, voltage control being locked entirely), the ceiling is now **confirmed** (via the `nvidia-smi` readout — see Definitive Diagnostic above) to be the driver's SW Power Cap acting on a frozen ~752 W telemetry reading against an 80 W platform limit — a condition no end-user setting can clear, because the reading never changes.
+
+**Final lever tested and closed out**: the `DisableDynamicPstate` registry DWORD (`HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm`, value `1`) — a driver-level flag telling the driver to stop dynamically managing power/P-states, effectively replicating what 461.92 does by never querying the channel at all. Result: **no effect**. Post-reboot `nvidia-smi` showed the identical frozen ~752W reading against the same 80W cap, bit-for-bit unchanged. This was the last driver/registry-level intervention available and it did not touch the underlying telemetry.
+
+**This closes the software investigation definitively.** Every accessible lever — driver version switching, AWCC, NVPCF disable (blocked by locked Dell BIOS), Profile Inspector P-state overrides, OC Scanner, manual curve editing, voltage control (locked), a full cross-vendor vBIOS swap with genuinely different power tables, and now direct driver-level power-management disable — has been tested and failed to change the frozen sensor reading. Combined with the HW Power Brake counter reading zero for the GPU's uptime (the physical protection circuit has never engaged), the fault is isolated to the **power-sensing/current-measurement circuit itself** — most likely a failed or miscalibrated current-sense IC or ADC on the GPU's power delivery path. This requires physical board-level diagnosis and repair; no further software, driver, firmware, or vBIOS change can address it.
 
 **Recommended end state**: revert to the genuine Dell stock vBIOS (verified backup available), keep the +1000 Afterburner offset active with "Apply overclocking at system startup" enabled, and keep the 7301MHz memory overclock (independently validated, unrelated to this core-clock ceiling). This combination gives working CUDA 12.x access, a stable 1207MHz core clock (up from a fully dead 210MHz lock), and no regression on CPU-bound workloads — the practical, evidence-based best outcome achievable on this hardware.
 
