@@ -69,8 +69,18 @@ What this one readout proves:
 - **HW Power Brake: lifetime counter of zero.** The physical emergency-brake pin has never been asserted — the board's protection circuit is fine. It is purely the *measurement* that is broken.
 - **Performance State: P0.** The GPU was never "stuck in P8" — it sits in P0, power-capped to the clock floor. Every P-state-forcing tool (Profile Inspector overrides, Prefer Maximum Performance) was aimed at a problem that never existed, which is why they all did nothing.
 - **Why the +1000 offset delivers exactly ~1207 MHz:** the cap crushes the GPU to the bottom of its V/F curve (~210 MHz); a clock offset shifts the entire curve upward, so the same floor lands at ~1207 MHz. The offset never "unlocked boost" — it raised the floor the cap pins you to. This is also why it's rock-stable: the GPU isn't oscillating around a boost target, it's parked.
-- **Platform overrides vBIOS:** this readout was taken with the ASUS vBIOS (115 W / 130 W tables) flashed — yet the driver enforces 80 W / 95 W, Dell's platform values. On this laptop the ACPI/platform interface dictates power limits regardless of vBIOS content: independent proof that no vBIOS swap can ever touch this issue.
-- **`nvidia-smi -pl` is mathematically useless here**: the max settable limit (95 W) can never exceed a frozen 752.67 W reading.
+- **`nvidia-smi -pl` is mathematically useless here**: the max settable limit can never exceed a frozen 752.67 W reading, regardless of what that limit is set to.
+
+**Correction from later in this session**: an earlier version of this document claimed the platform unconditionally overrides vBIOS-declared power limits (based on the ASUS vBIOS test still showing Dell's 80W/95W enforced). A third vBIOS test (Mechrevo, 115W/140W tables) **disproved this** — after flashing it, `nvidia-smi` showed the power limit genuinely change to 115W/140W, exactly matching Mechrevo's declared values. So the power *limit* value is genuinely vBIOS-influenced after all; the ASUS result was likely an incomplete flash of that specific table section, not evidence of a platform override. What doesn't change, across all three vBIOS (Dell 80/95, ASUS 115/130, Mechrevo 115/140): **the final delivered clock with the +1000 offset is 1207MHz, every time**, regardless of which power limit is active. See "The Math" below for why that specific invariance makes sense despite the power limit itself being real and changeable.
+
+### The Math: Why It's Always Exactly 1207MHz
+
+**1207 MHz = 210 MHz (the P8 floor) + 1000 MHz (the Afterburner offset), landing on the nearest clock step the GPU's generator can produce.**
+
+- The SW Power Cap permanently parks the GPU at P8, whose base clock is ~210MHz — this is the original "stuck at 210MHz" symptom.
+- An Afterburner clock offset does not set an absolute target — it **adds to whatever floor the GPU currently sits at**. Since the cap keeps the GPU pinned at P8 regardless of vBIOS, power limit, or curve configuration, the offset always applies to the same 210MHz starting point.
+- 210 + 1000 = 1210. Delivered: 1207. The 3MHz gap is clock-generator step granularity (GPU clocks move in discrete increments, not continuously).
+- This is why **nothing else mattered** across every experiment in this document: the curve target, the vBIOS, the power limit — none of them touch the P8 floor value (210) or the offset value (1000), so the sum was always going to land in the same place. It's simple addition against a floor that never moved, because the one thing that determines the floor — the frozen power sensor forcing P8 — never changed either.
 
 ## Confirmed Workaround: MSI Afterburner Core Clock Offset
 
@@ -104,6 +114,25 @@ After the simple offset worked, further attempts were made in Afterburner's Volt
 - **Attempt 2**: shifted the entire bold curve uniformly upward by +50MHz. Result: **no change at all** — actual delivered clock remained exactly 1207MHz
 - **Conclusion**: actual delivered clock does not scale predictably, linearly, or even monotonically with the configured V/F curve on this unit. The broken telemetry/P-state logic appears to override or ignore the curve in ways that don't respond to straightforward tuning, and can react worse to an artificially flattened curve shape than to the offset-shifted default shape. **Recommendation: use the simple Core (MHz) offset slider (+1000) instead of manual curve editing** — it's the only method that has produced a reproducible, stable result.
 
+**Follow-up round (later session): locked points can exceed the +1000 slider cap, but it doesn't matter.** Discovered that individually locking a curve point (select a point, press `L`) can hold an offset value above the simple slider's +1000 ceiling — found one persisted at +1050, then manually pushed to +1400 (target ~2607MHz at 731mV). This is genuine new information: the simple offset field's +1000 cap and the curve editor's actual ceiling are two different things. However, every variation tested still produced the identical 1207MHz delivered clock:
+- Single-point spike to +1400/2607MHz at 731mV — no change, still 1207MHz
+- Full range selected (Shift+click first/last point) and flattened — no change, still 1207MHz
+- Entire curve pushed to a 3000+ MHz target — no change, still 1207MHz
+- Direct NVML clock lock, bypassing Afterburner and the curve editor entirely (`nvidia-smi -lgc 1350,1702`) — no change, still 1207MHz
+
+This is now the most exhaustively tested finding in the whole investigation: the delivered clock is invariant not just to vBIOS and power limit, but to *every* method of requesting a higher clock, including ones that bypass Afterburner's UI entirely. Consistent with "The Math" above — none of these methods change the P8 floor value (210) or the offset applied to it (1000), so none of them can move the result.
+
+### Why the P8 Floor Itself Can't Be Edited
+
+Since delivered clock = P8 floor + offset, the obvious next question is whether the **P8 floor value (210MHz) itself** can be changed — if it could, the same +1000 offset would land somewhere much higher (e.g., a 700MHz floor would put the same offset at ~1700MHz, right in this chip's normal boost range).
+
+**This is technically true in principle and practically blocked by design.** NVIDIA's own "Virtual P-state Table" specification confirms P-state clock values (including P8's) are stored in a vBIOS data table, not hardwired into silicon. But two things close this off:
+
+1. **Empirical evidence this value isn't vendor-customized**: three different vendor vBIOS (Dell, ASUS, Mechrevo) all produced the identical 210MHz P8 base, despite genuinely different power limit tables across the same three files. Power limits vary by vendor; this value apparently doesn't — consistent with it being a standardized reference default rather than something OEMs configure per-model.
+2. **Ampere-generation vBIOS is cryptographically signed (NVIDIA Falcon Security)**: any hand-edit to a vBIOS — even changing a single table entry — breaks its cryptographic signature. Flashing a modified/unsigned vBIOS causes the Falcon (NVIDIA's onboard security microcontroller) to shut the GPU core down before it even POSTs. This is why flashing *complete, differently-signed* vendor vBIOS files worked fine all session (each one's signature is independently valid), but hand-editing a specific value inside any of them would not — it's a fundamentally different, much riskier class of action than anything performed in this document, requiring firmware security bypass techniques (SPI programmer recovery, signature forgery) that are out of scope for a consumer fix.
+
+Conclusion: the math for "raise the floor to raise the ceiling" is completely valid, but the floor sits behind a deliberate cryptographic lock on this GPU generation, not just a missing tool.
+
 ## This Case: Full Diagnostic Timeline (Dell G15 5510)
 
 System: Dell G15 5510, i7-10870H, RTX 3060 Laptop 6GB, BIOS 1.38.0 (2025/11), Windows 11 Pro.
@@ -134,7 +163,11 @@ System: Dell G15 5510, i7-10870H, RTX 3060 Laptop 6GB, BIOS 1.38.0 (2025/11), Wi
 | MSI Afterburner OC Scanner | Ruled out | Fails immediately with "Failed to start scanning!" — most likely because OC Scanner requires trustworthy real-time power/voltage telemetry to iteratively test points, which this unit cannot provide (consistent with the root cause) |
 | NVIDIA Profile Inspector — "Power Management - Mode" → "Prefer maximum performance" (retested this session) | Ruled out | Set on Global Driver Profile, driver 610.62, Apply Changes clicked. No change to actual GPU clock. Same driver-level-policy-can't-fix-hardware-telemetry pattern as everything else |
 | Core (mV) voltage slider in Afterburner | Ruled out | Voltage control is locked/greyed out on this unit, same as the Power Limit (%) slider. Not accessible to test at all |
-| **Different vBIOS with a higher-rated power/clock table** (definitive test) | **Ruled out — this is the key finding of the session** | Flashed a hash-verified ASUS RTX 3060 Mobile vBIOS (94.06.17.00.65) with genuinely higher-rated specs (Board Power Target 115W/Limit 130W vs Dell's stock 80W/95W; rated boost 1702MHz vs Dell's 1425MHz) via NVFlash with `-6` override, confirmed via GPU-Z that the flash took (BIOS version string and default/boost clock both updated to the ASUS values). Despite this, the actual delivered clock with the same +1000 Afterburner offset was **identical: 1207MHz, unchanged**. This is the most conclusive test performed this session — a full vendor vBIOS swap with genuinely different, higher-rated tables produced zero change to the delivered clock, proving the ceiling is enforced at a level below vBIOS configuration (most likely the physical EC/telemetry defect itself, or a fixed NVAPI/driver-level constant), not something any vBIOS can unlock |
+| **Different vBIOS with a higher-rated power/clock table** (tested 3x: MSI/prior-session, ASUS, Mechrevo) | **Ruled out for delivered clock; power limit itself IS vBIOS-real** | Flashed hash-verified ASUS (94.06.17.00.65, 115W/130W, 1702MHz rated) and Mechrevo (94.06.3B.00.0B, 115W/140W, 1702MHz rated) vBIOS via NVFlash `-6`. Confirmed via `nvidia-smi` that Mechrevo's power limit genuinely took effect (115W/140W exactly, correcting an earlier session note that assumed platform override). Despite the power limit being real and different across all three vBIOS, delivered clock with +1000 offset was **identical: 1207MHz in all three cases** — see "The Math" section for why |
+| Locked curve point exceeding the +1000 slider cap (+1050, then +1400) | Ruled out for delivered clock, but genuine new mechanism found | Slider caps at +1000; a locked individual point can hold higher values. Tested as a spike (+1400/2607MHz @ 731mV), a flattened full-range selection, an extreme 3000+ MHz target, and a direct NVML clock lock bypassing Afterburner entirely (`nvidia-smi -lgc`). All four produced identical 1207MHz |
+| Editing the P8 floor value (210MHz) directly in vBIOS | Ruled out — blocked by design, not by missing tooling | NVIDIA's Virtual P-state Table spec confirms this value is vBIOS-stored in principle, but Ampere-generation vBIOS is cryptographically signed (Falcon Security) — any hand-edit breaks the signature and the GPU refuses to POST. Three vendor vBIOS all shared the identical 210MHz value regardless of differing power tables, suggesting it's a standardized default OEMs don't customize anyway |
+| DisableDynamicPstate / KBOOST registry tricks | Ruled out | KBOOST itself hasn't worked on any driver since 378.49 (2017); its "modern equivalent" is the same DisableDynamicPstate key, already tested with no effect |
+| GPU power telemetry spoofing (fake the sensor reading before the driver sees it) | Not attempted — no accessible tooling | Would require custom kernel-mode driver hooking or ACPI table override against undocumented internals; no existing consumer tool does this for NVIDIA GPUs. Out of scope without dedicated security-research-level tooling |
 
 ## Untested — Worth Trying Next
 
@@ -159,6 +192,19 @@ After this session's testing, **1207MHz (via the MSI Afterburner +1000 Core Cloc
 **This closes the software investigation definitively.** Every accessible lever — driver version switching, AWCC, NVPCF disable (blocked by locked Dell BIOS), Profile Inspector P-state overrides, OC Scanner, manual curve editing, voltage control (locked), a full cross-vendor vBIOS swap with genuinely different power tables, and now direct driver-level power-management disable — has been tested and failed to change the frozen sensor reading. Combined with the HW Power Brake counter reading zero for the GPU's uptime (the physical protection circuit has never engaged), the fault is isolated to the **power-sensing/current-measurement circuit itself** — most likely a failed or miscalibrated current-sense IC or ADC on the GPU's power delivery path. This requires physical board-level diagnosis and repair; no further software, driver, firmware, or vBIOS change can address it.
 
 **Recommended end state**: revert to the genuine Dell stock vBIOS (verified backup available), keep the +1000 Afterburner offset active with "Apply overclocking at system startup" enabled, and keep the 7301MHz memory overclock (independently validated, unrelated to this core-clock ceiling). This combination gives working CUDA 12.x access, a stable 1207MHz core clock (up from a fully dead 210MHz lock), and no regression on CPU-bound workloads — the practical, evidence-based best outcome achievable on this hardware.
+
+### This Chapter Is Closed
+
+A later session pushed further, specifically trying to find any way past 1207MHz, and the additional testing only reinforced the conclusion above rather than changing it:
+
+- A third vendor vBIOS (Mechrevo, 115W/140W) corrected an earlier assumption (power limit *is* genuinely vBIOS-influenced) but still produced the identical 1207MHz delivered clock — see "The Math" section above for the actual arithmetic (P8 floor 210MHz + 1000MHz offset ≈ 1207MHz reported, invariant because neither number ever changes).
+- A newly-discovered ability to exceed the Afterburner slider's +1000 cap via locked curve points was tested exhaustively (spike, full-range flatten, extreme target, direct NVML clock lock) — all four still landed on exactly 1207MHz.
+- The logically sound follow-up question — "if delivered clock = floor + offset, can the floor itself be raised?" — is technically true in principle (P-state clocks are vBIOS-stored data, confirmed via NVIDIA's own Virtual P-state Table spec) but blocked by Ampere's cryptographic vBIOS signing (Falcon Security): any hand-edit to a vBIOS breaks its signature and prevents the GPU from posting at all. This is a deliberate security boundary, not a tooling gap.
+- GPU telemetry "spoofing" (faking the sensor reading before the driver sees it) was considered and correctly identified as requiring custom kernel-mode or ACPI-level development with no existing tool for the job — out of reach without dedicated security-research tooling.
+
+**One closing, general note unrelated to this specific defect**: newer NVIDIA drivers do not reliably provide raw performance improvements for existing hardware in already-released games — benchmarking evidence shows mixed results (some games identical, some actually faster on older drivers), since driver optimization effort is generally aimed at the currently-active GPU generation, not older cards. For this unit specifically, the practical value of staying on a modern driver was always CUDA/API access and Game Ready profiles for new titles, not raw FPS gains — worth remembering so the 1207MHz ceiling isn't mistaken for "falling behind" on driver-side performance in general.
+
+No further avenues remain that don't require specialized hardware reverse-engineering or firmware security research. The investigation is complete.
 
 ## Practical Fallback
 
