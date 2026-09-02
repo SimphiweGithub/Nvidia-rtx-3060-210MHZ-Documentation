@@ -1,0 +1,15 @@
+# Heuristic PE call map
+path=C:\Windows\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvml.dll
+sha256=7e00bb555f2c6ab96f2a56781a9dce0518fa30835f079b3d3731eae3f44d3b06
+root_rva=0x0016999F
+root_function_range=0x00169970-0x00169ACD
+max_depth=0
+method=exception-table function ranges; E8 direct-call targets must resolve to an exception-table function; FF 15 RIP-relative normal-import calls
+limit=this is not a full x86-64 disassembly or proof of execution; it omits unresolved direct targets and dynamic confirmation remains required
+
+[function depth=0 range=0x00169970-0x00169ACD]
+import call_site_rva=0x00169A1D detail=KERNEL32.dll!CreateFileA
+import call_site_rva=0x00169A2F detail=KERNEL32.dll!CloseHandle
+import call_site_rva=0x00169A6F detail=KERNEL32.dll!DeviceIoControl
+import call_site_rva=0x00169A7C detail=KERNEL32.dll!CloseHandle
+direct call_site_rva=0x00169AB1 target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01

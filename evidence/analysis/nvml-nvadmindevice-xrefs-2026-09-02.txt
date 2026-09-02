@@ -1,0 +1,12 @@
+# PE ASCII-string xref scan
+path=C:\Windows\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvml.dll
+sha256=7e00bb555f2c6ab96f2a56781a9dce0518fa30835f079b3d3731eae3f44d3b06
+ascii_string=\\.\NvAdminDevice
+method=raw ASCII match; x86-64 RIP-relative LEA and mov-imm64 references in executable PE sections; exception-table function ranges
+limit=this is a bounded static scan, not a full disassembly; it does not prove execution, catch computed/pointer-table references, or link an xref to a dynamic call without a trace
+
+[string raw_offset=0x00296448
+ rva=0x00297848]
+xref instruction_rva=0x001642C3 kind=lea-rip-relative register=rcx function_range=0x00164180-0x00164765
+xref instruction_rva=0x00169062 kind=lea-rip-relative register=rcx function_range=0x00169000-0x001690B3
+xref instruction_rva=0x0016999F kind=lea-rip-relative register=rcx function_range=0x00169970-0x00169ACD

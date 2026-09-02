@@ -29,9 +29,9 @@ Spans both Intel and AMD CPU platforms, and at least four OEMs, all sharing NVID
 - Can appear immediately on driver install, or only after the GPU attempts to transition out of P8 under stress (varies by how far past the breaking driver version you are)
 - PCIe link can also degrade (seen dropping to Gen1 2.5GT/s with recoverable link errors in this case)
 
-## Root Cause — CONFIRMED: Frozen Power-Telemetry Reading + Permanent SW Power Cap
+## Working Explanation: Invalid Power-Telemetry Reading + Permanent SW Power Cap
 
-The GPU's power-measurement channel reports a **frozen, physically impossible ~752.67 W** to the driver (see "Definitive Diagnostic" below for the raw readout). Drivers newer than ~461.92 read this channel and enforce the platform power limit (80 W on this unit) against it: since 752.67 W can never be brought under 80 W, the driver's **SW Power Cap engages permanently** and pins the GPU at the bottom of its V/F curve (~210 MHz). Driver 461.92 and older never read this channel — they display a separate dead 6.1 W value — and therefore boost normally. The defect itself is hardware-level, most likely the current-sense/telemetry circuit on the GPU's power delivery feeding a stuck value, which is why it survives OS reinstalls, driver wipes, EC resets, AWCC removal, and full vBIOS swaps.
+The driver receives a **frozen, physically impossible ~752.67 W** value (see "Definitive Diagnostic" below). On the affected modern-driver configuration, this coincides with a permanent **SW Power Cap** and a clock floor near 210 MHz. The evidence establishes the invalid value at the NVML/API level and rules out several operating-system-level causes. It does **not** yet identify the exact origin of the value: the current-sense circuit, GPU firmware, EC path, and NVIDIA's internal telemetry transport remain competing explanations. Linux reproduction and persistence across OS, EC-reset, and vBIOS tests make a lower-level hardware or firmware fault plausible, but that is an evidence-supported hypothesis—not a confirmed component-level diagnosis.
 
 Confirmed ruled out on this unit: AWCC (service stopped/disabled, no change), Windows-install corruption (reproduced identically on Linux), stuck volatile EC state (full power-drain reset performed, no change), thermal throttling (temps stay low while locked). This points to a genuine hardware-level defect, most likely in the GPU's power telemetry circuit (e.g. a current-sense IC on the VRM), that only newer drivers act upon.
 
@@ -148,6 +148,96 @@ System: Dell G15 5510, i7-10870H, RTX 3060 Laptop 6GB, BIOS 1.38.0 (2025/11), Wi
 9. **MSI Afterburner +1000 Core Clock offset applied on driver 610.62 — GPU recovered to a stable 1207MHz.** Confirmed stable via 3DMark Steel Nomad (clock held flat under full load) and real-world eFootball testing (no regression vs. 461.92 baseline)
 10. Further curve editor tuning attempted to push past 1207MHz — inconsistent/regressive results, abandoned in favor of the simple offset (see "Curve Editor Experiments" above)
 
+## Reverse-Engineering Evidence (12–14 July 2026)
+
+The following experiments investigated the route from `nvidia-smi` to the NVIDIA driver. They narrow the search space, but do **not** prove the complete telemetry path or the component that produces `752673 mW`.
+
+### Static observation: NVML exports are runtime-dispatched
+
+Static inspection of the System32 `nvml.dll` export `nvmlDeviceGetPowerUsage` found an indirect thunk shared by many exports. Its statically visible fallback returned `1` (`NVML_ERROR_UNINITIALIZED`). A standalone program nevertheless called `nvmlDeviceGetPowerUsage()` successfully and received `752673 mW`. The most cautious interpretation is that static inspection of the uninitialised dispatch slot is insufficient: runtime binding or an alternate implementation remains possible.
+
+### Controlled direct-NVML capture (2 September 2026)
+
+To replace one-off console output with repeatable evidence, `tools/NvmlEvidenceProbe` dynamically loads NVML and records direct query results without issuing any control operation. Its first ten-second capture on driver `610.62` returned `NVML_SUCCESS` on every sample and recorded `752672` or `752673 mW`, `P0`, `1207 MHz` graphics clock, `7301 MHz` memory clock, and a `115000 mW` enforced limit. The complete CSV, including the two loaded NVML module paths and their SHA-256 hashes, is preserved in [`evidence/runs/nvml-probe-2026-09-02-initial.csv`](evidence/runs/nvml-probe-2026-09-02-initial.csv).
+
+### Direct-NVML dispatch capture (2 September 2026)
+
+The same read-only probe was traced in x64dbg. At runtime, the `C:\\Windows\\System32\\nvml.dll` `nvmlDeviceGetPowerUsage` export was an indirect-jump facade. One step through that jump entered the real named handler in the NVIDIA DriverStore `nvml.dll` instance. This is a direct observation that, for this process, the System32 facade delegates to the DriverStore implementation; it is not evidence of two competing query implementations. The absolute addresses shown in the screenshots are ASLR-dependent and must not be reused as fixed breakpoints.
+
+![System32's NVML power-usage export is an indirect dispatch thunk](evidence/screenshots/2026-09-02-x64dbg-direct-nvml/system32-export-thunk.png)
+
+![The dispatch lands in the DriverStore NVML power-usage handler](evidence/screenshots/2026-09-02-x64dbg-direct-nvml/driverstore-nvml-power-handler.png)
+
+The screenshot manifest and limits of this conclusion are recorded in [`evidence/screenshots/2026-09-02-x64dbg-direct-nvml/README.md`](evidence/screenshots/2026-09-02-x64dbg-direct-nvml/README.md). The proprietary driver binaries themselves are identified by path and SHA-256 in the probe evidence, but are intentionally not copied into this repository.
+
+### Static lead inventory of the captured DriverStore build
+
+A read-only inventory of the exact hash-recorded DriverStore `nvml.dll` found D3DKMT references and a normal static import of `KERNEL32!DeviceIoControl`. A conservative scan found 25 direct call sites to that import across the DLL; this identifies candidates but not a path from the power-usage handler. `D3DKMTEscape` is present as a string but not as a normal static import. The isolated one-call probe again returned `752673 mW`, with no extra clock, P-state, or limit queries. These are focused transport leads, not proof that the power-usage handler calls either route. The target identity, method, results, and limits are preserved in [`evidence/analysis/nvml-driverstore-static-inventory-2026-09-02.md`](evidence/analysis/nvml-driverstore-static-inventory-2026-09-02.md).
+
+The captured power-usage handler is bounded by PE exception metadata to RVA `0x47250–0x474BF`. A deliberately limited static map found internal calls and `GetCurrentThreadId`, but no recognized direct `DeviceIoControl` call across eight map levels. This narrows, but does not settle, the transport question because dynamic and nonstandard call paths are outside that mapper's scope. The complete artifact is [`evidence/analysis/nvml-power-usage-call-map-2026-09-02.txt`](evidence/analysis/nvml-power-usage-call-map-2026-09-02.txt).
+
+### Controlled transport result: DeviceIoControl confirmed
+
+The purpose-built `NvmlPowerOnlyEvidenceProbe` then performed only one device lookup and one direct power-usage query under x64dbg. The DriverStore `nvmlDeviceGetPowerUsage` breakpoint fired first. With `kernel32!DeviceIoControl` armed at that point, continuing stopped at `DeviceIoControl`. Its main-thread stack reads `kernel32!DeviceIoControl` → five internal `nvmlVgpuTypeGetResolution` frames → `nvmlDeviceGetPowerUsage+0x268`. This promotes the normal `DeviceIoControl` route from a DLL-wide candidate to a **confirmed user-mode transport used by this direct power query**.
+
+A fresh post-analysis baseline repeated the deliberately one-query probe at `2026-09-02T13:17:38Z`: it returned `752673 mW` on GPU 0 under driver `610.62` / NVML `13.610.62`, with no P-state, clock, or power-limit call requested. The CSV records the exact loaded System32 facade and DriverStore implementation hashes: [`evidence/runs/nvml-power-only-baseline-2026-09-02-post-static.csv`](evidence/runs/nvml-power-only-baseline-2026-09-02-post-static.csv).
+
+![The isolated query reaches kernel32 DeviceIoControl from NVIDIA NVML](evidence/screenshots/2026-09-02-x64dbg-power-only-deviceiocontrol/deviceiocontrol-cpu.png)
+
+![The call stack connects DeviceIoControl back to nvmlDeviceGetPowerUsage](evidence/screenshots/2026-09-02-x64dbg-power-only-deviceiocontrol/deviceiocontrol-call-stack.png)
+
+The repeat capture distinguishes a successful `0x08DE0004` preliminary request from the final `0x08DE0008` request that returns through `nvmlDeviceGetPowerUsage+0x268`. At the final boundary, `R8` points to a `0x6C`-byte input and the fifth x64 argument is a distinct output-buffer pointer. Running only to the API return produced `RAX = 1`. Its standard `CTL_CODE` fields mechanically decode to device type `0x08DE`, function `0x002`, `METHOD_BUFFERED`, and `FILE_ANY_ACCESS`; that decoding does not assign NVIDIA-specific semantics. The captured output viewport had pre-existing scratch bytes and no visible change after success, which is not enough to decode a result field or claim that no data was returned. The full scoped result and hashes are in [`evidence/analysis/nvml-power-query-final-ioctl-2026-09-02.md`](evidence/analysis/nvml-power-query-final-ioctl-2026-09-02.md).
+
+![Read-only Dump view of the final 108-byte DeviceIoControl input buffer](evidence/screenshots/2026-09-02-x64dbg-power-only-deviceiocontrol-final/deviceiocontrol-08de0008-input-buffer.png)
+
+The global breakpoint also observed unrelated initialization and cryptography traffic. A condition on `RDX == 0x08DE0008` isolated the final power-linked request without changing target-process state. The proprietary request payload, bytes-returned field, and lower driver handling remain undecoded.
+
+![The isolated trace exits successfully after the captured DeviceIoControl call](evidence/screenshots/2026-09-02-x64dbg-power-only-deviceiocontrol/deviceiocontrol-run-completed.png)
+
+### IOCTL target candidate: `\\.\NvAdminDevice`
+
+The dynamic return address maps to a DriverStore `nvml.dll` function which calls `DeviceIoControl` and then closes handles. Its direct callee imports `CreateFileA`, loads `\\.\NvAdminDevice` into `RCX`, and invokes `CreateFileA`; the parent directly calls that helper before its `DeviceIoControl` site. This statically identifies `\\.\NvAdminDevice` as the helper's device path. A focused `CreateFileA` capture is still required to prove that this helper and its handle were used in the specific power-query trace. The reproducible static evidence and validation boundary are in [`evidence/analysis/nvml-deviceiocontrol-target-candidates-2026-09-02.md`](evidence/analysis/nvml-deviceiocontrol-target-candidates-2026-09-02.md).
+
+### Dynamic tracing: two NVML module copies load
+
+`nvidia-smi -q -d POWER` was launched under x64dbg. The trace shows a System32 `nvml.dll` load and then a second copy from the NVIDIA DriverStore. The debugger reported that the code bytes did not match when applying the first module's relative offset to the second copy, so they must be treated as distinct module instances during tracing.
+
+![x64dbg shows System32 NVML loading after the power-query breakpoint was prepared](images/reverse-engineering/x64dbg-nvml-module-load.png)
+
+![x64dbg shows the separate DriverStore NVML copy with different bytes at the corresponding offset](images/reverse-engineering/x64dbg-second-nvml-copy.png)
+
+### `nvidia-smi` DeviceIoControl result: observed calls were enumeration, not telemetry
+
+Breakpoints on `kernel32!DeviceIoControl` and `ntdll!NtDeviceIoControlFile` fired during the run. The captured call stack places one observed `DeviceIoControl` call under `cfgmgr32!CM_Get_Device_Interface_PropertyW`, consistent with device enumeration rather than a power query. The full traced command completed successfully.
+
+![An observed DeviceIoControl call returns to cfgmgr32 device-interface property lookup](images/reverse-engineering/x64dbg-deviceiocontrol-enumeration.png)
+
+![The traced nvidia-smi POWER query exits successfully after the observed DeviceIoControl calls](images/reverse-engineering/x64dbg-run-completed.png)
+
+The earlier `nvidia-smi` trace stopped only at device-enumeration-related `DeviceIoControl` calls and did not reveal the power-query transport in that run. The later isolated direct-NVML trace did confirm a `DeviceIoControl` call beneath `nvmlDeviceGetPowerUsage`; it still does **not** identify the kernel driver's payload schema or physical telemetry source.
+
+### ProcMon capture setup
+
+ProcMon was filtered to `nvidia-smi.exe` while testing for `DeviceIoControl` activity. This is retained as reproducibility evidence for the capture configuration; absence of a suitable event in ProcMon is not, by itself, proof that no lower-level transport exists.
+
+![ProcMon filter scoped to nvidia-smi.exe and DeviceIoControl activity](images/reverse-engineering/procmon-nvidia-smi-filter.png)
+
+### Current position
+
+| Statement | Status |
+|---|---|
+| `nvmlDeviceGetPowerUsage()` returned `752673 mW` in a standalone test | Confirmed observation |
+| `nvidia-smi` loaded separate System32 and DriverStore NVML modules in the trace | Confirmed observation |
+| The System32 `nvmlDeviceGetPowerUsage` facade dispatches into the DriverStore implementation | Confirmed observation in the direct-NVML trace |
+| Isolated `nvmlDeviceGetPowerUsage` reaches `kernel32!DeviceIoControl` through DriverStore NVML | Confirmed observation in the power-only trace |
+| Observed IOCTL code and input-buffer length for that call | Confirmed observation: `0x08DE0008`, `0x6C` |
+| The DriverStore handler's kernel transport and the physical source of the mW value | Unknown |
+| `nvidia-smi`-trace `DeviceIoControl` calls were device-enumeration related | Confirmed for that earlier trace only |
+| Direct `nvmlDeviceGetPowerUsage` reaches `DeviceIoControl` | Confirmed in the later isolated power-only trace |
+| The faulty value originates in a specific sensor, EC, PMU, or firmware component | Unknown |
+
+The next useful reverse-engineering milestone is to validate the live device handle and collect read-only evidence for the IOCTL payload/result schema, then determine which kernel interface ultimately supplies the mW value.
+
 ## Ruled Out
 
 | Cause | Status | How it was ruled out |
@@ -189,7 +279,7 @@ After this session's testing, **1207MHz (via the MSI Afterburner +1000 Core Cloc
 
 **Final lever tested and closed out**: the `DisableDynamicPstate` registry DWORD (`HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm`, value `1`) — a driver-level flag telling the driver to stop dynamically managing power/P-states, effectively replicating what 461.92 does by never querying the channel at all. Result: **no effect**. Post-reboot `nvidia-smi` showed the identical frozen ~752W reading against the same 80W cap, bit-for-bit unchanged. This was the last driver/registry-level intervention available and it did not touch the underlying telemetry.
 
-**This closes the software investigation definitively.** Every accessible lever — driver version switching, AWCC, NVPCF disable (blocked by locked Dell BIOS), Profile Inspector P-state overrides, OC Scanner, manual curve editing, voltage control (locked), a full cross-vendor vBIOS swap with genuinely different power tables, and now direct driver-level power-management disable — has been tested and failed to change the frozen sensor reading. Combined with the HW Power Brake counter reading zero for the GPU's uptime (the physical protection circuit has never engaged), the fault is isolated to the **power-sensing/current-measurement circuit itself** — most likely a failed or miscalibrated current-sense IC or ADC on the GPU's power delivery path. This requires physical board-level diagnosis and repair; no further software, driver, firmware, or vBIOS change can address it.
+**This closes the end-user configuration and tuning investigation.** Every accessible lever — driver version switching, AWCC, NVPCF disable (blocked by locked Dell BIOS), Profile Inspector P-state overrides, OC Scanner, manual curve editing, voltage control (locked), a full cross-vendor vBIOS swap with genuinely different power tables, and direct driver-level power-management disable — failed to change the frozen reading. Together with a zero HW Power Brake counter, these results strongly support a lower-level telemetry fault rather than an ordinary configuration or thermal-protection issue. They do not isolate the fault to a particular current-sense IC, ADC, EC, PMU, or firmware component; the reverse-engineering work above remains open.
 
 **Recommended end state**: revert to the genuine Dell stock vBIOS (verified backup available), keep the +1000 Afterburner offset active with "Apply overclocking at system startup" enabled, and keep the 7301MHz memory overclock (independently validated, unrelated to this core-clock ceiling). This combination gives working CUDA 12.x access, a stable 1207MHz core clock (up from a fully dead 210MHz lock), and no regression on CPU-bound workloads — the practical, evidence-based best outcome achievable on this hardware.
 
@@ -204,7 +294,7 @@ A later session pushed further, specifically trying to find any way past 1207MHz
 
 **One closing, general note unrelated to this specific defect**: newer NVIDIA drivers do not reliably provide raw performance improvements for existing hardware in already-released games — benchmarking evidence shows mixed results (some games identical, some actually faster on older drivers), since driver optimization effort is generally aimed at the currently-active GPU generation, not older cards. For this unit specifically, the practical value of staying on a modern driver was always CUDA/API access and Game Ready profiles for new titles, not raw FPS gains — worth remembering so the 1207MHz ceiling isn't mistaken for "falling behind" on driver-side performance in general.
 
-No further avenues remain that don't require specialized hardware reverse-engineering or firmware security research. The investigation is complete.
+No further **end-user configuration** avenues remain. The remaining work is specialized hardware/firmware or software-architecture research, beginning with the unresolved NVML-to-driver path.
 
 ## Practical Fallback
 

@@ -1,0 +1,13 @@
+# NvmlEvidenceProbe 1.0.0.0
+# started_utc=2026-09-02T11:57:37.8976383+00:00
+# driver_version=610.62
+# nvml_version=13.610.62
+# gpu_index=0
+# sample_interval_ms=1000
+# power_only=true
+# explicitly_loaded_nvml_module=C:\WINDOWS\SYSTEM32\nvml.dll
+# loaded_nvml_modules:
+# C:\WINDOWS\system32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvml.dll | sha256=7e00bb555f2c6ab96f2a56781a9dce0518fa30835f079b3d3731eae3f44d3b06
+# C:\WINDOWS\SYSTEM32\nvml.dll | sha256=7d0ff9fb764c8d6bc94740aeb2240feef391ef7fce942dd0a4cc7c97768e92a8
+timestamp_utc,sequence,nvml_status,power_mw,pstate,graphics_clock_mhz,memory_clock_mhz,current_limit_mw,enforced_limit_mw
+2026-09-02T11:57:38.0000462+00:00,1,0,752673,,,,,

@@ -1,0 +1,313 @@
+# Heuristic PE call map
+path=C:\WINDOWS\system32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvml.dll
+sha256=7e00bb555f2c6ab96f2a56781a9dce0518fa30835f079b3d3731eae3f44d3b06
+root_rva=0x00047250
+root_function_range=0x00047250-0x000474BF
+max_depth=8
+method=exception-table function ranges; E8 direct-call targets must resolve to an exception-table function; FF 15 RIP-relative normal-import calls
+limit=this is not a full x86-64 disassembly or proof of execution; it omits unresolved direct targets and dynamic confirmation remains required
+
+[function depth=0 range=0x00047250-0x000474BF]
+direct call_site_rva=0x00047293 target_rva=0x00274AE0 detail=E8-relative function_range=0x00274AE0-0x00274B32
+import call_site_rva=0x000472A3 detail=KERNEL32.dll!GetCurrentThreadId
+direct call_site_rva=0x000472F1 target_rva=0x00159F30 detail=E8-relative function_range=0x00159F30-0x00159F67
+direct call_site_rva=0x000472F6 target_rva=0x00001000 detail=E8-relative function_range=0x00001000-0x00001086
+direct call_site_rva=0x0004731F target_rva=0x00274AE0 detail=E8-relative function_range=0x00274AE0-0x00274B32
+import call_site_rva=0x0004732F detail=KERNEL32.dll!GetCurrentThreadId
+direct call_site_rva=0x0004734C target_rva=0x0002F960 detail=E8-relative function_range=0x0002F960-0x0002FA6F
+direct call_site_rva=0x0004738D target_rva=0x00274AE0 detail=E8-relative function_range=0x00274AE0-0x00274B32
+import call_site_rva=0x0004739D detail=KERNEL32.dll!GetCurrentThreadId
+direct call_site_rva=0x000473D0 target_rva=0x00159F30 detail=E8-relative function_range=0x00159F30-0x00159F67
+direct call_site_rva=0x000473DA target_rva=0x00001090 detail=E8-relative function_range=0x00001090-0x000010DD
+direct call_site_rva=0x000473F9 target_rva=0x00274AE0 detail=E8-relative function_range=0x00274AE0-0x00274B32
+import call_site_rva=0x00047409 detail=KERNEL32.dll!GetCurrentThreadId
+direct call_site_rva=0x0004743E target_rva=0x00159F30 detail=E8-relative function_range=0x00159F30-0x00159F67
+
+[function depth=1 range=0x00274AE0-0x00274B32]
+import call_site_rva=0x00274AFD detail=KERNEL32.dll!QueryPerformanceCounter
+direct call_site_rva=0x00274B27 target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01
+
+[function depth=1 range=0x00159F30-0x00159F67]
+direct call_site_rva=0x00159F5D target_rva=0x0015A000 detail=E8-relative function_range=0x0015A000-0x0015A13A
+
+[function depth=1 range=0x00001000-0x00001086]
+
+[function depth=1 range=0x0002F960-0x0002FA6F]
+direct call_site_rva=0x0002F99E target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01
+direct call_site_rva=0x0002FA16 target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01
+direct call_site_rva=0x0002FA31 target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01
+direct call_site_rva=0x0002FA4C target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01
+direct call_site_rva=0x0002FA64 target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01
+
+[function depth=1 range=0x00001090-0x000010DD]
+
+[function depth=2 range=0x00176EE0-0x00176F01]
+
+[function depth=2 range=0x0015A000-0x0015A13A]
+direct call_site_rva=0x0015A049 target_rva=0x0015A000 detail=E8-relative function_range=0x0015A000-0x0015A13A
+direct call_site_rva=0x0015A0D2 target_rva=0x0015A300 detail=E8-relative function_range=0x0015A300-0x0015A327
+direct call_site_rva=0x0015A0EB target_rva=0x001B74E8 detail=E8-relative function_range=0x001B74E8-0x001B7569
+direct call_site_rva=0x0015A10B target_rva=0x001B6E64 detail=E8-relative function_range=0x001B6E64-0x001B6ECA
+direct call_site_rva=0x0015A124 target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01
+
+[function depth=3 range=0x0015A300-0x0015A327]
+
+[function depth=3 range=0x001B74E8-0x001B7569]
+direct call_site_rva=0x001B7512 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001B751D target_rva=0x001BF85C detail=E8-relative function_range=0x001BF85C-0x001BF87A
+direct call_site_rva=0x001B7562 target_rva=0x001B7204 detail=E8-relative function_range=0x001B7204-0x001B7243
+
+[function depth=3 range=0x001B6E64-0x001B6ECA]
+direct call_site_rva=0x001B6E72 target_rva=0x001B6C6C detail=E8-relative function_range=0x001B6C6C-0x001B6CC9
+direct call_site_rva=0x001B6EC0 target_rva=0x001B69CC detail=E8-relative function_range=0x001B69CC-0x001B6A0C
+
+[function depth=4 range=0x001B5BC4-0x001B5BE4]
+direct call_site_rva=0x001B5BC8 target_rva=0x001C0628 detail=E8-relative function_range=0x001C0628-0x001C06F4
+
+[function depth=4 range=0x001BF85C-0x001BF87A]
+direct call_site_rva=0x001BF870 target_rva=0x001BF7AC detail=E8-relative function_range=0x001BF7AC-0x001BF85A
+
+[function depth=4 range=0x001B7204-0x001B7243]
+direct call_site_rva=0x001B7225 target_rva=0x001B72AC detail=E8-relative function_range=0x001B72AC-0x001B7310
+
+[function depth=4 range=0x001B6C6C-0x001B6CC9]
+direct call_site_rva=0x001B6CB3 target_rva=0x001B68EC detail=E8-relative function_range=0x001B68EC-0x001B69CC
+
+[function depth=4 range=0x001B69CC-0x001B6A0C]
+direct call_site_rva=0x001B69F0 target_rva=0x001B6E10 detail=E8-relative function_range=0x001B6E10-0x001B6E5B
+
+[function depth=5 range=0x001C0628-0x001C06F4]
+import call_site_rva=0x001C0637 detail=KERNEL32.dll!GetLastError
+direct call_site_rva=0x001C064A target_rva=0x001C94CC detail=E8-relative function_range=0x001C94CC-0x001C9512
+direct call_site_rva=0x001C066D target_rva=0x001C9514 detail=E8-relative function_range=0x001C9514-0x001C9565
+direct call_site_rva=0x001C0680 target_rva=0x001C5C70 detail=E8-relative function_range=0x001C5C70-0x001C5CE5
+direct call_site_rva=0x001C0695 target_rva=0x001C9514 detail=E8-relative function_range=0x001C9514-0x001C9565
+direct call_site_rva=0x001C069C target_rva=0x001BF51C detail=E8-relative function_range=0x001BF51C-0x001BF559
+direct call_site_rva=0x001C06A6 target_rva=0x001C9514 detail=E8-relative function_range=0x001C9514-0x001C9565
+direct call_site_rva=0x001C06B7 target_rva=0x001C9514 detail=E8-relative function_range=0x001C9514-0x001C9565
+direct call_site_rva=0x001C06C4 target_rva=0x001BFF50 detail=E8-relative function_range=0x001BFF50-0x001C001D
+direct call_site_rva=0x001C06CB target_rva=0x001BF51C detail=E8-relative function_range=0x001BF51C-0x001BF559
+import call_site_rva=0x001C06D5 detail=KERNEL32.dll!SetLastError
+
+[function depth=5 range=0x001BF7AC-0x001BF85A]
+direct call_site_rva=0x001BF7CC target_rva=0x001C0628 detail=E8-relative function_range=0x001C0628-0x001C06F4
+direct call_site_rva=0x001BF854 target_rva=0x001BF8AC detail=E8-relative function_range=0x001BF8AC-0x001BF8F3
+
+[function depth=5 range=0x001B72AC-0x001B7310]
+direct call_site_rva=0x001B72C7 target_rva=0x001C58D4 detail=E8-relative function_range=0x001C58D4-0x001C599C
+direct call_site_rva=0x001B72EA target_rva=0x001B733C detail=E8-relative function_range=0x001B733C-0x001B74E6
+direct call_site_rva=0x001B72F8 target_rva=0x001C599C detail=E8-relative function_range=0x001C599C-0x001C59D5
+
+[function depth=5 range=0x001B68EC-0x001B69CC]
+direct call_site_rva=0x001B69AD target_rva=0x001B6850 detail=E8-relative function_range=0x001B6850-0x001B68EA
+
+[function depth=5 range=0x001B6E10-0x001B6E5B]
+direct call_site_rva=0x001B6E28 target_rva=0x001B6D94 detail=E8-relative function_range=0x001B6D94-0x001B6E0E
+direct call_site_rva=0x001B6E3E target_rva=0x001C5690 detail=E8-relative function_range=0x001C5690-0x001C56B6
+direct call_site_rva=0x001B6E45 target_rva=0x001CA84C detail=E8-relative function_range=0x001CA84C-0x001CA8DD
+
+[function depth=6 range=0x001C94CC-0x001C9512]
+direct call_site_rva=0x001C94EE target_rva=0x001C8CC0 detail=E8-relative function_range=0x001C8CC0-0x001C8E96
+
+[function depth=6 range=0x001C9514-0x001C9565]
+direct call_site_rva=0x001C953D target_rva=0x001C8CC0 detail=E8-relative function_range=0x001C8CC0-0x001C8E96
+import call_site_rva=0x001C9554 detail=KERNEL32.dll!TlsSetValue
+
+[function depth=6 range=0x001C5C70-0x001C5CE5]
+direct call_site_rva=0x001C5CAD target_rva=0x001D5760 detail=E8-relative function_range=0x001D5760-0x001D578F
+import call_site_rva=0x001C5CC5 detail=KERNEL32.dll!HeapAlloc
+direct call_site_rva=0x001C5CD2 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+
+[function depth=6 range=0x001BF51C-0x001BF559]
+import call_site_rva=0x001BF532 detail=KERNEL32.dll!HeapFree
+direct call_site_rva=0x001BF53C target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+import call_site_rva=0x001BF544 detail=KERNEL32.dll!GetLastError
+
+[function depth=6 range=0x001BFF50-0x001C001D]
+direct call_site_rva=0x001BFF71 target_rva=0x001C052E detail=E8-relative function_range=0x001C04AC-0x001C0580
+direct call_site_rva=0x001BFFFD target_rva=0x001BFB54 detail=E8-relative function_range=0x001BFB54-0x001BFB93
+direct call_site_rva=0x001C0012 target_rva=0x001BFBD4 detail=E8-relative function_range=0x001BFBD4-0x001BFC19
+
+[function depth=6 range=0x001BF8AC-0x001BF8F3]
+import call_site_rva=0x001BF8B5 detail=KERNEL32.dll!IsProcessorFeaturePresent
+direct call_site_rva=0x001BF8D5 target_rva=0x001BF614 detail=E8-relative function_range=0x001BF614-0x001BF76F
+import call_site_rva=0x001BF8DA detail=KERNEL32.dll!GetCurrentProcess
+
+[function depth=6 range=0x001C58D4-0x001C599C]
+direct call_site_rva=0x001C58E1 target_rva=0x001C588C detail=E8-relative function_range=0x001C588C-0x001C58D2
+direct call_site_rva=0x001C5941 target_rva=0x001C2B70 detail=E8-relative function_range=0x001C2B70-0x001C2BCE
+direct call_site_rva=0x001C594B target_rva=0x001BF51C detail=E8-relative function_range=0x001BF51C-0x001BF559
+
+[function depth=6 range=0x001B733C-0x001B74E6]
+direct call_site_rva=0x001B7373 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001B737E target_rva=0x001BF85C detail=E8-relative function_range=0x001BF85C-0x001BF87A
+direct call_site_rva=0x001B741A target_rva=0x001785C0 detail=E8-relative function_range=0x001785C0-0x00178C35
+direct call_site_rva=0x001B743F target_rva=0x001B6D94 detail=E8-relative function_range=0x001B6D94-0x001B6E0E
+direct call_site_rva=0x001B746F target_rva=0x001C5690 detail=E8-relative function_range=0x001C5690-0x001C56B6
+direct call_site_rva=0x001B747C target_rva=0x001CB300 detail=E8-relative function_range=0x001CB300-0x001CB3EB
+direct call_site_rva=0x001B74B5 target_rva=0x001CC454 detail=E8-relative function_range=0x001CC454-0x001CC50B
+
+[function depth=6 range=0x001C599C-0x001C59D5]
+direct call_site_rva=0x001C59B5 target_rva=0x001B6D94 detail=E8-relative function_range=0x001B6D94-0x001B6E0E
+
+[function depth=6 range=0x001B6850-0x001B68EA]
+direct call_site_rva=0x001B68BE target_rva=0x001B6E10 detail=E8-relative function_range=0x001B6E10-0x001B6E5B
+
+[function depth=6 range=0x001B6D94-0x001B6E0E]
+direct call_site_rva=0x001B6DCD target_rva=0x001C5690 detail=E8-relative function_range=0x001C5690-0x001C56B6
+direct call_site_rva=0x001B6DDA target_rva=0x001CB300 detail=E8-relative function_range=0x001CB300-0x001CB3EB
+
+[function depth=6 range=0x001C5690-0x001C56B6]
+direct call_site_rva=0x001C5699 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001C56A4 target_rva=0x001BF85C detail=E8-relative function_range=0x001BF85C-0x001BF87A
+
+[function depth=6 range=0x001CA84C-0x001CA8DD]
+direct call_site_rva=0x001CA85C target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CA8BE target_rva=0x001CA704 detail=E8-relative function_range=0x001CA704-0x001CA790
+direct call_site_rva=0x001CA8C5 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CA8D0 target_rva=0x001BF85C detail=E8-relative function_range=0x001BF85C-0x001BF87A
+
+[function depth=7 range=0x001C8CC0-0x001C8E96]
+import call_site_rva=0x001C8D63 detail=KERNEL32.dll!LoadLibraryExW
+import call_site_rva=0x001C8D71 detail=KERNEL32.dll!GetLastError
+import call_site_rva=0x001C8DB3 detail=KERNEL32.dll!LoadLibraryExW
+import call_site_rva=0x001C8DEC detail=KERNEL32.dll!FreeLibrary
+import call_site_rva=0x001C8E18 detail=KERNEL32.dll!GetProcAddress
+
+[function depth=7 range=0x001D5760-0x001D578F]
+direct call_site_rva=0x001D5769 target_rva=0x001D5790 detail=E8-relative function_range=0x001D5790-0x001D57C4
+
+[function depth=7 range=0x001C04AC-0x001C0580]
+import call_site_rva=0x001C04BB detail=KERNEL32.dll!GetLastError
+direct call_site_rva=0x001C04CE target_rva=0x001C94CC detail=E8-relative function_range=0x001C94CC-0x001C9512
+direct call_site_rva=0x001C04F1 target_rva=0x001C9514 detail=E8-relative function_range=0x001C9514-0x001C9565
+direct call_site_rva=0x001C0504 target_rva=0x001C5C70 detail=E8-relative function_range=0x001C5C70-0x001C5CE5
+direct call_site_rva=0x001C0519 target_rva=0x001C9514 detail=E8-relative function_range=0x001C9514-0x001C9565
+direct call_site_rva=0x001C0520 target_rva=0x001BF51C detail=E8-relative function_range=0x001BF51C-0x001BF559
+direct call_site_rva=0x001C052A target_rva=0x001C9514 detail=E8-relative function_range=0x001C9514-0x001C9565
+direct call_site_rva=0x001C053B target_rva=0x001C9514 detail=E8-relative function_range=0x001C9514-0x001C9565
+direct call_site_rva=0x001C0548 target_rva=0x001BFF50 detail=E8-relative function_range=0x001BFF50-0x001C001D
+direct call_site_rva=0x001C054F target_rva=0x001BF51C detail=E8-relative function_range=0x001BF51C-0x001BF559
+import call_site_rva=0x001C0559 detail=KERNEL32.dll!SetLastError
+direct call_site_rva=0x001C057A target_rva=0x001BF490 detail=E8-relative function_range=0x001BF490-0x001BF4E6
+
+[function depth=7 range=0x001BFB54-0x001BFB93]
+
+[function depth=7 range=0x001BFBD4-0x001BFC19]
+direct call_site_rva=0x001BFC01 target_rva=0x001C03DC detail=E8-relative function_range=0x001C03DC-0x001C0443
+
+[function depth=7 range=0x001BF614-0x001BF76F]
+direct call_site_rva=0x001BF660 target_rva=0x00178320 detail=E8-relative function_range=0x00178320-0x001784B0
+direct call_site_rva=0x001BF671 target_rva=0x00178320 detail=E8-relative function_range=0x00178320-0x001784B0
+import call_site_rva=0x001BF68D detail=KERNEL32.dll!RtlCaptureContext
+import call_site_rva=0x001BF6A5 detail=KERNEL32.dll!RtlLookupFunctionEntry
+import call_site_rva=0x001BF6E0 detail=KERNEL32.dll!RtlVirtualUnwind
+import call_site_rva=0x001BF719 detail=KERNEL32.dll!IsDebuggerPresent
+import call_site_rva=0x001BF723 detail=KERNEL32.dll!SetUnhandledExceptionFilter
+import call_site_rva=0x001BF72E detail=KERNEL32.dll!UnhandledExceptionFilter
+direct call_site_rva=0x001BF752 target_rva=0x00176EE0 detail=E8-relative function_range=0x00176EE0-0x00176F01
+
+[function depth=7 range=0x001C588C-0x001C58D2]
+direct call_site_rva=0x001C58B6 target_rva=0x001C5690 detail=E8-relative function_range=0x001C5690-0x001C56B6
+direct call_site_rva=0x001C58BD target_rva=0x001DCC04 detail=E8-relative function_range=0x001DCC04-0x001DCC63
+
+[function depth=7 range=0x001C2B70-0x001C2BCE]
+direct call_site_rva=0x001C2B99 target_rva=0x001D5760 detail=E8-relative function_range=0x001D5760-0x001D578F
+import call_site_rva=0x001C2BAE detail=KERNEL32.dll!HeapAlloc
+direct call_site_rva=0x001C2BBB target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+
+[function depth=7 range=0x001785C0-0x00178C35]
+direct call_site_rva=0x00178806 target_rva=0x0017890B detail=E8-relative function_range=0x001785C0-0x00178C35
+direct call_site_rva=0x00178936 target_rva=0x00178A3B detail=E8-relative function_range=0x001785C0-0x00178C35
+direct call_site_rva=0x00178AAE target_rva=0x00178B33 detail=E8-relative function_range=0x001785C0-0x00178C35
+
+[function depth=7 range=0x001CB300-0x001CB3EB]
+direct call_site_rva=0x001CB329 target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+direct call_site_rva=0x001CB331 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CB389 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CB394 target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+direct call_site_rva=0x001CB3A6 target_rva=0x001CB3EC detail=E8-relative function_range=0x001CB3EC-0x001CB6CF
+direct call_site_rva=0x001CB3B8 target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+direct call_site_rva=0x001CB3C0 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CB3CB target_rva=0x001BF85C detail=E8-relative function_range=0x001BF85C-0x001BF87A
+
+[function depth=7 range=0x001CC454-0x001CC50B]
+direct call_site_rva=0x001CC466 target_rva=0x001C5690 detail=E8-relative function_range=0x001C5690-0x001C56B6
+direct call_site_rva=0x001CC472 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CC491 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CC4A8 target_rva=0x001CC3D8 detail=E8-relative function_range=0x001CC3D8-0x001CC451
+direct call_site_rva=0x001CC4DC target_rva=0x001C588C detail=E8-relative function_range=0x001C588C-0x001C58D2
+direct call_site_rva=0x001CC4E8 target_rva=0x001DD1D8 detail=E8-relative function_range=0x001DD1D8-0x001DD243
+direct call_site_rva=0x001CC4F3 target_rva=0x001CC20C detail=E8-relative function_range=0x001CC20C-0x001CC2F0
+
+[function depth=7 range=0x001CA704-0x001CA790]
+direct call_site_rva=0x001CA74A target_rva=0x001CE364 detail=E8-relative function_range=0x001CE364-0x001CE3D9
+import call_site_rva=0x001CA752 detail=KERNEL32.dll!FlushFileBuffers
+direct call_site_rva=0x001CA75E target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+import call_site_rva=0x001CA766 detail=KERNEL32.dll!GetLastError
+direct call_site_rva=0x001CA76E target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+
+[function depth=8 range=0x001D5790-0x001D57C4]
+
+[function depth=8 range=0x001BF490-0x001BF4E6]
+direct call_site_rva=0x001BF494 target_rva=0x001D5A80 detail=E8-relative function_range=0x001D5A80-0x001D5AAE
+direct call_site_rva=0x001BF4A3 target_rva=0x001D5AF8 detail=E8-relative function_range=0x001D5AF8-0x001D5D62
+import call_site_rva=0x001BF4B6 detail=KERNEL32.dll!IsProcessorFeaturePresent
+direct call_site_rva=0x001BF4D6 target_rva=0x001BF614 detail=E8-relative function_range=0x001BF614-0x001BF76F
+
+[function depth=8 range=0x001C03DC-0x001C0443]
+direct call_site_rva=0x001C03F8 target_rva=0x001D6448 detail=E8-relative function_range=0x001D6448-0x001D64F0
+direct call_site_rva=0x001C041F target_rva=0x001D6248 detail=E8-relative function_range=0x001D6248-0x001D63BE
+
+[function depth=8 range=0x00178320-0x001784B0]
+
+[function depth=8 range=0x001DCC04-0x001DCC63]
+direct call_site_rva=0x001DCC0D target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001DCC4C target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001DCC57 target_rva=0x001BF85C detail=E8-relative function_range=0x001BF85C-0x001BF87A
+
+[function depth=8 range=0x001B5BA4-0x001B5BC4]
+direct call_site_rva=0x001B5BA8 target_rva=0x001C0628 detail=E8-relative function_range=0x001C0628-0x001C06F4
+
+[function depth=8 range=0x001CB3EC-0x001CB6CF]
+direct call_site_rva=0x001CB41C target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+direct call_site_rva=0x001CB423 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CB42E target_rva=0x001BF85C detail=E8-relative function_range=0x001BF85C-0x001BF87A
+direct call_site_rva=0x001CB48A target_rva=0x001DCC04 detail=E8-relative function_range=0x001DCC04-0x001DCC63
+direct call_site_rva=0x001CB4AD target_rva=0x001C04AC detail=E8-relative function_range=0x001C04AC-0x001C0580
+import call_site_rva=0x001CB4EC detail=KERNEL32.dll!GetConsoleMode
+direct call_site_rva=0x001CB532 target_rva=0x001DF340 detail=E8-relative function_range=0x001DF340-0x001DF37B
+direct call_site_rva=0x001CB551 target_rva=0x001DF340 detail=E8-relative function_range=0x001DF340-0x001DF37B
+import call_site_rva=0x001CB576 detail=KERNEL32.dll!GetLastError
+direct call_site_rva=0x001CB591 target_rva=0x001CA94C detail=E8-relative function_range=0x001CA94C-0x001CAE38
+direct call_site_rva=0x001CB5D2 target_rva=0x001CB064 detail=E8-relative function_range=0x001CB064-0x001CB17D
+direct call_site_rva=0x001CB5E6 target_rva=0x001CB180 detail=E8-relative function_range=0x001CB180-0x001CB2F0
+direct call_site_rva=0x001CB5FA target_rva=0x001CAF60 detail=E8-relative function_range=0x001CAF60-0x001CB062
+import call_site_rva=0x001CB61E detail=KERNEL32.dll!WriteFile
+import call_site_rva=0x001CB628 detail=KERNEL32.dll!GetLastError
+direct call_site_rva=0x001CB656 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CB661 target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+direct call_site_rva=0x001CB674 target_rva=0x001B5B54 detail=E8-relative function_range=0x001B5B54-0x001B5BA2
+direct call_site_rva=0x001CB696 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CB6A1 target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+
+[function depth=8 range=0x001CC3D8-0x001CC451]
+direct call_site_rva=0x001CC400 target_rva=0x001CE364 detail=E8-relative function_range=0x001CE364-0x001CE3D9
+import call_site_rva=0x001CC41E detail=KERNEL32.dll!SetFilePointerEx
+import call_site_rva=0x001CC430 detail=KERNEL32.dll!GetFileSizeEx
+
+[function depth=8 range=0x001DD1D8-0x001DD243]
+direct call_site_rva=0x001DD1F7 target_rva=0x001C5C70 detail=E8-relative function_range=0x001C5C70-0x001C5CE5
+direct call_site_rva=0x001DD202 target_rva=0x001BF51C detail=E8-relative function_range=0x001BF51C-0x001BF559
+
+[function depth=8 range=0x001CC20C-0x001CC2F0]
+direct call_site_rva=0x001CC225 target_rva=0x001C5690 detail=E8-relative function_range=0x001C5690-0x001C56B6
+direct call_site_rva=0x001CC25D target_rva=0x001CB300 detail=E8-relative function_range=0x001CB300-0x001CB3EB
+direct call_site_rva=0x001CC2D5 target_rva=0x001CB300 detail=E8-relative function_range=0x001CB300-0x001CB3EB
+
+[function depth=8 range=0x001CE364-0x001CE3D9]
+direct call_site_rva=0x001CE36D target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+direct call_site_rva=0x001CE375 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CE3B8 target_rva=0x001B5BA4 detail=E8-relative function_range=0x001B5BA4-0x001B5BC4
+direct call_site_rva=0x001CE3C0 target_rva=0x001B5BC4 detail=E8-relative function_range=0x001B5BC4-0x001B5BE4
+direct call_site_rva=0x001CE3CB target_rva=0x001BF85C detail=E8-relative function_range=0x001BF85C-0x001BF87A
