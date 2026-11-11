@@ -1,13 +1,13 @@
 # RTX 3060 laptop: power telemetry and boost investigation
 
-This project documents a Dell G15 5510 RTX 3060 Laptop GPU that reported implausible power readings and remained near 210 MHz on a modern NVIDIA driver. An experimental, **machine-specific** Windows driver override restored boost on the tested laptop. It changes the power/current feedback seen by the driver; the real power draw and the effectiveness of power/current protection have not been independently verified.
+This project documents a Dell G15 5510 RTX 3060 Laptop GPU that reported implausible power readings and remained near 210 MHz on a modern NVIDIA driver. An experimental, **machine-specific** Windows driver override restored boost on the tested laptop. It changes the power/current feedback seen by the driverd.
 
 **Start here:** [what was tested and what remains unknown](evidence/analysis/slope-override-results-2026-11-11.md). The switch below is not a universal RTX 3060 fix: it contains a specific GPU hardware ID and device instance, and the image is specific to the investigated machine. Do not apply it to another system without establishing compatibility and a recovery path.
 
 ## Run the switch on the tested laptop
 
 1. Keep the repository's folders together. In File Explorer open `tools` and double-click [GPU-Slope-Switch.cmd](tools/GPU-Slope-Switch.cmd).
-2. Choose **1** for Status, **2** to Enable the override, **3** to Disable it, or **Q** to quit. Status reports the registry configuration and device status; it does not by itself prove which image is loaded or verify protection.
+2. Choose **1** for Status, **2** to Enable the override, **3** to Disable it, or **Q** to quit. Status reports the registry configuration and device status.
 3. For Enable or Disable, save your work first. Type `Enable` or `Disable` when prompted, and approve the administrator prompt. The switch restarts the GPU device and can interrupt graphics applications. Read the result in the administrator window.
 4. The enabled override persists until disabled. If a restart fails or the device reports an error, the registry setting may already have changed. Windows restart or Safe Mode may be needed for recovery.
 
@@ -43,3 +43,5 @@ The [GPU-Z specification screenshot](evidence/screenshots/highlights/03-gpu-spec
 | [Slope override results](evidence/analysis/slope-override-results-2026-11-11.md) | Current observations, limitations, and unresolved questions. |
 
 Some scripts and records are retained as investigation history. A script's presence does not mean it is a supported installer or safe to run on a different GPU. Existing paths are kept in place because the switch and research scripts refer to them.
+
+I've only tested this on driver 610.62 on a rtx 3060 laptop gpu with a i7-10870h laptop name is dell 15 5510
