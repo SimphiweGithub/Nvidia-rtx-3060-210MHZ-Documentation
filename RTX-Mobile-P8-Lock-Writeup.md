@@ -1,5 +1,7 @@
 # RTX 30-Series Mobile GPU: Permanent P8/210MHz Lock on Newer NVIDIA Drivers
 
+> Historical investigation. For current results, limitations, and instructions, start with the [project guide](README.md).
+
 > Update, 11 November 2026: a machine-specific experimental driver-loaded image has restored boost on the tested laptop. It changes power/current feedback and does not establish real board-power protection. See [the slope-override results and limitations](evidence/analysis/slope-override-results-2026-11-11.md) before considering its use.
 
 > Evidence note: some historical explanations below describe the sensor, driver behavior, and clock-floor mechanism more definitively than the tests establish. The exact source and causal path of the invalid reading remain unproven. In particular, the 2026-09-02 IOCTL capture was corrected on 2026-11-07: the input dump was misaddressed and the output buffer changed after the call. See the reverse-engineering section for the current evidence boundary.

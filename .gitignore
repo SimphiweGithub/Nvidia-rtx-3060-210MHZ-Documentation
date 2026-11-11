@@ -1,3 +1,7 @@
 # Generated .NET build outputs
 **/bin/
 **/obj/
+
+# Local captures can be large and may contain system-wide trace data.
+evidence/runs/*.etl
+**/__pycache__/
