@@ -1,0 +1,36 @@
+{
+  "status": "OFFLINE ONLY; no runtime or safety validation",
+  "source_sha256": "34c6676becef4ced24308274e4537f59b5cf0e23b64659bce6f07325debea3ae",
+  "output_sha256": "1e08ed1984f1a3c726d6c1d17b3dad30c409095f4853e6c0de1c80421758e57c",
+  "changes": [
+    {
+      "offset": 563251,
+      "before_hex": "02",
+      "after_hex": "01",
+      "field": "channel 0 last relationship"
+    },
+    {
+      "offset": 564667,
+      "before_hex": "00",
+      "after_hex": "03",
+      "field": "relationship 13 source"
+    },
+    {
+      "offset": 564713,
+      "before_hex": "0b",
+      "after_hex": "0a",
+      "field": "relationship 14 source"
+    },
+    {
+      "offset": 564714,
+      "before_hex": "00f0ffff",
+      "after_hex": "00100000",
+      "field": "relationship 14 weight"
+    }
+  ],
+  "checksum_offset": 609791,
+  "checksum_before": 66,
+  "checksum_after": 31,
+  "signature_verified": false,
+  "board_power_feedback_preserved": false
+}

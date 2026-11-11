@@ -1,0 +1,11 @@
+﻿timestamp,pstate,memory_mhz,graphics_mhz,temperature_c,gpu_load_pct,memory_load_pct,sw_power_cap,sw_thermal_slowdown
+2026/11/10 10:48:12.834, P5, 810, 1732, 61, 99, 87, Active, Active
+2026/11/10 10:48:13.904, P5, 810, 1732, 61, 99, 85, Active, Active
+2026/11/10 10:48:14.964, P5, 810, 1732, 61, 100, 83, Active, Active
+2026/11/10 10:48:16.036, P5, 810, 1732, 62, 99, 83, Active, Active
+2026/11/10 10:48:17.107, P5, 810, 1732, 62, 99, 87, Active, Active
+2026/11/10 10:48:18.176, P5, 810, 1732, 62, 99, 83, Active, Active
+2026/11/10 10:48:19.244, P5, 810, 1732, 62, 99, 87, Active, Active
+2026/11/10 10:48:20.315, P5, 810, 1732, 62, 99, 87, Active, Active
+2026/11/10 10:48:21.386, P5, 810, 1732, 62, 99, 87, Active, Active
+2026/11/10 10:48:22.447, P5, 810, 1732, 62, 99, 85, Active, Active

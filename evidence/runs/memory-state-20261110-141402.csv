@@ -1,0 +1,9 @@
+﻿timestamp,pstate,memory_mhz,graphics_mhz,temperature_c,gpu_load_pct,memory_load_pct,sw_power_cap,sw_thermal_slowdown
+2026/11/10 14:14:02.093, P0, 7301, 1740, 70, 96, 84, Not Active, Not Active
+2026/11/10 14:14:03.165, P0, 7301, 1740, 69, 69, 53, Not Active, Not Active
+2026/11/10 14:14:04.251, P0, 7301, 1740, 69, 63, 58, Not Active, Not Active
+2026/11/10 14:14:05.350, P0, 7301, 1740, 68, 16, 14, Not Active, Not Active
+2026/11/10 14:14:06.417, P0, 7301, 1740, 70, 73, 71, Not Active, Not Active
+2026/11/10 14:14:07.501, P0, 7301, 1740, 70, 72, 56, Not Active, Not Active
+2026/11/10 14:14:08.581, P0, 7301, 1740, 70, 82, 64, Not Active, Not Active
+2026/11/10 14:14:09.669, P0, 7301, 1740, 70, 74, 60, Not Active, Not Active

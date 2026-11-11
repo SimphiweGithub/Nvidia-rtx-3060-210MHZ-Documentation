@@ -1,0 +1,3 @@
+﻿Launching device-restart comparison.
+
+Comparison launch completed.

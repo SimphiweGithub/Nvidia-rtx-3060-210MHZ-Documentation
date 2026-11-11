@@ -1,0 +1,100 @@
+﻿Completed: True
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.016 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.359 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Tue Nov 10 08:48:14.515 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff801`c3600000 PsLoadedModuleList = 0xfffff801`c44f54c0
+Debug session time: Tue Nov 10 08:48:15.226 2026 (UTC + 2:00)
+System Uptime: 0 days 0:17:35.915
+lkd> kd: Reading initial command '.reload;r @$t1=poi(poi(poi(nvlddmkm+13aad58)+200)+48240);r @$t2=poi(@$t1+2510);.echo OBJECTS;r @$t1;r @$t2;.echo C3;dd poi(poi(@$t2+8a0)+18) L20;.echo C5;dd poi(poi(@$t2+8a0)+28) L20;.echo C18;dd poi(poi(@$t2+8a0)+90) L20;.echo C19;dd poi(poi(@$t2+8a0)+98) L20;.echo END;q'
+Connected to Windows 10 26100 x64 target at (Tue Nov 10 08:48:15.258 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+..............................................
+Loading User Symbols
+
+Loading unloaded module list
+.................
+OBJECTS
+$t1=ffffc083fef8a000
+$t2=ffffc083feff6000
+C3
+ffffc083`ff505580  00030005 00000020 6c5d61e0 fffff801
+ffffc083`ff505590  6ba93290 fffff801 6bd15500 fffff801
+ffffc083`ff5055a0  000000f7 00010020 ffffffff 00000000
+ffffc083`ff5055b0  00000000 00000000 00001000 00000000
+ffffc083`ff5055c0  00001000 00000000 00001000 00000000
+ffffc083`ff5055d0  000800ff 7fffffff 00000000 00000000
+ffffc083`ff5055e0  00000000 00000000 00000000 00000000
+ffffc083`ff5055f0  00000000 00000000 00000001 00000139
+C5
+ffffc083`ff505cf0  00050005 00000020 6c5d61e0 fffff801
+ffffc083`ff505d00  6ba93290 fffff801 6bd15500 fffff801
+ffffc083`ff505d10  000000fa 00010020 ffffffff 00000000
+ffffc083`ff505d20  00000000 00000000 00001000 00000000
+ffffc083`ff505d30  00001000 00000000 00001000 00000000
+ffffc083`ff505d40  000800ff 7fffffff 00000000 00000000
+ffffc083`ff505d50  00000000 00000000 00000000 00000000
+ffffc083`ff505d60  00000000 00000000 00000001 00000000
+C18
+ffffc083`ff502d20  00120003 00000008 6c5d61e0 fffff801
+ffffc083`ff502d30  6ba93290 fffff801 6bd15500 fffff801
+ffffc083`ff502d40  00000001 00010020 ffffffff 00000000
+ffffc083`ff502d50  00000000 00000000 00001000 00000000
+ffffc083`ff502d60  00001000 00000000 00001000 00000000
+ffffc083`ff502d70  000800ff 7fffffff 00000000 00000000
+ffffc083`ff502d80  00000000 00000000 00000000 00000000
+ffffc083`ff502d90  00000000 00000000 00000000 00002390
+C19
+ffffc083`ff503d10  00130003 00000008 6c5d61e0 fffff801
+ffffc083`ff503d20  6ba93290 fffff801 6bd15500 fffff801
+ffffc083`ff503d30  00000001 00010020 ffffffff 00000000
+ffffc083`ff503d40  00000000 00000000 00001000 00000000
+ffffc083`ff503d50  00004000 00000000 00001000 00000000
+ffffc083`ff503d60  000800ff 7fffffff 00000000 00000000
+ffffc083`ff503d70  00000000 00000000 00000000 00000000
+ffffc083`ff503d80  00000000 00000000 00000000 00007967
+END
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+

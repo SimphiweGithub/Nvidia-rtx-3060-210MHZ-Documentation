@@ -1,0 +1,2 @@
+﻿Stock-derived override staged. Save work, then restart manually to test. The rollback task removes the registry value five minutes after startup; a second restart is needed to restore the original loaded image.
+

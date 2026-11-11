@@ -1,0 +1,3 @@
+﻿2026-11-09T10:10:45.8942490+02:00,clock_mhz=1702,temp_c=61,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-09T10:10:45.9570371+02:00,ending=Reported graphics clock exceeds 600 MHz.
+Override removed; the GPU must restart before the original image is active.

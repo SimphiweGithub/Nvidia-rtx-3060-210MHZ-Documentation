@@ -1,0 +1,135 @@
+﻿Read-only local kernel debugger check
+Timed out: False
+stdout:
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.000 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.015 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 09:36:58.554 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff807`9da00000 PsLoadedModuleList = 0xfffff807`9e8f54c0
+Debug session time: Sun Nov  8 09:36:59.179 2026 (UTC + 2:00)
+System Uptime: 0 days 0:15:40.868
+lkd> kd: Reading initial command '.reload;!devstack ffff920c094cf030;dq ffff920c094cf180 L80;q'
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 09:36:59.188 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+...............................................
+Loading User Symbols
+
+Loading unloaded module list
+.......................
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff920c094cf030 Unable to load image \SystemRoot\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvlddmkm.sys, Win32 error 0n2
+ \Driver\nvlddmkm   ffff920c094cf180  
+  ffff920c048c4e10  \Driver\ACPI       ffff920c027058a0  
+  ffff920c048da060  \Driver\pci        ffff920c048da1b0  NTPNP_PCI0018
+!DevNode ffff920c048daba0 :
+  DeviceInst is "PCI\VEN_10DE&DEV_2520&SUBSYS_0A641028&REV_A1\4&412752a&0&0008"
+  ServiceName is "nvlddmkm"
+ffff920c`094cf180  ffff920c`0954e5b8 ffff920c`0954e5b8
+ffff920c`094cf190  00000002`74727044 ffff920c`094cf030
+ffff920c`094cf1a0  ffff920c`094cf030 ffff920c`0954e580
+ffff920c`094cf1b0  ffff920c`09622000 00000000`00010001
+ffff920c`094cf1c0  00000001`00000000 00000000`00060001
+ffff920c`094cf1d0  ffff920c`094cf1d0 ffff920c`094cf1d0
+ffff920c`094cf1e0  fffff807`2fc57000 fffff807`2fce6040
+ffff920c`094cf1f0  fffff807`2fb8b010 fffff807`2fd005d0
+ffff920c`094cf200  fffff807`2fb8b330 fffff807`2fd051b0
+ffff920c`094cf210  fffff807`2fb8c0e0 ffff920c`048da060
+ffff920c`094cf220  ffff920c`048c4e10 ffff920c`093f2510
+ffff920c`094cf230  00000001`00000002 ffff920c`094cf238
+ffff920c`094cf240  ffff920c`094cf238 00000000`00000000
+ffff920c`094cf250  00000000`00000000 00000000`00000000
+ffff920c`094cf260  00000000`00000100 00000002`00000000
+ffff920c`094cf270  00000000`00000001 00000000`00000000
+ffff920c`094cf280  00000000`00000000 00000000`00000000
+ffff920c`094cf290  00000002`00000000 00000001`00000001
+ffff920c`094cf2a0  fffff807`2fb8d300 00000000`00000000
+ffff920c`094cf2b0  fffff807`2fb8ceb0 00000000`00000000
+ffff920c`094cf2c0  fffff807`2fb8dc40 00000000`00000000
+ffff920c`094cf2d0  00000000`00000000 fffff807`2fd41e00
+ffff920c`094cf2e0  fffff807`2fd69a60 00000000`00000000
+ffff920c`094cf2f0  00000000`00000000 00000000`00000000
+ffff920c`094cf300  00000000`00000000 fffff807`2fb8c820
+ffff920c`094cf310  00000000`00000000 00000000`00000000
+ffff920c`094cf320  00000000`00000000 00000000`00000000
+ffff920c`094cf330  00000000`00000000 00000000`00000000
+ffff920c`094cf340  00000000`00000000 00000000`00000000
+ffff920c`094cf350  00000000`00000000 fffff807`2fb8dff0
+ffff920c`094cf360  00000001`00010000 ffff920c`17dd2620
+ffff920c`094cf370  00000000`00000000 00000000`00000000
+ffff920c`094cf380  00000000`00f800f6 ffffa288`2ce84270
+ffff920c`094cf390  00000000`00c200c0 ffffa288`300a30d0
+ffff920c`094cf3a0  11d0b510`c8ebdfb0 e34225c9`a000e580
+ffff920c`094cf3b0  00000000`00010040 ffff920c`048da1b0
+ffff920c`094cf3c0  fffff807`30288760 fffff807`3028a6a0
+ffff920c`094cf3d0  fffff807`302c5df0 fffff807`302f1f80
+ffff920c`094cf3e0  fffff807`30271040 fffff807`30271ec0
+ffff920c`094cf3f0  00000000`00010030 ffff920c`048da1b0
+ffff920c`094cf400  fffff807`3029c060 fffff807`3029c050
+ffff920c`094cf410  fffff807`302d0390 fffff807`302d03f0
+ffff920c`094cf420  00000000`00000000 00000000`00000000
+ffff920c`094cf430  00000000`00000000 00000000`00000000
+ffff920c`094cf440  00000000`00000000 00000000`00000000
+ffff920c`094cf450  00000000`00000000 00000000`00000000
+ffff920c`094cf460  00000000`00000000 00000000`00000000
+ffff920c`094cf470  00000000`00000000 00000000`00000000
+ffff920c`094cf480  00000000`00000000 00000000`00000000
+ffff920c`094cf490  00000000`00000000 00000000`00000000
+ffff920c`094cf4a0  00000000`00000000 00000000`00000000
+ffff920c`094cf4b0  00000000`00000000 00000000`00000000
+ffff920c`094cf4c0  00000000`00000000 00000000`00000000
+ffff920c`094cf4d0  00000000`00000000 00000000`00010058
+ffff920c`094cf4e0  ffff920c`048c4e10 fffff807`301c37c0
+ffff920c`094cf4f0  fffff807`301c37c0 fffff807`301d96b0
+ffff920c`094cf500  fffff807`301d98e0 fffff807`30189900
+ffff920c`094cf510  fffff807`30189ad0 fffff807`301d9650
+ffff920c`094cf520  fffff807`301bfa40 fffff807`301c2bb0
+ffff920c`094cf530  00000000`00000000 00000000`00000000
+ffff920c`094cf540  00000000`00000000 00000000`00000000
+ffff920c`094cf550  00000000`00000000 00000000`00000000
+ffff920c`094cf560  00000000`00000000 00000000`00000000
+ffff920c`094cf570  00000000`00000000 00000000`00000000
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+
+stderr:

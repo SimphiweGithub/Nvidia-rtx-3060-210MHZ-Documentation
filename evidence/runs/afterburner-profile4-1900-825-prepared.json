@@ -1,0 +1,10 @@
+{
+  "source_sha256": "88b8d3206e198ba381bba2e389a46072ac19dacdba98827cfffcb5175e73f01c",
+  "candidate_sha256": "ec888a18a4d519b1d2fa5584f23ec1530b808d896fd45cd9b96c67eec0f84879",
+  "memory_offset_mhz": 300,
+  "start_mv": 700,
+  "start_mhz": 990,
+  "plateau_mv": 825,
+  "plateau_mhz": 1900,
+  "applied": false
+}

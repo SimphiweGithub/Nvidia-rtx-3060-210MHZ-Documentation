@@ -1,0 +1,1 @@
+{"gpu_index": 0, "status": 0, "reported_count": 1, "sensors": [{"controller": 1, "minimum": -40, "maximum": 150, "current": 58, "target": 1}], "perf_decrease_status": 0, "perf_decrease_mask": "0x0"}

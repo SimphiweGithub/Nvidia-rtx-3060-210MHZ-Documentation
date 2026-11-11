@@ -1,0 +1,4 @@
+﻿pid=36820 tid=7256
+count=6751 last_mw=752673
+The trace you have just captured "C:\Users\Simphiwe Khumalo\Downloads\New folder (2)\Nvidia-rtx-3060-210MHZ-Documentation\evidence\runs\nvml-kernel-profile-20261108-190854.etl" may contain personally identifiable information, including but not necessarily limited to paths to files accessed, paths to registry accessed and process names. Exact information depends on the events that were logged. Please be aware of this when sharing out this trace with other people.
+xperf_stop_exit=0

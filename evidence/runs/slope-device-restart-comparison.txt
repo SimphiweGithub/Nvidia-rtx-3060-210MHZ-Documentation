@@ -1,0 +1,10 @@
+﻿Candidate staged. Restart manually when ready; the guard observes for at most 10 minutes. No automatic restart is scheduled.
+
+Requesting GPU device restart.
+Microsoft PnP Utility
+
+Restarting device:         PCI\VEN_10DE&DEV_2520&SUBSYS_0A641028&REV_A1\4&412752a&0&0008
+Device restarted successfully.
+
+
+Guard start requested. Verify its log and live image before testing.

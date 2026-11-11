@@ -1,0 +1,10 @@
+{
+  "source_sha256": "d5370440d62aee99593b2ed81a7cfcf0e22cdefb81e7adef28019d9b6f3f90d9",
+  "candidate_sha256": "6ba3bc869e4efefce5e56eb20add0ad46a3543bf525deeadaf422203a4853fa0",
+  "memory_offset_mhz": 300,
+  "anchor_mv": 775,
+  "anchor_mhz": 1530,
+  "plateau_mv": 800,
+  "plateau_mhz": 1875,
+  "applied": false
+}

@@ -1,0 +1,102 @@
+﻿Completed: True
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.016 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.359 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Mon Nov  9 09:08:53.354 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff802`a9600000 PsLoadedModuleList = 0xfffff802`aa4f54c0
+Debug session time: Mon Nov  9 09:08:54.093 2026 (UTC + 2:00)
+System Uptime: 0 days 0:21:36.779
+lkd> kd: Reading initial command '.reload;!drvobj nvlddmkm 2;lm m nvlddmkm;q'
+Connected to Windows 10 26100 x64 target at (Mon Nov  9 09:08:54.134 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+.....................................................
+Loading User Symbols
+
+Loading unloaded module list
+.................
+Driver object (ffff810a14543910) is for:
+Unable to load image \SystemRoot\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvlddmkm.sys, Win32 error 0n2
+ \Driver\nvlddmkm
+
+DriverEntry:   fffff802589ba0e0	nvlddmkm!nvDumpConfig
+DriverStartIo: 00000000	
+DriverUnload:  fffff80252fd7990	nvlddmkm!nvDumpConfig
+AddDevice:     fffff80252fd5910	nvlddmkm!nvDumpConfig
+
+Dispatch routines:
+[00] IRP_MJ_CREATE                      fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[01] IRP_MJ_CREATE_NAMED_PIPE           fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[02] IRP_MJ_CLOSE                       fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[03] IRP_MJ_READ                        fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[04] IRP_MJ_WRITE                       fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[05] IRP_MJ_QUERY_INFORMATION           fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[06] IRP_MJ_SET_INFORMATION             fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[07] IRP_MJ_QUERY_EA                    fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[08] IRP_MJ_SET_EA                      fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[09] IRP_MJ_FLUSH_BUFFERS               fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[0a] IRP_MJ_QUERY_VOLUME_INFORMATION    fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[0b] IRP_MJ_SET_VOLUME_INFORMATION      fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[0c] IRP_MJ_DIRECTORY_CONTROL           fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[0d] IRP_MJ_FILE_SYSTEM_CONTROL         fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[0e] IRP_MJ_DEVICE_CONTROL              fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[0f] IRP_MJ_INTERNAL_DEVICE_CONTROL     fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[10] IRP_MJ_SHUTDOWN                    fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[11] IRP_MJ_LOCK_CONTROL                fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[12] IRP_MJ_CLEANUP                     fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[13] IRP_MJ_CREATE_MAILSLOT             fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[14] IRP_MJ_QUERY_SECURITY              fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[15] IRP_MJ_SET_SECURITY                fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[16] IRP_MJ_POWER                       fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[17] IRP_MJ_SYSTEM_CONTROL              fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[18] IRP_MJ_DEVICE_CHANGE               fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[19] IRP_MJ_QUERY_QUOTA                 fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[1a] IRP_MJ_SET_QUOTA                   fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+[1b] IRP_MJ_PNP                         fffff80252fd5e80	nvlddmkm!nvDumpConfig+0x7b5990
+
+Browse full module list
+start             end                 module name
+fffff802`51680000 fffff802`589ed000   nvlddmkm   (export symbols)       \SystemRoot\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvlddmkm.sys
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+

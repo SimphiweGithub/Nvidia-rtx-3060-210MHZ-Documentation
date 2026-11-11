@@ -1,0 +1,7 @@
+# Power-drain reset: evidence boundary — 7 November 2026
+
+The historical writeup reports a power-drain/EC reset with no improvement. The user has confirmed that the internal battery was disconnected from the motherboard. Other physical steps and timing were not recorded, so this should not be treated as proof that all controller state was cleared.
+
+Dell's [G15 5510 service procedure for the USB Type-C variant](https://www.dell.com/support/manuals/en-ed/g-series-15-5510-laptop/dell-g15-5510-e-board-service-manual/drain-residual-flea-power-perform-hard-reset?guid=guid-2da79962-34ff-421b-8b91-39cbbb623ca0&lang=en-us) describes shutdown, disconnecting AC, opening the base, removing the internal battery, holding the power button for 20 seconds, and reassembly. This is a general reset procedure, not evidence that it will fix the GPU or that every firmware state is cleared. The procedure is variant-specific; model and safety instructions should be verified before any physical work. A separate Dell support page describes an RTC reset that can reset BIOS settings; it should not be conflated with or substituted for the battery-disconnected procedure.
+
+No shutdown, opening, battery disconnection, or reset was performed in this agent session. The previous reset included disconnection of the internal battery and did not resolve the problem, making a repeat a lower priority. Normal boost and power protections remain unverified.

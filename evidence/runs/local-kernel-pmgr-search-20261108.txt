@@ -1,0 +1,58 @@
+﻿Read-only local kernel debugger check
+Timed out: True
+stdout:
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.016 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.015 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 09:44:09.597 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff807`9da00000 PsLoadedModuleList = 0xfffff807`9e8f54c0
+Debug session time: Sun Nov  8 09:44:10.226 2026 (UTC + 2:00)
+System Uptime: 0 days 0:22:51.914
+lkd> kd: Reading initial command '.reload;!devstack ffff920c094cf030;s -q ffff920c09300000 ffff920c0a000000 fffff80746f81470;s -q ffff920c19000000 ffff920c1b000000 fffff80746f81470;q'
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 09:44:10.234 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+...............................................
+Loading User Symbols
+
+Loading unloaded module list
+.......................
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff920c094cf030 Unable to load image \SystemRoot\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvlddmkm.sys, Win32 error 0n2
+ \Driver\nvlddmkm   ffff920c094cf180  
+  ffff920c048c4e10  \Driver\ACPI       ffff920c027058a0  
+  ffff920c048da060  \Driver\pci        ffff920c048da1b0  NTPNP_PCI0018
+!DevNode ffff920c048daba0 :
+  DeviceInst is "PCI\VEN_10DE&DEV_2520&SUBSYS_0A641028&REV_A1\4&412752a&0&0008"
+  ServiceName is "nvlddmkm"
+ffff920c`19fe2000  fffff807`46f81470 fffff807`46f81488
+
+stderr:

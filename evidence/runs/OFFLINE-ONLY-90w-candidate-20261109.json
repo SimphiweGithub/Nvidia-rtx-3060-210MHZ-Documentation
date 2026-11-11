@@ -1,0 +1,42 @@
+{
+  "status": "OFFLINE ONLY: not validated for loading, not a power limit",
+  "source_sha256": "34c6676becef4ced24308274e4537f59b5cf0e23b64659bce6f07325debea3ae",
+  "output_sha256": "3fb766c855a0ea2fc2beb0a587a153c1a5cc0962137c96c7c0702f4586b74531",
+  "changes": [
+    {
+      "offset": 563251,
+      "before_hex": "02",
+      "after_hex": "01",
+      "field": "channel 0 last relation"
+    },
+    {
+      "offset": 564116,
+      "before_hex": "00100000",
+      "after_hex": "11ec0000",
+      "field": "relation 1 weight"
+    },
+    {
+      "offset": 564667,
+      "before_hex": "00",
+      "after_hex": "03",
+      "field": "relation 13 source"
+    },
+    {
+      "offset": 564713,
+      "before_hex": "0b",
+      "after_hex": "0a",
+      "field": "relation 14 source"
+    },
+    {
+      "offset": 564714,
+      "before_hex": "00f0ffff",
+      "after_hex": "00100000",
+      "field": "relation 14 weight"
+    }
+  ],
+  "checksum_offset": 609791,
+  "checksum_before": 66,
+  "checksum_after": 50,
+  "signature_verified": false,
+  "independent_board_power_protection_verified": false
+}

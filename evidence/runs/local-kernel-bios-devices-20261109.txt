@@ -1,0 +1,143 @@
+﻿Completed: True
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.000 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.016 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Mon Nov  9 09:09:44.587 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff802`a9600000 PsLoadedModuleList = 0xfffff802`aa4f54c0
+Debug session time: Mon Nov  9 09:09:45.215 2026 (UTC + 2:00)
+System Uptime: 0 days 0:22:27.901
+lkd> kd: Reading initial command '.reload;.for (r @$t0=poi(ffff810a14543910+8); @$t0 != 0; r @$t0=poi(@$t0+10)) { !devstack @$t0; .echo EXTENSION; dq poi(@$t0+40) L10 };q'
+Connected to Windows 10 26100 x64 target at (Mon Nov  9 09:09:45.226 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+.....................................................
+Loading User Symbols
+
+Loading unloaded module list
+..................
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff810a25a51230 Unable to load image \SystemRoot\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvlddmkm.sys, Win32 error 0n2
+ \Driver\nvlddmkm   ffff810a25a51380  Video7
+EXTENSION
+ffff810a`25a51380  ffff810a`145a8ff8 ffff810a`25a4ee70
+ffff810a`25a51390  00000006`74727044 ffff810a`25a51230
+ffff810a`25a513a0  ffff810a`145a8030 ffff810a`148d8060
+ffff810a`25a513b0  ffff810a`14773000 00000000`00000000
+ffff810a`25a513c0  00000002`00000000 00000000`00060001
+ffff810a`25a513d0  ffff810a`25a513d0 ffff810a`25a513d0
+ffff810a`25a513e0  00000000`00000000 fffff802`3b915f10
+ffff810a`25a513f0  fffff802`3b933b10 fffff802`3b7d3870
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff810a25a4ed20  \Driver\nvlddmkm   ffff810a25a4ee70  Video6
+EXTENSION
+ffff810a`25a4ee70  ffff810a`25a51380 ffff810a`25a4eb50
+ffff810a`25a4ee80  00000006`74727044 ffff810a`25a4ed20
+ffff810a`25a4ee90  ffff810a`145a8030 ffff810a`148d8060
+ffff810a`25a4eea0  ffff810a`14773000 00000000`00000000
+ffff810a`25a4eeb0  00000002`00000000 00000000`00060001
+ffff810a`25a4eec0  ffff810a`25a4eec0 ffff810a`25a4eec0
+ffff810a`25a4eed0  00000000`00000000 fffff802`3b915f10
+ffff810a`25a4eee0  fffff802`3b933b10 fffff802`3b7d3870
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff810a25a4ea00  \Driver\nvlddmkm   ffff810a25a4eb50  Video5
+EXTENSION
+ffff810a`25a4eb50  ffff810a`25a4ee70 ffff810a`25a4e830
+ffff810a`25a4eb60  00000006`74727044 ffff810a`25a4ea00
+ffff810a`25a4eb70  ffff810a`145a8030 ffff810a`148d8060
+ffff810a`25a4eb80  ffff810a`14773000 00000000`00000000
+ffff810a`25a4eb90  00000002`00000000 00000000`00060001
+ffff810a`25a4eba0  ffff810a`25a4eba0 ffff810a`25a4eba0
+ffff810a`25a4ebb0  00000000`00000000 fffff802`3b915f10
+ffff810a`25a4ebc0  fffff802`3b933b10 fffff802`3b7d3870
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff810a25a4e6e0  \Driver\nvlddmkm   ffff810a25a4e830  Video4
+EXTENSION
+ffff810a`25a4e830  ffff810a`25a4eb50 ffff810a`145a8ff8
+ffff810a`25a4e840  00000006`74727044 ffff810a`25a4e6e0
+ffff810a`25a4e850  ffff810a`145a8030 ffff810a`148d8060
+ffff810a`25a4e860  ffff810a`14773000 00000000`00000000
+ffff810a`25a4e870  00000002`00000000 00000000`00060001
+ffff810a`25a4e880  ffff810a`25a4e880 ffff810a`25a4e880
+ffff810a`25a4e890  00000000`00000000 fffff802`3b915f10
+ffff810a`25a4e8a0  fffff802`3b933b10 fffff802`3b7d3870
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff810a25480d90  \Driver\nvlddmkm   ffff810a25480ee0  UVMLiteController0x1
+EXTENSION
+ffff810a`25480ee0  00000000`00000000 00000000`00000000
+ffff810a`25480ef0  00000000`00000000 00000000`00000000
+ffff810a`25480f00  00000000`00000001 00000000`0000000d
+ffff810a`25480f10  ffff810a`25480d90 00000000`00000000
+ffff810a`25480f20  00000000`00000000 00000000`00000000
+ffff810a`25480f30  00000000`00000000 00000000`00000000
+ffff810a`25480f40  00000000`00000000 00000000`00000000
+ffff810a`25480f50  00000000`00000000 00000000`00000000
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff810a145a8030  \Driver\nvlddmkm   ffff810a145a8180  
+  ffff810a0f8c0dd0  \Driver\ACPI       ffff810a0d72c930  
+  ffff810a0f8fe060  \Driver\pci        ffff810a0f8fe1b0  NTPNP_PCI0018
+!DevNode ffff810a0f8feba0 :
+  DeviceInst is "PCI\VEN_10DE&DEV_2520&SUBSYS_0A641028&REV_A1\4&412752a&0&0008"
+  ServiceName is "nvlddmkm"
+EXTENSION
+ffff810a`145a8180  ffff810a`148d8098 ffff810a`148d8098
+ffff810a`145a8190  00000002`74727044 ffff810a`145a8030
+ffff810a`145a81a0  ffff810a`145a8030 ffff810a`148d8060
+ffff810a`145a81b0  ffff810a`14773000 00000000`00010001
+ffff810a`145a81c0  00000001`00000000 00000000`00060001
+ffff810a`145a81d0  ffff810a`145a81d0 ffff810a`145a81d0
+ffff810a`145a81e0  fffff802`3b887000 fffff802`3b916040
+ffff810a`145a81f0  fffff802`3b7bb010 fffff802`3b9305d0
+  !DevObj           !DrvObj            !DevExt           ObjectName
+> ffff810a14146b80  \Driver\nvlddmkm   ffff810a14146cd0  NvAdminDevice
+EXTENSION
+ffff810a`14146cd0  00000001`00000000 00000000`00060001
+ffff810a`14146ce0  ffff810a`14146ce0 ffff810a`14146ce0
+ffff810a`14146cf0  00000000`0000000d ffff810a`14146b80
+ffff810a`14146d00  00000000`00000000 00000000`00000000
+ffff810a`14146d10  00000000`00000000 00000000`00000000
+ffff810a`14146d20  00000000`00000000 00000000`00000000
+ffff810a`14146d30  00000000`00000000 00000000`00000000
+ffff810a`14146d40  00000000`00000000 00000000`00000000
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+

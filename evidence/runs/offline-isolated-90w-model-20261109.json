@@ -1,0 +1,41 @@
+{
+  "source_sha256": "34c6676becef4ced24308274e4537f59b5cf0e23b64659bce6f07325debea3ae",
+  "status": "offline arithmetic hypothesis; no bytes patched or loaded",
+  "assumptions": [
+    "relationship weights use signed 20.12 arithmetic",
+    "channel 10 outputs 6100 mW",
+    "indices match prior RM snapshot",
+    "no overflow, saturation, validation failure, or intermediate nonlinear arithmetic"
+  ],
+  "proposed_changes": [
+    {
+      "location": "channel 0 last relationship index",
+      "before": 2,
+      "after": 1
+    },
+    {
+      "location": "relationship 1 weight",
+      "before": 4096,
+      "after": 60433
+    },
+    {
+      "location": "relationship 13 source",
+      "before": 0,
+      "after": 3
+    },
+    {
+      "location": "relationship 14 source",
+      "before": 11,
+      "after": 10
+    },
+    {
+      "location": "relationship 14 weight",
+      "before": -4096,
+      "after": 4096
+    }
+  ],
+  "modeled_channel0_mw": 90000.3173828125,
+  "modeled_channel12_mw": 230409,
+  "prior_channel12_mw": 230409,
+  "danger": "fixed channel 0 would no longer track actual board power; independent complete protection is unverified"
+}

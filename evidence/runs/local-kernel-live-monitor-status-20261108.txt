@@ -1,0 +1,88 @@
+﻿Read-only local kernel debugger check
+Timed out: False
+stdout:
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.016 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.015 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 19:18:14.897 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff807`9da00000 PsLoadedModuleList = 0xfffff807`9e8f54c0
+Debug session time: Sun Nov  8 19:18:15.534 2026 (UTC + 2:00)
+System Uptime: 0 days 9:56:57.223
+lkd> kd: Reading initial command '.reload;.echo VALID;dq ffff920c19ece000+2510 L1;.echo STATUS_BUFFER;dq ffff920c19fe2000+11d8 L3;.echo BUFFER_HEADER;dd poi(ffff920c19fe2000+11e8) L30;.echo SEARCH_WATTS;s -d poi(ffff920c19fe2000+11e8) L800 b7c21;.echo SEARCH_CURRENT;s -d poi(ffff920c19fe2000+11e8) L800 844b;.echo END;q'
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 19:18:15.543 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+......................................................
+Loading User Symbols
+
+Loading unloaded module list
+....................................
+VALID
+ffff920c`19ed0510  ffff920c`19fe2000
+STATUS_BUFFER
+ffff920c`19fe31d8  005c1c90`02600000 00000000`00026df0
+ffff920c`19fe31e8  ffff87f0`c2bccc90
+BUFFER_HEADER
+ffff87f0`c2bccc90  002bff02 00010014 000c1c2b 00000000
+ffff87f0`c2bccca0  00000000 00000000 00000000 00000000
+ffff87f0`c2bcccb0  00000000 00000000 00000000 00000000
+ffff87f0`c2bcccc0  00000001 92ad6180 18e62177 000b7c21
+ffff87f0`c2bcccd0  0000844b 01531c80 4214e6b7 00000006
+ffff87f0`c2bccce0  000b7c21 0000844b 01531c80 4213ee7f
+ffff87f0`c2bcccf0  00000006 00000001 00000000 00000000
+ffff87f0`c2bccd00  00000000 00000000 00000000 00000000
+ffff87f0`c2bccd10  00000000 00000000 00000000 00000000
+ffff87f0`c2bccd20  00000000 00000000 00000000 00000000
+ffff87f0`c2bccd30  00000000 00000000 00000000 00000000
+ffff87f0`c2bccd40  00000000 00000000 00000000 00000000
+SEARCH_WATTS
+ffff87f0`c2bccccc  000b7c21 0000844b 01531c80 4214f8c4  !|..K.....S....B
+ffff87f0`c2bccce0  000b7c21 0000844b 01531c80 4213ee7f  !|..K.....S....B
+SEARCH_CURRENT
+ffff87f0`c2bcccd0  0000844b 01531c80 42155e1e 00000006  K.....S..^.B....
+ffff87f0`c2bccce4  0000844b 01531c80 42151454 00000006  K.....S.T..B....
+END
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+
+stderr:

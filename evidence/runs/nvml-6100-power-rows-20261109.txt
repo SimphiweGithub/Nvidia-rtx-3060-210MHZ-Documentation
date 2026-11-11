@@ -1,0 +1,13 @@
+{"type": "send", "payload": {"type": 0, "size": 69, "command": "0x80028e", "payload_size": 1}}
+{"type": "send", "payload": {"type": 0, "size": 72, "command": "0x800294", "payload_size": 4}}
+{"type": "send", "payload": {"type": 0, "size": 76, "command": "0xa55a0030", "payload_size": 8321}}
+{"type": "send", "payload": {"type": 0, "size": 1060, "command": "0x20810108", "payload_size": 992}}
+{"type": "send", "payload": {"type": 0, "size": 54420, "command": "0x2080a612", "payload_size": 54352}}
+{"type": "send", "payload": {"stage": "return", "command": "0x2080a612", "ntstatus": 0, "note": "candidate payload starts at private buffer +0x44", "words": [1, 0, 793643, 1, 4294967040, 16777215, 100, 62721, 0, 0, 0, 4096, 0, 0, 4096, 0, 4096, 0, 65792, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}}
+{"type": "send", "payload": {"stage": "dispatch_return", "command": "0x2080a612", "status": 0, "size": 54352, "words": [1, 0, 793643, 1, 4294967040, 16777215, 100, 62721, 0, 0, 0, 4096, 0, 0, 4096, 0, 4096, 0, 65792, 0]}}
+{"type": "send", "payload": {"type": 0, "size": 20068, "command": "0x2080a618", "payload_size": 20000}}
+{"type": "send", "payload": {"type": 0, "size": 80004, "command": "0x2080a613", "payload_size": 79936}}
+energy_status=0 energy_mj=1952270
+{"type": "send", "payload": {"stage": "return", "command": "0x2080a613", "ntstatus": 0, "note": "candidate payload starts at private buffer +0x44", "words": [255, 793643, 0, 0, 0, 0, 0, 0, 0, 6100, 257, 6100, 1000, 6100000, 1952329, 0, 6100, 1000, 6100000, 1952270, 0, 2152114080, 417747778, 1, 0, 0, 0, 0, 0, 0, 0, 0]}}
+{"type": "send", "payload": {"stage": "channel_rows", "command": "0x2080a613", "status": 0, "rows": [{"index": 0, "words": [6100, 1000, 6100000]}, {"index": 1, "words": [522264, 22992, 22715000]}, {"index": 3, "words": [224309, 9875, 22715000]}, {"index": 5, "words": [746573, 32867, 22715000]}, {"index": 10, "words": [6100, 1000, 12000000]}, {"index": 11, "words": [522264, 22992, 22715000]}, {"index": 12, "words": [230409, 10875, 21187000]}, {"index": 18, "words": [1245, 1915, 650000]}, {"index": 19, "words": [4966, 7640, 650000]}]}}
+{"type": "send", "payload": {"stage": "dispatch_return", "command": "0x2080a613", "status": 0, "size": 79936, "words": [255, 793643, 0, 0, 0, 0, 0, 0, 0, 6100, 257, 6100, 1000, 6100000, 1952329, 0, 6100, 1000, 6100000, 1952270]}}

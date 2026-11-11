@@ -1,0 +1,7 @@
+nvmlDeviceGetCurrentClocksThrottleReasons 0 0x24
+{"type": "send", "payload": {"getter": "nvmlDeviceGetCurrentClocksThrottleReasons", "event": "enter"}}
+{"type": "send", "payload": {"event": "clock_status_target", "module": "nvml.dll", "rva": "0xdb0f0"}}
+{"type": "send", "payload": {"getter": "nvmlDeviceGetCurrentClocksThrottleReasons", "event": "leave", "status": 0}}
+nvmlDeviceGetSupportedClocksThrottleReasons 0 0x1ff
+{"type": "send", "payload": {"getter": "nvmlDeviceGetSupportedClocksThrottleReasons", "event": "enter"}}
+{"type": "send", "payload": {"getter": "nvmlDeviceGetSupportedClocksThrottleReasons", "event": "leave", "status": 0}}

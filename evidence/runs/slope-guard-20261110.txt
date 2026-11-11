@@ -1,0 +1,107 @@
+﻿2026-11-10T09:01:14.6791018+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:01:14.7034133+02:00,ending=GPU clock exceeded 1700 MHz guard threshold.
+Override removed; the GPU must restart before the original image is active.
+2026-11-10T09:01:17.7781516+02:00,manual_restart_required=true
+2026-11-10T09:14:34.7771853+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:14:38.0821202+02:00,clock_mhz=1702,temp_c=61,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:14:41.2445474+02:00,clock_mhz=1702,temp_c=62,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:14:44.4061279+02:00,clock_mhz=1702,temp_c=62,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:14:47.5831669+02:00,clock_mhz=1702,temp_c=61,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:14:50.7528678+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:14:53.9039936+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:14:58.1121829+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:00.2403664+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:03.4011431+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:06.5861026+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:09.7539772+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:12.9063967+02:00,clock_mhz=1702,temp_c=57,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:16.0643757+02:00,clock_mhz=1702,temp_c=57,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:19.2315325+02:00,clock_mhz=1702,temp_c=57,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:22.4008513+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:25.5922959+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:28.7608031+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:31.9535809+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:35.1132750+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:38.2966066+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:40.6086622+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Active,ac_online=true
+2026-11-10T09:15:42.6758150+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T09:15:44.7386263+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=5,sw_power_cap=Active,ac_online=true
+2026-11-10T09:15:46.8001765+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Active,ac_online=true
+2026-11-10T09:15:48.8669259+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Active,ac_online=true
+2026-11-10T09:15:50.9360149+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Active,ac_online=true
+2026-11-10T09:15:52.9901316+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Active,ac_online=true
+2026-11-10T09:15:55.0782588+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Active,ac_online=true
+2026-11-10T09:15:57.1647819+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=11,sw_power_cap=Active,ac_online=true
+2026-11-10T09:15:59.2394287+02:00,clock_mhz=1702,temp_c=60,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Active,ac_online=true
+2026-11-10T09:16:01.3053654+02:00,clock_mhz=1702,temp_c=61,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Active,ac_online=true
+2026-11-10T09:16:03.3648440+02:00,clock_mhz=1702,temp_c=61,reported_power_w=6.10,utilization_pct=7,sw_power_cap=Active,ac_online=true
+2026-11-10T09:16:05.4231181+02:00,clock_mhz=1702,temp_c=61,reported_power_w=6.10,utilization_pct=40,sw_power_cap=Active,ac_online=true
+2026-11-10T09:16:07.5355062+02:00,clock_mhz=1957,temp_c=62,reported_power_w=6.10,utilization_pct=41,sw_power_cap=Active,ac_online=true
+2026-11-10T09:16:07.5751967+02:00,ending=GPU clock exceeded 1800 MHz guard threshold.
+Override removed; the GPU must restart before the original image is active.
+2026-11-10T09:16:12.4484143+02:00,manual_restart_required=true
+2026-11-10T12:16:14.6437067+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=14,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:16.7703014+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=14,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:18.8954096+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=11,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:21.0310702+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=16,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:23.5778587+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=12,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:25.6803342+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=13,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:27.8027445+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:29.8713925+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:31.9414274+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:34.0213944+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:36.1057034+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:38.2024482+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=3,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:40.2827904+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:42.3640981+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=2,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:44.4461160+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=1,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:46.5156061+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:48.5838682+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:50.6418666+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:52.7019351+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:54.7601154+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:56.8286529+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:16:58.8877988+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:00.9502770+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:03.0180885+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:05.0864998+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:07.1568604+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:09.2137566+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:11.2912898+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=3,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:13.3569662+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:15.4174634+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:17.4824942+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:19.5466570+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:21.6220512+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:23.7005177+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=16,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:25.8099617+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=16,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:27.8803671+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:29.9666988+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=2,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:32.0395397+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=16,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:34.0982364+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:36.1600666+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=2,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:38.2311131+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:40.2896279+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:42.3702809+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=7,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:44.4258676+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=3,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:46.4935452+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:48.5729432+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:50.6360062+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:52.7002061+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=3,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:54.7755862+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:56.8364458+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=8,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:17:58.9015034+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:00.9834676+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:03.0448635+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:05.1065242+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:07.1665377+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:09.2241429+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:11.2883624+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:13.3510775+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:15.4070511+02:00,clock_mhz=1702,temp_c=58,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:17.4682165+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:19.5308244+02:00,clock_mhz=1702,temp_c=59,reported_power_w=6.10,utilization_pct=0,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:21.6147167+02:00,clock_mhz=1965,temp_c=65,reported_power_w=6.10,utilization_pct=97,sw_power_cap=Not Active,ac_online=true
+2026-11-10T12:18:21.6430547+02:00,ending=GPU clock exceeded 1800 MHz guard threshold.
+Override removed; the GPU must restart before the original image is active.
+2026-11-10T12:18:26.6948194+02:00,manual_restart_required=true

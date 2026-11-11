@@ -1,0 +1,80 @@
+{
+  "status": "OFFLINE ONLY; no runtime, boot, PMU, signature or protection validation",
+  "source_sha256": "34c6676becef4ced24308274e4537f59b5cf0e23b64659bce6f07325debea3ae",
+  "output_sha256": "3dacfc1b958f01f1f20b10fc1de0b8dae1106128507c6d36a86b489cdf1a1353",
+  "changes": [
+    {
+      "offset": 563250,
+      "before_hex": "0102",
+      "after_hex": "0202",
+      "field": "channel 0 uses relationship 2"
+    },
+    {
+      "offset": 563314,
+      "before_hex": "05",
+      "after_hex": "02",
+      "field": "channel 3 class"
+    },
+    {
+      "offset": 563328,
+      "before_hex": "0001",
+      "after_hex": "0f0f",
+      "field": "channel 3 uses relationship 15"
+    },
+    {
+      "offset": 563366,
+      "before_hex": "05",
+      "after_hex": "02",
+      "field": "channel 5 class"
+    },
+    {
+      "offset": 563380,
+      "before_hex": "0000",
+      "after_hex": "0e0e",
+      "field": "channel 5 uses relationship 14"
+    },
+    {
+      "offset": 563562,
+      "before_hex": "0d0e",
+      "after_hex": "0d0d",
+      "field": "channel 12 uses relationship 13"
+    },
+    {
+      "offset": 564713,
+      "before_hex": "0b",
+      "after_hex": "0a",
+      "field": "relationship 14 source"
+    },
+    {
+      "offset": 564714,
+      "before_hex": "00f0ffff",
+      "after_hex": "00100000",
+      "field": "relationship 14 weight"
+    },
+    {
+      "offset": 564758,
+      "before_hex": "000000000000",
+      "after_hex": "010a82050000",
+      "field": "relationship 15 first record"
+    }
+  ],
+  "checksum_offset": 609791,
+  "checksum_before": 66,
+  "checksum_after": 92,
+  "predicted_first_words_mw_before_rounding": {
+    "C0": 6100,
+    "C1": 4000.146484375,
+    "C3": 2099.853515625,
+    "C5": 6100,
+    "C10": 6100,
+    "C11": 4000.146484375,
+    "C12": 6100
+  },
+  "limitations": [
+    "Second-record semantics remain unknown, even when unchanged",
+    "Relationship 15 allocation and class-5 to class-2 conversions remain untested",
+    "Use of relations 14 and 15 by non-class-2 consumers remains unknown",
+    "Current/voltage feedback and independent board-power protection are not verified",
+    "The failed v2 boot was not proven to result from the possible self-reference"
+  ]
+}

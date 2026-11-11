@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "operation": "normalize",
+  "representation": "ampere-relocated-v1",
+  "source": "evidence\\runs\\OFFLINE-ONLY-90w-candidate-20261109.bin",
+  "source_sha256": "3fb766c855a0ea2fc2beb0a587a153c1a5cc0962137c96c7c0702f4586b74531",
+  "source_size": 609792,
+  "output_sha256": "80936b18abb1144b93d45ddef8dff643af5dec1c26b2c6bf2af42623ccec3824",
+  "output_size": 516608,
+  "archival_identity_checked": false,
+  "note": "Experimental, not hardware validated. Verified only while exporting from the source ROM; inspect and verify may not recognize this payload, so re-run normalize on the source to re-verify. Transport export only. Deployment must bind and verify the original archival board identity.",
+  "output": "evidence\\runs\\OFFLINE-ONLY-90w-candidate-relocated-20261109.bin"
+}

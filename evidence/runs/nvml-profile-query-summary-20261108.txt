@@ -1,0 +1,7 @@
+sample_timestamps=209
+nvml.dll+0x10c82f 208
+nvml.dll+0x10c82f & nvlddmkm.sys+0x4e3a9e 186
+nvml.dll+0x10c82f & nvlddmkm.sys+0x4e3a9e & nvlddmkm.sys+0x4e36d7 178
+nvml.dll+0x10c82f & nvlddmkm.sys+0x4e3a9e & nvlddmkm.sys+0x4e36d7 & nvlddmkm.sys+0x5a42cf 176
+nvml.dll+0x10c82f & nvlddmkm.sys+0x4e3a9e & nvlddmkm.sys+0x4e36d7 & nvlddmkm.sys+0x5a42cf & nvlddmkm.sys+0x5a2f0d 176
+nvml.dll+0x10c82f & nvlddmkm.sys+0x4e3a9e & nvlddmkm.sys+0x4e36d7 & nvlddmkm.sys+0x5a42cf & nvlddmkm.sys+0x5a2f0d & nvlddmkm.sys+0x3585f9 175

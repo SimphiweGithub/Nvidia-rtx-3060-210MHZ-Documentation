@@ -1,0 +1,87 @@
+﻿Read-only local kernel debugger check
+Timed out: False
+stdout:
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.000 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.016 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 09:46:23.248 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff807`9da00000 PsLoadedModuleList = 0xfffff807`9e8f54c0
+Debug session time: Sun Nov  8 09:46:23.899 2026 (UTC + 2:00)
+System Uptime: 0 days 0:25:05.587
+lkd> kd: Reading initial command '.reload;lm m nvlddmkm;dq ffff920c19fe2000 L4;dq ffff920c19fe2188 L8;dq ffff920c19fe2288 L1;dq ffff920c19fe25a0 L14;dd ffff920c19fe2758 L4;!pool ffff920c19fe2000;q'
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 09:46:23.909 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+.......................................................
+Loading User Symbols
+
+Loading unloaded module list
+.......................
+Browse full module list
+start             end                 module name
+fffff807`460a0000 fffff807`4d40d000   nvlddmkm   (deferred)             
+ffff920c`19fe2000  fffff807`46f81470 fffff807`46f81488
+ffff920c`19fe2010  fffff807`46f814a0 ffff920c`19fe2010
+ffff920c`19fe2188  ffff920c`19fe2010 ffff920c`19fe2008
+ffff920c`19fe2198  ffff920c`19fe20e8 ffff920c`19fe2100
+ffff920c`19fe21a8  ffff920c`19fe2118 ffff920c`19fe2178
+ffff920c`19fe21b8  ffff920c`19fe2000 fffff807`468264d0
+ffff920c`19fe2288  fffff807`460a6170
+ffff920c`19fe25a0  00000000`00000000 00000000`00000101
+ffff920c`19fe25b0  ffff920c`15df93a0 ffff920c`15df9ca0
+ffff920c`19fe25c0  ffff920c`08be5dc0 00000000`00000000
+ffff920c`19fe25d0  00000000`00000000 ffff920c`19f89448
+ffff920c`19fe25e0  00000000`00000000 00000000`29ff0101
+ffff920c`19fe25f0  ffff920c`19fe2648 ffff920c`19fe2748
+ffff920c`19fe2600  00000000`00060020 fffff807`46fbf590
+ffff920c`19fe2610  fffff807`46943080 fffff807`46317b40
+ffff920c`19fe2620  fffff807`46317690 fffff807`463176d0
+ffff920c`19fe2630  fffff807`46317c50 fffff807`46942f80
+ffff920c`19fe2758  00000000 00000000 00000000 00000100
+Pool page ffff920c19fe2000 region is Nonpaged pool
+*ffff920c19fe2000 : large page allocation, tag is NVRM, size is 0x4ee0 bytes
+		Owning component : Unknown (update pooltag.txt)
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+
+stderr:

@@ -1,0 +1,10 @@
+﻿Temporary 210-600 MHz graphics clock range support test; no workload.
+Before: 210, 58
+Set exit code: 0
+GPU clocks set to "(gpuClkMin 210, gpuClkMax 600)" for GPU 00000000:01:00.0
+All done.
+
+During: 210, 58
+Reset exit code: 0
+All done.
+

@@ -1,0 +1,25 @@
+# Battery discharge versus GPU telemetry — 7 November 2026
+
+The user suggested using the battery as an independent power estimate and disconnected the AC adapter. This was an observational test; no limits, offsets, drivers, firmware, or software power settings were changed.
+
+Before disconnection, `BatteryStatus` reported `PowerOnline=True`, `Discharging=False`, and a zero discharge rate. After disconnection, eight samples at roughly two-second intervals all reported `PowerOnline=False`, `Discharging=True`, GPU clock `210 MHz`, GPU power `752.67 W`, and software power cap active. GPU utilization was 5–6%, temperature 56–57 °C. The WMI `DischargeRate` samples were 55,477; 61,942; 58,406; 58,406; 58,406; 58,406; 58,041; and 60,170, interpreted as milliwatts: approximately 55.48–61.94 W, mean 58.66 W. Battery voltage was 11,124–11,234 mV during those samples.
+
+The separate Windows Runtime `Windows.Devices.Power.Battery.AggregateBattery.GetReport()` subsequently returned status `Discharging` and `ChargeRateInMilliwatts=-58729` (58.729 W discharge). That public property explicitly identifies milliwatts, consistent with the WMI values; see Microsoft's [battery reporting example](https://learn.microsoft.com/windows/uwp/devices-sensors/get-battery-info). It is the same system's battery reporting, not an independently calibrated external instrument.
+
+## Interpretation
+
+While the laptop reported it was running on battery, the reported discharge for the **whole machine** was roughly 55–62 W while the GPU's software telemetry claimed 752.67 W. Under ordinary power accounting, the GPU cannot continuously consume 752 W from a battery supplying roughly 62 W to the entire computer. The approximately twelvefold discrepancy is strong evidence that the GPU wattage is erroneous. The battery estimate does not isolate GPU power, validate its accuracy, identify the malfunctioning component, or establish the GPU controller's input. A battery/EC reporting error cannot be ruled out solely by this comparison. Unplugging may alter boost and power policies; the persistent 210 MHz, cap, and telemetry were observed in this battery state, not proof that all AC behavior is the same.
+
+The user was told the sample was complete and could reconnect AC. An earlier bounded CUDA test before the battery test completed normally, but the two utilization samples captured at startup were only 4%; they do not establish a meaningful sustained GPU-load measurement and are not used to claim performance validation.
+
+## Idle versus short GPU workload on battery
+
+At 21:23 on 7 November, the user disconnected AC for a matched short test. Four baseline samples at 0% GPU utilization reported system battery discharge of 52.955, 52.955, 52.955, and 53.905 W (mean 53.193 W). During seven samples reporting 98–99% GPU utilization, discharge was 53.905 W for six samples and 53.969 W for one (mean 53.914 W). The GPU remained at 210 MHz and the bounded eight-second CUDA workload completed. All samples reported `PowerOnline=False` and `Discharging=True`. Full timestamped observations are in [the run log](../runs/battery-load-comparison-20261107-212333.json).
+
+The approximately 0.72 W difference between the two means is **not a credible isolated GPU power estimate**: Windows repeated the same discharge value for several seconds, including throughout most of the short workload, so update cadence, averaging and lag can obscure the effect. Other system components also vary, and 99% utilization at the 210 MHz cap does not measure power at normal boosted performance. This test establishes that the short GPU workload completed on battery and records the battery-reported system discharge; it does not calibrate an AC power-control spoof or validate protections. The user was told they could reconnect the charger immediately after the measurement.
+
+## Longer idle–load–idle battery comparison
+
+At 21:24–21:26 the user unplugged AC for a longer test. Windows reported battery discharge for all samples. Twelve pre-load samples averaged 54.69 W (48.22–63.25 W); 21 samples with GPU utilization at least 90% during a 45-second CUDA workload averaged 55.08 W (50.92–66.72 W); twelve post-load idle samples averaged 56.95 W (49.17–61.88 W). The GPU remained at 210 MHz; its peak reported temperature was 60 °C. The workload completed normally, and the user was told they could reconnect AC. See the timestamped [run data](../runs/battery-long-comparison-20261107-212633.json).
+
+System discharge was roughly 55 W during the capped workload, but changes in background consumption and the scatter and apparent lag of battery readings are larger than the difference between the idle and loaded averages. The post-load baseline was higher than both, so this test cannot confidently isolate a GPU-only wattage or use the difference as a calibration. It provides a better estimate of whole-system discharge during this specific capped workload than the earlier short run; it does not measure draw at restored boost or on AC, or establish power-protection behavior.

@@ -1,0 +1,123 @@
+{
+  "Samples": [
+    {
+      "Time": "2026-11-07T21:23:19.5459465+02:00",
+      "Phase": "idle",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 52955,
+      "Voltage_mV": 11435,
+      "Gpu": "0, 210, 752.67, 58"
+    },
+    {
+      "Time": "2026-11-07T21:23:20.6508538+02:00",
+      "Phase": "idle",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 52955,
+      "Voltage_mV": 11435,
+      "Gpu": "0, 210, 752.67, 58"
+    },
+    {
+      "Time": "2026-11-07T21:23:21.7428754+02:00",
+      "Phase": "idle",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 52955,
+      "Voltage_mV": 11435,
+      "Gpu": "0, 210, 752.67, 58"
+    },
+    {
+      "Time": "2026-11-07T21:23:22.8218860+02:00",
+      "Phase": "idle",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53905,
+      "Voltage_mV": 11382,
+      "Gpu": "0, 210, 752.67, 58"
+    },
+    {
+      "Time": "2026-11-07T21:23:24.0484866+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53905,
+      "Voltage_mV": 11382,
+      "Gpu": "0, 210, 752.67, 58"
+    },
+    {
+      "Time": "2026-11-07T21:23:25.1502134+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53905,
+      "Voltage_mV": 11382,
+      "Gpu": "99, 210, 752.67, 59"
+    },
+    {
+      "Time": "2026-11-07T21:23:26.2454585+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53905,
+      "Voltage_mV": 11382,
+      "Gpu": "99, 210, 752.67, 59"
+    },
+    {
+      "Time": "2026-11-07T21:23:27.3243312+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53905,
+      "Voltage_mV": 11382,
+      "Gpu": "99, 210, 752.67, 59"
+    },
+    {
+      "Time": "2026-11-07T21:23:28.4149643+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53905,
+      "Voltage_mV": 11382,
+      "Gpu": "99, 210, 752.67, 59"
+    },
+    {
+      "Time": "2026-11-07T21:23:29.5238220+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53905,
+      "Voltage_mV": 11382,
+      "Gpu": "99, 210, 752.67, 59"
+    },
+    {
+      "Time": "2026-11-07T21:23:30.6444639+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53905,
+      "Voltage_mV": 11382,
+      "Gpu": "99, 210, 752.67, 59"
+    },
+    {
+      "Time": "2026-11-07T21:23:31.7540061+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53969,
+      "Voltage_mV": 11319,
+      "Gpu": "98, 210, 752.67, 59"
+    },
+    {
+      "Time": "2026-11-07T21:23:32.9008265+02:00",
+      "Phase": "load",
+      "PowerOnline": false,
+      "Discharging": true,
+      "DischargeRate_mW": 53969,
+      "Voltage_mV": 11319,
+      "Gpu": "0, 210, 752.67, 59"
+    }
+  ],
+  "WorkloadOutput": "READY\r\nDONE 2069\r\n",
+  "WorkloadError": null
+}

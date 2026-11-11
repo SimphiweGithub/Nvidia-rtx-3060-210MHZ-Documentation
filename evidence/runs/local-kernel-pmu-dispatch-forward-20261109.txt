@@ -1,0 +1,120 @@
+﻿Completed: True
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.016 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.015 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Mon Nov  9 11:13:22.195 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff807`9f800000 PsLoadedModuleList = 0xfffff807`a06f54c0
+Debug session time: Mon Nov  9 11:13:22.860 2026 (UTC + 2:00)
+System Uptime: 0 days 0:48:16.551
+lkd> kd: Reading initial command '.reload;r @$t1=poi(poi(poi(nvlddmkm+13aad58)+200)+48240);r @$t2=poi(@$t1+2310);r @$t3=poi(@$t2+fa8);.echo OBJECTS;r @$t3;.echo OWNER_VTABLE;dq @$t3-8 L2;dq poi(@$t3-8)+68 L1;.echo FORWARD_TARGET;ln poi(poi(@$t3-8)+68);u poi(poi(@$t3-8)+68) L30;.echo END;q'
+Connected to Windows 10 26100 x64 target at (Mon Nov  9 11:13:22.870 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+.....................................................
+Loading User Symbols
+
+Loading unloaded module list
+....................
+OBJECTS
+$t3=ffff850f14fee008
+OWNER_VTABLE
+ffff850f`14fee000  fffff807`480bce70 fffff807`480bce88
+fffff807`480bced8  fffff807`47d6a7b0
+FORWARD_TARGET
+Browse module
+Set bu breakpoint
+
+Unable to load image \SystemRoot\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvlddmkm.sys, Win32 error 0n2
+nvlddmkm+0xb9a7b0:
+fffff807`47d6a7b0 4053            push    rbx
+fffff807`47d6a7b2 56              push    rsi
+fffff807`47d6a7b3 57              push    rdi
+fffff807`47d6a7b4 4156            push    r14
+fffff807`47d6a7b6 4157            push    r15
+fffff807`47d6a7b8 4883ec60        sub     rsp,60h
+fffff807`47d6a7bc 488b05bda15f00  mov     rax,qword ptr [nvlddmkm!wPreRelocCRCCopy+0xa3a10 (fffff807`48364980)]
+fffff807`47d6a7c3 4833c4          xor     rax,rsp
+fffff807`47d6a7c6 4889442458      mov     qword ptr [rsp+58h],rax
+fffff807`47d6a7cb 4c8bb424c8000000 mov     r14,qword ptr [rsp+0C8h]
+fffff807`47d6a7d3 418bf9          mov     edi,r9d
+fffff807`47d6a7d6 498bd8          mov     rbx,r8
+fffff807`47d6a7d9 488bf2          mov     rsi,rdx
+fffff807`47d6a7dc 4c8bf9          mov     r15,rcx
+fffff807`47d6a7df 4885c9          test    rcx,rcx
+fffff807`47d6a7e2 7523            jne     nvlddmkm+0xb9a807 (fffff807`47d6a807)
+fffff807`47d6a7e4 ba00003401      mov     edx,1340000h
+fffff807`47d6a7e9 b90d80b20e      mov     ecx,0EB2800Dh
+fffff807`47d6a7ee e8ed4054ff      call    nvlddmkm+0xde8e0 (fffff807`472ae8e0)
+fffff807`47d6a7f3 b934010000      mov     ecx,134h
+fffff807`47d6a7f8 e8234d56ff      call    nvlddmkm+0xff520 (fffff807`472cf520)
+fffff807`47d6a7fd b840000000      mov     eax,40h
+fffff807`47d6a802 e9e9010000      jmp     nvlddmkm+0xb9a9f0 (fffff807`47d6a9f0)
+fffff807`47d6a807 4885db          test    rbx,rbx
+fffff807`47d6a80a 7523            jne     nvlddmkm+0xb9a82f (fffff807`47d6a82f)
+fffff807`47d6a80c ba00003501      mov     edx,1350000h
+fffff807`47d6a811 b90d80b20e      mov     ecx,0EB2800Dh
+fffff807`47d6a816 e8c54054ff      call    nvlddmkm+0xde8e0 (fffff807`472ae8e0)
+fffff807`47d6a81b b935010000      mov     ecx,135h
+fffff807`47d6a820 e8fb4c56ff      call    nvlddmkm+0xff520 (fffff807`472cf520)
+fffff807`47d6a825 b81f000000      mov     eax,1Fh
+fffff807`47d6a82a e9c1010000      jmp     nvlddmkm+0xb9a9f0 (fffff807`47d6a9f0)
+fffff807`47d6a82f 4d85f6          test    r14,r14
+fffff807`47d6a832 7523            jne     nvlddmkm+0xb9a857 (fffff807`47d6a857)
+fffff807`47d6a834 ba00003701      mov     edx,1370000h
+fffff807`47d6a839 b90d80b20e      mov     ecx,0EB2800Dh
+fffff807`47d6a83e e89d4054ff      call    nvlddmkm+0xde8e0 (fffff807`472ae8e0)
+fffff807`47d6a843 b937010000      mov     ecx,137h
+fffff807`47d6a848 e8d34c56ff      call    nvlddmkm+0xff520 (fffff807`472cf520)
+fffff807`47d6a84d b81f000000      mov     eax,1Fh
+fffff807`47d6a852 e999010000      jmp     nvlddmkm+0xb9a9f0 (fffff807`47d6a9f0)
+fffff807`47d6a857 80bc24d000000000 cmp     byte ptr [rsp+0D0h],0
+fffff807`47d6a85f 0f8497000000    je      nvlddmkm+0xb9a8fc (fffff807`47d6a8fc)
+fffff807`47d6a865 8b82ec170000    mov     eax,dword ptr [rdx+17ECh]
+fffff807`47d6a86b 85c0            test    eax,eax
+fffff807`47d6a86d 7468            je      nvlddmkm+0xb9a8d7 (fffff807`47d6a8d7)
+fffff807`47d6a86f 450fb64802      movzx   r9d,byte ptr [r8+2]
+fffff807`47d6a874 ba10113f01      mov     edx,13F1110h
+END
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+

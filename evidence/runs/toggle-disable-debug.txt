@@ -1,0 +1,46 @@
+﻿Before:
+
+Windows Boot Loader
+-------------------
+identifier              {current}
+device                  partition=C:
+path                    \WINDOWS\system32\winload.efi
+description             Windows 11
+locale                  en-US
+inherit                 {bootloadersettings}
+recoverysequence        {a8b34e5d-1fb0-11f1-946c-8fb1861b0ecc}
+displaymessageoverride  CommandPrompt
+recoveryenabled         Yes
+isolatedcontext         Yes
+allowedinmemorysettings 0x15000075
+osdevice                partition=C:
+systemroot              \WINDOWS
+resumeobject            {a8b34e5b-1fb0-11f1-946c-8fb1861b0ecc}
+nx                      OptIn
+bootmenupolicy          Standard
+vsmlaunchtype           Off
+debug                   Yes
+The operation completed successfully.
+After:
+
+Windows Boot Loader
+-------------------
+identifier              {current}
+device                  partition=C:
+path                    \WINDOWS\system32\winload.efi
+description             Windows 11
+locale                  en-US
+inherit                 {bootloadersettings}
+recoverysequence        {a8b34e5d-1fb0-11f1-946c-8fb1861b0ecc}
+displaymessageoverride  CommandPrompt
+recoveryenabled         Yes
+isolatedcontext         Yes
+allowedinmemorysettings 0x15000075
+osdevice                partition=C:
+systemroot              \WINDOWS
+resumeobject            {a8b34e5b-1fb0-11f1-946c-8fb1861b0ecc}
+nx                      OptIn
+bootmenupolicy          Standard
+vsmlaunchtype           Off
+debug                   No
+Restart required to apply.

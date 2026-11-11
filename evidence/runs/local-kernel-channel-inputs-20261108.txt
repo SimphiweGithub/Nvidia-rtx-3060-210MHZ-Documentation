@@ -1,0 +1,100 @@
+﻿Read-only local kernel debugger check
+Timed out: False
+stdout:
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.000 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.016 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 13:51:32.313 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff807`9da00000 PsLoadedModuleList = 0xfffff807`9e8f54c0
+Debug session time: Sun Nov  8 13:51:32.927 2026 (UTC + 2:00)
+System Uptime: 0 days 4:30:14.617
+lkd> kd: Reading initial command '.reload;.echo VALID;dq ffff920c19ece000+2510 L1;.echo C5;dq poi(poi(ffff920c19fe2000+8a0)+28) L20;.echo C3;dq poi(poi(ffff920c19fe2000+8a0)+18) L20;.echo END;q'
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 13:51:32.939 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+......................................................
+Loading User Symbols
+
+Loading unloaded module list
+....................................
+VALID
+ffff920c`19ed0510  ffff920c`19fe2000
+C5
+ffff920c`17f4c5a0  00000020`00050005 fffff807`472761e0
+ffff920c`17f4c5b0  fffff807`46733290 fffff807`469b5500
+ffff920c`17f4c5c0  00010020`000000fa 00000000`ffffffff
+ffff920c`17f4c5d0  00000000`00000000 00000000`00001000
+ffff920c`17f4c5e0  00000000`00001000 00000000`00001000
+ffff920c`17f4c5f0  7fffffff`000800ff 00000000`00000000
+ffff920c`17f4c600  00000000`00000000 00000000`00000000
+ffff920c`17f4c610  00000000`00000000 00000000`00000001
+ffff920c`17f4c620  00000000`00000000 fffff807`4658f120
+ffff920c`17f4c630  fffff807`469b62b0 fffff807`469b58a0
+ffff920c`17f4c640  fffff807`460a6180 fffff807`469b62e0
+ffff920c`17f4c650  fffff807`4658ff80 fffff807`472761d8
+ffff920c`17f4c660  fffff807`469b5900 fffff807`469b57e0
+ffff920c`17f4c670  fffff807`469b6220 fffff807`469b6140
+ffff920c`17f4c680  fffff807`46733370 fffff807`46733620
+ffff920c`17f4c690  00000000`00000000 00000000`00000000
+C3
+ffff920c`17f4d480  00000020`00030005 fffff807`472761e0
+ffff920c`17f4d490  fffff807`46733290 fffff807`469b5500
+ffff920c`17f4d4a0  00010020`000000f7 00000000`ffffffff
+ffff920c`17f4d4b0  00000000`00000000 00000000`00001000
+ffff920c`17f4d4c0  00000000`00001000 00000000`00001000
+ffff920c`17f4d4d0  7fffffff`000800ff 00000000`00000000
+ffff920c`17f4d4e0  00000000`00000000 00000000`00000000
+ffff920c`17f4d4f0  00000000`00000000 00000000`00000001
+ffff920c`17f4d500  00000000`00000000 fffff807`4658f120
+ffff920c`17f4d510  fffff807`469b62b0 fffff807`469b58a0
+ffff920c`17f4d520  fffff807`460a6180 fffff807`469b62e0
+ffff920c`17f4d530  fffff807`4658ff80 fffff807`472761d8
+ffff920c`17f4d540  fffff807`469b5900 fffff807`469b57e0
+ffff920c`17f4d550  fffff807`469b6220 fffff807`469b6140
+ffff920c`17f4d560  fffff807`46733370 fffff807`46733620
+ffff920c`17f4d570  00000000`00000100 00000000`00000000
+END
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+
+stderr:

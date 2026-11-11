@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "operation": "normalize",
+  "representation": "ampere-relocated-v1",
+  "source": "evidence\\runs\\nvapi-running-vbios-20261109.bin",
+  "source_sha256": "34c6676becef4ced24308274e4537f59b5cf0e23b64659bce6f07325debea3ae",
+  "source_size": 609792,
+  "output_sha256": "4929334ff54a1a660826f68d0c6c5349d1e6109410976bb7e505c73c578c5a7e",
+  "output_size": 516608,
+  "archival_identity_checked": false,
+  "note": "Experimental, not hardware validated. Verified only while exporting from the source ROM; inspect and verify may not recognize this payload, so re-run normalize on the source to re-verify. Transport export only. Deployment must bind and verify the original archival board identity.",
+  "output": "evidence\\runs\\nvapi-stock-ampere-relocated-20261109.bin"
+}

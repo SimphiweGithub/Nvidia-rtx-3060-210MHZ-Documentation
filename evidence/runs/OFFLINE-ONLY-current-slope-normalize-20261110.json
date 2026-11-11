@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "operation": "normalize",
+  "result": {
+    "manifest": "evidence\\runs\\OFFLINE-ONLY-current-slope-relocated-20261110.bin.json",
+    "output": "evidence\\runs\\OFFLINE-ONLY-current-slope-relocated-20261110.bin",
+    "schema_version": 1,
+    "sha256": "8bcebb313011f95cf879751bf11685e58495ce02c2a7d3f946cd60b5c4754153"
+  },
+  "schema_version": 1
+}

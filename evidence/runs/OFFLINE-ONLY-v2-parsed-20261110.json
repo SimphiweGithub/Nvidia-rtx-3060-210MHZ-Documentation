@@ -1,0 +1,142 @@
+{
+  "path": "evidence\\runs\\OFFLINE-ONLY-multi-channel-v2-20261110.bin",
+  "sha256": "05268929a79258cf7adba796428e27e9e107d8a0c9d9129fb50229176784caa9",
+  "legacy_image_offset": 0,
+  "dcb_offset": 22822,
+  "dcb_version": 65,
+  "extdev_relative_offset": 23051,
+  "power_sense": {
+    "status": "parsed with EFI-gap mapping",
+    "bit_offset": 432,
+    "logical_offset": 469611,
+    "efi_gap": 93184,
+    "file_offset": 562795,
+    "version": 32,
+    "header_size": 8,
+    "record_size": 61,
+    "entry_count": 7,
+    "raw_sha256": "7932eb7771aa2226c1c069d053d3abd7fa0fc7c94abaa36a6f5ce1546c1f5290",
+    "budget": {
+      "file_offset": 565540,
+      "version": 48,
+      "entry_count": 20,
+      "raw_sha256": "e18244a7c4e04c91f030d89d23ece3a4a6544a0929a8c5e3f68dbe598be43e54",
+      "entry_2_candidate_mw": {
+        "minimum": 1000,
+        "average": 115000,
+        "peak": 140000
+      },
+      "entry_2_type_and_channel_bytes": [
+        1,
+        0
+      ],
+      "candidate_header_policy_indices": {
+        "tgp": 255,
+        "rtp": 255,
+        "mxm": 255,
+        "dnotifier": 2
+      }
+    },
+    "topology": {
+      "file_offset": 563230,
+      "version": 32,
+      "entry_count": 32,
+      "raw_sha256": "df40b73b12a1d458c56afa604e6721e11d583dea438a9228c723158d1ed690f8",
+      "entry_10_raw_hex": "04fe001bb700001000000000000007d417000fd4170000000000",
+      "entry_10_offset_19_u32": 6100,
+      "candidate_sum_relationships": [
+        {
+          "channel": 0,
+          "rail_byte": 245,
+          "relationships": [
+            {
+              "index": 2,
+              "kind": 1,
+              "channel": 5,
+              "weight_raw_signed": 4096
+            }
+          ]
+        },
+        {
+          "channel": 1,
+          "rail_byte": 246,
+          "relationships": [
+            {
+              "index": 2,
+              "kind": 1,
+              "channel": 5,
+              "weight_raw_signed": 4096
+            },
+            {
+              "index": 3,
+              "kind": 1,
+              "channel": 3,
+              "weight_raw_signed": -4096
+            }
+          ]
+        },
+        {
+          "channel": 3,
+          "rail_byte": 247,
+          "relationships": [
+            {
+              "index": 14,
+              "kind": 1,
+              "channel": 10,
+              "weight_raw_signed": 1410
+            }
+          ]
+        },
+        {
+          "channel": 5,
+          "rail_byte": 250,
+          "relationships": [
+            {
+              "index": 1,
+              "kind": 1,
+              "channel": 10,
+              "weight_raw_signed": 4096
+            }
+          ]
+        },
+        {
+          "channel": 11,
+          "rail_byte": 227,
+          "relationships": [
+            {
+              "index": 2,
+              "kind": 1,
+              "channel": 5,
+              "weight_raw_signed": 4096
+            },
+            {
+              "index": 3,
+              "kind": 1,
+              "channel": 3,
+              "weight_raw_signed": -4096
+            }
+          ]
+        },
+        {
+          "channel": 12,
+          "rail_byte": 241,
+          "relationships": [
+            {
+              "index": 13,
+              "kind": 1,
+              "channel": 0,
+              "weight_raw_signed": 4096
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "extdev": {
+    "file_offset": 23051,
+    "version": 64,
+    "entry_count": 32,
+    "record_size": 4,
+    "non_unused_entries": []
+  }
+}

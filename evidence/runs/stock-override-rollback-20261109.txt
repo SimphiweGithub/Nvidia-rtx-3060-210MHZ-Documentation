@@ -1,0 +1,2 @@
+﻿Probe value removed. Restart Windows to return the driver to the card VBIOS.
+

@@ -1,0 +1,31 @@
+﻿Kernel-debug setup
+Time: 2026-11-08T09:17:41.5846205+02:00
+Previous global debug settings:
+debugtype               Local
+isolatedcontext         Yes
+The operation completed successfully.
+Enabling debugging for current boot entry:
+The operation completed successfully.
+Exit code: 0
+Current boot entry:
+
+Windows Boot Loader
+-------------------
+identifier              {current}
+device                  partition=C:
+path                    \WINDOWS\system32\winload.efi
+description             Windows 11
+locale                  en-US
+inherit                 {bootloadersettings}
+recoverysequence        {a8b34e5d-1fb0-11f1-946c-8fb1861b0ecc}
+displaymessageoverride  CommandPrompt
+recoveryenabled         Yes
+isolatedcontext         Yes
+allowedinmemorysettings 0x15000075
+osdevice                partition=C:
+systemroot              \WINDOWS
+resumeobject            {a8b34e5b-1fb0-11f1-946c-8fb1861b0ecc}
+nx                      OptIn
+bootmenupolicy          Standard
+vsmlaunchtype           Off
+debug                   Yes

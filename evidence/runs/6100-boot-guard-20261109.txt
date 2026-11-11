@@ -1,0 +1,27 @@
+﻿2026-11-09T09:48:34.7697208+02:00,clock_mhz=210,temp_c=57,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=61194
+2026-11-09T09:48:39.0795600+02:00,clock_mhz=210,temp_c=57,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=61194
+2026-11-09T09:48:41.9128797+02:00,clock_mhz=210,temp_c=57,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=67077
+2026-11-09T09:48:45.7393713+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=69657
+2026-11-09T09:48:48.1256551+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=69683
+2026-11-09T09:48:50.3412888+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=69683
+2026-11-09T09:48:52.4607028+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=69683
+2026-11-09T09:48:54.5983699+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=69683
+2026-11-09T09:48:56.7220634+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=69683
+2026-11-09T09:48:58.8592742+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=6,battery_discharge_mw=59640
+2026-11-09T09:49:01.2476749+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=4,battery_discharge_mw=59640
+2026-11-09T09:49:04.4962925+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=4,battery_discharge_mw=63193
+2026-11-09T09:49:06.9829528+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=65296
+2026-11-09T09:49:09.2669574+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=65296
+2026-11-09T09:49:11.5460533+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=65296
+2026-11-09T09:49:13.7258916+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=67522
+2026-11-09T09:49:15.9611101+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=6,battery_discharge_mw=67522
+2026-11-09T09:49:18.1937157+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=67522
+2026-11-09T09:49:20.3506212+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=67522
+2026-11-09T09:49:22.4728534+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=66217
+2026-11-09T09:49:24.6126600+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=61867
+2026-11-09T09:49:26.7114993+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=61867
+2026-11-09T09:49:28.8320873+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=61867
+2026-11-09T09:49:30.9339639+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=0,battery_discharge_mw=53122
+2026-11-09T09:49:33.0796296+02:00,clock_mhz=210,temp_c=58,reported_power_w=6.10,utilization_pct=12,battery_discharge_mw=53122
+2026-11-09T09:49:35.0933180+02:00,ending=bounded observation completed
+Override removed; the GPU must restart before the original image is active.

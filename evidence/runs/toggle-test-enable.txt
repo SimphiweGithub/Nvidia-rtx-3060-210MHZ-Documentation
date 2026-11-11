@@ -1,0 +1,10 @@
+﻿Starting Enable test.
+Restarting the GPU device...
+Microsoft PnP Utility
+
+Restarting device:         PCI\VEN_10DE&DEV_2520&SUBSYS_0A641028&REV_A1\4&412752a&0&0008
+Device restarted successfully.
+
+Device restart completed. Verify the loaded image and clocks; no Windows restart was requested.
+
+Finished.

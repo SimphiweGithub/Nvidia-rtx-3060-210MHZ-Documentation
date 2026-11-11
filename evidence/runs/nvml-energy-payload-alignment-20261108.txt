@@ -1,0 +1,12 @@
+{"type": "send", "payload": {"type": 0, "size": 69, "command": "0x80028e", "payload_size": 1}}
+{"type": "send", "payload": {"type": 0, "size": 72, "command": "0x800294", "payload_size": 4}}
+{"type": "send", "payload": {"type": 0, "size": 76, "command": "0xa55a0030", "payload_size": 8321}}
+{"type": "send", "payload": {"type": 0, "size": 1060, "command": "0x20810108", "payload_size": 992}}
+{"type": "send", "payload": {"type": 0, "size": 54420, "command": "0x2080a612", "payload_size": 54352}}
+{"type": "send", "payload": {"stage": "return", "command": "0x2080a612", "ntstatus": 0, "note": "candidate payload starts at private buffer +0x44", "words": [1, 0, 793643, 1, 4294967040, 16777215, 100, 62721, 0, 0, 0, 4096, 0, 0, 4096, 0, 4096, 0, 131328, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}}
+{"type": "send", "payload": {"stage": "dispatch_return", "command": "0x2080a612", "status": 0, "size": 54352, "words": [1, 0, 793643, 1, 4294967040, 16777215, 100, 62721, 0, 0, 0, 4096, 0, 0, 4096, 0, 4096, 0, 131328, 0]}}
+{"type": "send", "payload": {"type": 0, "size": 20068, "command": "0x2080a618", "payload_size": 20000}}
+{"type": "send", "payload": {"type": 0, "size": 80004, "command": "0x2080a613", "payload_size": 79936}}
+energy_status=0 energy_mj=26205072461
+{"type": "send", "payload": {"stage": "return", "command": "0x2080a613", "ntstatus": 0, "note": "candidate payload starts at private buffer +0x44", "words": [255, 793643, 0, 0, 0, 0, 0, 0, 0, 752673, 257, 752673, 33867, 22224000, 435271581, 6, 752673, 33867, 22224000, 435268685, 6, 1019922784, 417734823, 1, 0, 0, 0, 0, 0, 0, 0, 0]}}
+{"type": "send", "payload": {"stage": "dispatch_return", "command": "0x2080a613", "status": 0, "size": 79936, "words": [255, 793643, 0, 0, 0, 0, 0, 0, 0, 752673, 257, 752673, 33867, 22224000, 435271581, 6, 752673, 33867, 22224000, 435268685]}}

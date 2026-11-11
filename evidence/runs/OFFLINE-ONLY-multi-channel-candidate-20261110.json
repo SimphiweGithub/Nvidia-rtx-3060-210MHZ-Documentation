@@ -1,0 +1,54 @@
+{
+  "status": "OFFLINE ONLY; NOT READY FOR LIVE TEST: second relationship record is uncharacterized",
+  "source_sha256": "34c6676becef4ced24308274e4537f59b5cf0e23b64659bce6f07325debea3ae",
+  "output_sha256": "75084e5b282a7a11c798e9f698744b0fd56584ed883ae640b3a3c12b4c957989",
+  "changes": [
+    {
+      "offset": 563250,
+      "before_hex": "0102",
+      "after_hex": "0202",
+      "field": "channel 0 range"
+    },
+    {
+      "offset": 563314,
+      "before_hex": "05",
+      "after_hex": "02",
+      "field": "channel 3 class"
+    },
+    {
+      "offset": 563328,
+      "before_hex": "0001",
+      "after_hex": "0f0f",
+      "field": "channel 3 range"
+    },
+    {
+      "offset": 563366,
+      "before_hex": "05",
+      "after_hex": "02",
+      "field": "channel 5 class"
+    },
+    {
+      "offset": 563380,
+      "before_hex": "0000",
+      "after_hex": "0101",
+      "field": "channel 5 range"
+    },
+    {
+      "offset": 564758,
+      "before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "after_hex": "010a8205000000000000000000000000000000000000000000000000000000010500100000000000000000000000",
+      "field": "relationship 15"
+    }
+  ],
+  "checksum_offset": 609791,
+  "checksum_before": 66,
+  "checksum_after": 128,
+  "limitations": [
+    "No signature validation",
+    "No demonstrated PMU acceptance or sustained boost",
+    "No independent board-power protection",
+    "Current and voltage output unknown",
+    "Relationship 15 is unused only among observed class-2 ranges",
+    "Copied relationship 15 bytes 31..45 form a second record of unknown meaning and contain a channel-5-like reference"
+  ]
+}

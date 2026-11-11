@@ -1,0 +1,29 @@
+{
+  "status": "OFFLINE ONLY; not tested or staged",
+  "source_sha256": "1e08ed1984f1a3c726d6c1d17b3dad30c409095f4853e6c0de1c80421758e57c",
+  "output_sha256": "8b331b8882395bf25a7ffb542228ca10e4dc4261f26211d8fed4d4c521e133f6",
+  "changes": [
+    {
+      "channel": 3,
+      "offset": 563320,
+      "before": 4096,
+      "after": 32
+    },
+    {
+      "channel": 5,
+      "offset": 563372,
+      "before": 4096,
+      "after": 32
+    }
+  ],
+  "checksum_offset": 609791,
+  "checksum_before": 31,
+  "checksum_after": 255,
+  "hypothesis": "For each channel, 32/4096 is one 128th of its original candidate current-correction slope.",
+  "limitations": [
+    "Field meaning inferred from older Linux format and live correlation; Windows and PMU semantics not proved",
+    "Behavior of power, current and voltage outputs under this edit is unknown",
+    "Spoofed values cannot establish real board-power or current protection",
+    "No PMU acceptance, signature, boot, thermal or boost validation"
+  ]
+}

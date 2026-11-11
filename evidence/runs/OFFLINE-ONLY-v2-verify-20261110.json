@@ -1,0 +1,3787 @@
+{
+  "ok": true,
+  "operation": "verify",
+  "result": {
+    "architecture": {
+      "bios_family_consistent": true,
+      "evidence": [
+        {
+          "device": "2520",
+          "kind": "explicit-pci-id",
+          "source": "https://raw.githubusercontent.com/NVIDIA/open-gpu-kernel-modules/615.71.09/README.md"
+        },
+        {
+          "expected_prefix": "94.",
+          "kind": "bios-version-family",
+          "versions": [
+            "94.06.3B.00.0B"
+          ]
+        }
+      ],
+      "family": "ampere",
+      "in_scope": true,
+      "product": "NVIDIA GeForce RTX 3060 Laptop GPU",
+      "reason": "PCI ID identified; table recognition required independently"
+    },
+    "capabilities": {
+      "edit": {
+        "reason": "independently validated fields only",
+        "status": "supported"
+      },
+      "inspect": {
+        "status": "supported"
+      },
+      "normalize": {
+        "status": "supported"
+      },
+      "runtime": {
+        "applied": "unknown",
+        "evaluated_values": null,
+        "reason": "offline inspection performs no GPU queries",
+        "writable": "unknown"
+      },
+      "vbios": {
+        "editable_fields": [
+          "power_max_w",
+          "power_default_w",
+          "power_min_w",
+          "runtime_power_limit_unlock",
+          "nvvdd_vmin_mv",
+          "nvvdd_rel_alt_follow_ov",
+          "nvvdd_rel_fixed_mv",
+          "nvvdd_output_ocp_max_ma",
+          "nvvdd_output_ocp_rated_ma",
+          "memory_point_1_follows_offset",
+          "gpc_curve_offset_mhz",
+          "dram_max_table_mhz",
+          "memory_offset_max_mhz",
+          "memory_offset_min_mhz",
+          "dram_min_table_mhz",
+          "gpc_offset_max_mhz",
+          "gpc_offset_min_mhz",
+          "xbar_max_table_mhz",
+          "xbar_min_table_mhz",
+          "sys_max_table_mhz",
+          "sys_min_table_mhz",
+          "vid_max_table_mhz",
+          "vid_min_table_mhz",
+          "factory_gpc_offset_mhz",
+          "factory_memory_offset_mhz",
+          "perf_cf_util_policy",
+          "perf_cf_gpc_target_pct",
+          "perf_cf_gpc_jump_pct",
+          "perf_cf_gpc_hysteresis_down",
+          "perf_cf_gpc_hysteresis_up",
+          "perf_cf_dram_target_pct",
+          "perf_cf_dram_jump_pct",
+          "perf_cf_dram_hysteresis_down",
+          "perf_cf_dram_hysteresis_up",
+          "perf_cf_vid_target_pct",
+          "perf_cf_vid_jump_pct",
+          "perf_cf_vid_hysteresis_down",
+          "perf_cf_vid_hysteresis_up",
+          "lpwr_gr_power_gating",
+          "lpwr_mscg"
+        ],
+        "persistence": "unknown",
+        "scope": "offline image bytes",
+        "writable": "verified"
+      }
+    },
+    "diagnostics": [],
+    "directory": null,
+    "duplicate_chain_count": 1,
+    "fields": [
+      {
+        "bounds": {
+          "encoding_maximum": 2147483.647,
+          "encoding_minimum": 0,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 2147483.647,
+          "minimum": 115.0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 140.0,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "3x power policy; TGP index from header; limit_unit flag mW",
+            "kind": "nvidia-struct-prefix-and-reviewed-variant",
+            "recognized_variants": [
+              "Ampere 30/2c/47",
+              "Ampere 30/2c/43",
+              "Ampere 30/32/47"
+            ],
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "format": "Ampere 3x power 30/2c/47, 30/2c/43 or 30/32/47; TGP row = header byte 10 (notebook: byte 13 when bytes 11..13 are ff ff 02 and byte 10 is ff or 02); class 1 mW on power channel 0 = class-2 sum on rail 0xf5",
+            "kind": "structural-row-comparison",
+            "observation": "the TGP row is row 2 on every image; its rated value is the board power of the model on the desktop and workstation images (for example RTX A6000 300 W, RTX A4000 140 W, RTX 3060 170 W)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 35 parseable GA102-GA107 images"
+          }
+        ],
+        "factory_default": 115.0,
+        "key": "power_max_w",
+        "label": "Board power ceiling",
+        "notebook_tgp": true,
+        "ordering_group": "board-power",
+        "reason": "stored notebook TGP; the platform (Dynamic Boost, nvidia-powerd) requests the running limit and may keep it lower; tested on hardware: on one RTX 3050 6GB Laptop GPU a ceiling lowered from 75 to 70 W loaded (Windows loader) and the driver reported a 70 W limit",
+        "stored_units": "mW",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "mW",
+          "symbol": "W"
+        },
+        "units": "W",
+        "value_semantics": "stored-field-value",
+        "version_metadata": {
+          "format_variant": "3x power policy; TGP index from header; limit_unit flag mW",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 2147483.647,
+          "encoding_minimum": 0,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 140.0,
+          "minimum": 1.0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 115.0,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "3x power policy; TGP index from header; limit_unit flag mW",
+            "kind": "nvidia-struct-prefix-and-reviewed-variant",
+            "recognized_variants": [
+              "Ampere 30/2c/47",
+              "Ampere 30/2c/43",
+              "Ampere 30/32/47"
+            ],
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "format": "Ampere 3x power 30/2c/47, 30/2c/43 or 30/32/47; TGP row = header byte 10 (notebook: byte 13 when bytes 11..13 are ff ff 02 and byte 10 is ff or 02); class 1 mW on power channel 0 = class-2 sum on rail 0xf5",
+            "kind": "structural-row-comparison",
+            "observation": "the TGP row is row 2 on every image; its rated value is the board power of the model on the desktop and workstation images (for example RTX A6000 300 W, RTX A4000 140 W, RTX 3060 170 W)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 35 parseable GA102-GA107 images"
+          },
+          {
+            "api": "nvmlDeviceGetPowerManagementDefaultLimit",
+            "kind": "read-only-nvml-correlation",
+            "relation": "NVML default power limit = stored TGP rated value",
+            "scope": "seven reviewed GB202/GB203 devices and the reviewed Ada device",
+            "set_tested": false,
+            "source": "read-only NVML capture",
+            "use": "one Ampere reading: on an RTX 3050 6GB Laptop GPU (Windows loader) the driver reported the edited limit (70 W ceiling, 55 W default)"
+          }
+        ],
+        "format_scope": "header-indexed TGP rated value in every validated duplicate chain; no nonempty profiles",
+        "key": "power_default_w",
+        "label": "Boot default board power",
+        "notebook_tgp": true,
+        "ordering_group": "board-power",
+        "policy_indices": [
+          2
+        ],
+        "reason": "stored notebook rated TGP; taken as the default power limit by structural analogy with the GB20x notebook layout; the platform requests the running limit; tested on hardware: on one RTX 3050 6GB Laptop GPU a 55 W boot default with a 70 W ceiling loaded (Windows loader)",
+        "stored_units": "mW",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "mW",
+          "symbol": "W"
+        },
+        "units": "W",
+        "value_semantics": "stored-board-power-rated-default",
+        "version_metadata": {
+          "format_variant": "3x power policy; TGP index from header; limit_unit flag mW",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 2147483.647,
+          "encoding_minimum": 1,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 115.0,
+          "minimum": 1
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 1.0,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "3x power policy; TGP index from header; limit_unit flag mW",
+            "kind": "nvidia-struct-prefix-and-reviewed-variant",
+            "recognized_variants": [
+              "Ampere 30/2c/47",
+              "Ampere 30/2c/43",
+              "Ampere 30/32/47"
+            ],
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "format": "Ampere 3x power 30/2c/47, 30/2c/43 or 30/32/47; TGP row = header byte 10 (notebook: byte 13 when bytes 11..13 are ff ff 02 and byte 10 is ff or 02); class 1 mW on power channel 0 = class-2 sum on rail 0xf5",
+            "kind": "structural-row-comparison",
+            "observation": "the TGP row is row 2 on every image; its rated value is the board power of the model on the desktop and workstation images (for example RTX A6000 300 W, RTX A4000 140 W, RTX 3060 170 W)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 35 parseable GA102-GA107 images"
+          }
+        ],
+        "factory_default": 115.0,
+        "format_scope": "header-indexed TGP policy in every validated duplicate chain; no nonempty profiles",
+        "key": "power_min_w",
+        "label": "Board power floor",
+        "notebook_tgp": true,
+        "ordering_group": "board-power",
+        "policy_indices": [
+          2
+        ],
+        "reason": "encoded floor only; tested on hardware with the board power edits (an RTX A2000 took a 5 W floor, and one RTX 3050 6GB Laptop GPU; Windows loader); firmware acceptance and the runtime minimum remain unknown",
+        "stored_units": "mW",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "mW",
+          "symbol": "W"
+        },
+        "units": "W",
+        "value_semantics": "stored-board-power-minimum",
+        "version_metadata": {
+          "format_variant": "3x power policy; TGP index from header; limit_unit flag mW",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 0,
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "firmware-static-analysis",
+            "observation": "the client power limit (RM control 0x2080e61e SET, which nvidia-smi -pl uses through NVML, and 0x2080a61d GET) is served by the TGP policy the header names and returns NV_ERR_NOT_SUPPORTED while that index is 0xff (0x178edb0); the NvAPI client power policies (MSI Afterburner) need the same index; neither checks for a laptop; R525 took the first row of class 1 (byte 0 & 0xf | (byte 66 & 0xf) << 4 on rows of 0x43 bytes or more) as the TGP when the index was 0xff, the 615 and 621 drivers do not; Dynamic Boost and the configurable TGP request the same row on these images as another client: the client requests combine by minimum (0x17b8030), and while the platform holds one its update drops the nvidia-smi request (0x17cbc98); on Turing (621.01) the client request starts at the row rated value (power_default_w) at every driver load (0x4b979e4), nvidia-smi -pl (0x4b9b66c) and NvAPI's client policy SET (0x4b8caf4) take the row minimum to maximum, NvAPI gives the slider in percent of the rated value (0x18023c382), and the platform request is capped by the row maximum (0x4be456c; the configurable TGP mode without its turbo offset requests that maximum); that the power controller holds a client limit above the rated value is not verified",
+            "set_tested": false,
+            "source": "GSP-RM 615.78.08 (gsp_ga10x.bin) client power limit handler 0x178ed60, Windows driver 621.01 (nvlddmkm.sys) 0x1404f01c1, R525 525.89.02 power policy table parser; for Turing, GSP-RM 621.01 (gsp_tu10x.bin) power policies and NvAPI 621.01 client power policies (0x18023be80)"
+          },
+          {
+            "format": "3x power header byte 10 (TGP index) and byte 13 (D-notifier index): ff ff ff 02 in bytes 10..13 of the notebook header, 02 ff ff 02 with the switch on; written in every chain, additive checksum repaired",
+            "kind": "structural-row-comparison",
+            "observation": "the TGP index is 0xff on the laptop images only (7 Turing, 10 Ampere, 5 Ada, 3 GB20x; a sixth Ada laptop image, which the editor does not parse, stores the same header) and names the TGP row on every desktop and workstation image; the D-notifier index names row 2 on every laptop image, the first R525 class-1 row on the Turing and Ampere ones",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Turing, Ampere, Ada and GB20x VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "runtime_power_limit_unlock",
+        "label": "Expose runtime power limit (nvidia-smi -pl, Afterburner)",
+        "notebook_tgp": true,
+        "opt_in": true,
+        "policy_indices": [
+          2
+        ],
+        "reason": "experimental, opt-in: 1 names the TGP row (row 2) in the power table header, where laptop images leave the TGP index empty (0xff), so that the driver accepts runtime power limit changes (nvidia-smi -pl, MSI Afterburner); 0 writes 0xff back; NVIDIA drivers through R525 (Linux 525.89.02, Windows 528.49) did this by themselves on such images, and later drivers refuse runtime power limit changes on laptops; Dynamic Boost and the laptop's configurable TGP (the NVIDIA platform framework, NVPCF, on Windows; nvidia-powerd on Linux, Ampere and newer) keep their own request on the same row and the lowest request wins: while they hold one, a higher value has no effect and their next update drops yours, and without one yours stays until the driver loads again; on battery the lower battery limits still apply; the accepted range is the TGP row minimum to maximum, so raise power_max_w alone for a higher limit from the slider or nvidia-smi -pl: power_default_w, 100 % on MSI Afterburner's slider (whose top is power_max_w over power_default_w), can stay at stock; the requests of Dynamic Boost and the configurable TGP are capped by power_max_w too, so with it raised they may go above the stock limit by themselves (the laptop VRM, cooling and power adapter were sized for the stock limit); not hardware-tested",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "flag"
+        },
+        "units": "flag",
+        "value_semantics": "stored-runtime-power-limit-slot",
+        "version_metadata": {
+          "format_variant": "3x power header byte 10 (TGP index) and byte 13 (D-notifier index): ff ff ff 02 in bytes 10..13 of the notebook header, 02 ff ff 02 with the switch on; written in every chain, additive checksum repaired",
+          "schema_version": 1
+        }
+      },
+      {
+        "alias_of": "nvvdd_rel_equation_max_mv",
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 2147483.647,
+          "minimum": 1081.25
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "offset": {
+              "current": null,
+              "signed": true,
+              "type": "int32",
+              "units": "uV",
+              "writable": "unknown"
+            },
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 1081.25,
+        "editable": false,
+        "equation_coefficients": [
+          1081250.0,
+          0.0,
+          0.0
+        ],
+        "evidence": [
+          {
+            "format": "Ampere rails v20 (17-byte rows), VFE quadratic voltage equation",
+            "kind": "reviewed-voltage-output-equation",
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_rel_max_mv",
+        "label": "NVVDD REL equation ceiling",
+        "reason": "read-only: constant equation (zero slopes); a ceiling-only edit would not change the evaluated voltage",
+        "runtime_offset": {
+          "current": null,
+          "signed": true,
+          "type": "int32",
+          "units": "uV",
+          "writable": "unknown"
+        },
+        "stored_units": "uV",
+        "thermal_derating_preserved": true,
+        "type": "number",
+        "ui_visible": false,
+        "unit_metadata": {
+          "storage_encoding": "<f",
+          "storage_signed": true,
+          "stored_symbol": "uV",
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-equation-output-ceiling",
+        "version_metadata": {
+          "format_variant": "Ampere rails v20 (17-byte rows), VFE quadratic voltage equation",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 2147483.647,
+          "minimum": 1081.25
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "offset": {
+              "current": null,
+              "signed": true,
+              "type": "int32",
+              "units": "uV",
+              "writable": "unknown"
+            },
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 1081.25,
+        "editable": false,
+        "equation_kind": "constant",
+        "equation_offset": 555388,
+        "equation_type": 1,
+        "evidence": [
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_rel_equation_max_mv",
+        "label": "NVVDD REL equation output ceiling",
+        "output_flags": 2,
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "read-only: constant equation (zero slopes); a ceiling-only edit would not change the evaluated voltage",
+        "runtime_offset": {
+          "current": null,
+          "signed": true,
+          "type": "int32",
+          "units": "uV",
+          "writable": "unknown"
+        },
+        "runtime_role_candidate": "REL",
+        "selector": {
+          "absent": false,
+          "offset": 17089,
+          "raw": 2,
+          "width_bits": 8
+        },
+        "shared_references": [
+          {
+            "logical_rail_id": "NVVDD",
+            "role": "REL",
+            "selector_index": 2
+          }
+        ],
+        "stored_units": "uV",
+        "type": "number",
+        "unchanged_output_minimum_uv": 1081250.0,
+        "unit_metadata": {
+          "storage_encoding": "<f",
+          "storage_signed": true,
+          "stored_symbol": "uV",
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-equation-output-ceiling",
+        "version_metadata": {
+          "format_variant": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 2,
+        "editable": false,
+        "evidence": [
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_rel_selector_index",
+        "label": "NVVDD REL selector",
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "selectors are inspected without edits or runtime evaluation",
+        "selector": {
+          "absent": false,
+          "offset": 17089,
+          "raw": 2,
+          "width_bits": 8
+        },
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "index"
+        },
+        "units": "index",
+        "value_semantics": "selector-index",
+        "version_metadata": {
+          "format_variant": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "offset": {
+              "current": null,
+              "signed": true,
+              "type": "int32",
+              "units": "uV",
+              "writable": "unknown"
+            },
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": null,
+        "editable": false,
+        "equation_offset": null,
+        "equation_type": null,
+        "evidence": [
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_alt_equation_max_mv",
+        "label": "NVVDD ALT equation output ceiling",
+        "output_flags": null,
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "selector denotes absence",
+        "runtime_offset": {
+          "current": null,
+          "signed": true,
+          "type": "int32",
+          "units": "uV",
+          "writable": "unknown"
+        },
+        "runtime_role_candidate": "VOP",
+        "selector": {
+          "absent": true,
+          "offset": 17090,
+          "raw": 255,
+          "width_bits": 8
+        },
+        "shared_references": [],
+        "type": "number",
+        "unchanged_output_minimum_uv": null,
+        "unit_metadata": {
+          "storage_encoding": null,
+          "storage_signed": null,
+          "stored_symbol": null,
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-equation-output-ceiling",
+        "version_metadata": {
+          "format_variant": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 255,
+        "editable": false,
+        "evidence": [
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_alt_selector_index",
+        "label": "NVVDD ALT selector",
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "selectors are inspected without edits or runtime evaluation",
+        "selector": {
+          "absent": true,
+          "offset": 17090,
+          "raw": 255,
+          "width_bits": 8
+        },
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "index"
+        },
+        "units": "index",
+        "value_semantics": "selector-index",
+        "version_metadata": {
+          "format_variant": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 2147483.647,
+          "minimum": 1100.0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "offset": {
+              "current": null,
+              "signed": true,
+              "type": "int32",
+              "units": "uV",
+              "writable": "unknown"
+            },
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 1100.0,
+        "editable": false,
+        "equation_kind": "constant",
+        "equation_offset": 555436,
+        "equation_type": 1,
+        "evidence": [
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_ov_equation_max_mv",
+        "label": "NVVDD OV equation output ceiling",
+        "output_flags": 2,
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "read-only: constant equation (zero slopes); a ceiling-only edit would not change the evaluated voltage",
+        "runtime_offset": {
+          "current": null,
+          "signed": true,
+          "type": "int32",
+          "units": "uV",
+          "writable": "unknown"
+        },
+        "runtime_role_candidate": "OV",
+        "selector": {
+          "absent": false,
+          "offset": 17091,
+          "raw": 4,
+          "width_bits": 8
+        },
+        "shared_references": [
+          {
+            "logical_rail_id": "NVVDD",
+            "role": "OV",
+            "selector_index": 4
+          }
+        ],
+        "stored_units": "uV",
+        "type": "number",
+        "unchanged_output_minimum_uv": 1100000.0,
+        "unit_metadata": {
+          "storage_encoding": "<f",
+          "storage_signed": true,
+          "stored_symbol": "uV",
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-equation-output-ceiling",
+        "version_metadata": {
+          "format_variant": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 4,
+        "editable": false,
+        "evidence": [
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_ov_selector_index",
+        "label": "NVVDD OV selector",
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "selectors are inspected without edits or runtime evaluation",
+        "selector": {
+          "absent": false,
+          "offset": 17091,
+          "raw": 4,
+          "width_bits": 8
+        },
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "index"
+        },
+        "units": "index",
+        "value_semantics": "selector-index",
+        "version_metadata": {
+          "format_variant": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "offset": {
+              "current": null,
+              "signed": true,
+              "type": "int32",
+              "units": "uV",
+              "writable": "unknown"
+            },
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unknown"
+          }
+        },
+        "capability_status": "read-only",
+        "current": null,
+        "editable": false,
+        "equation_kind": "fixed-point",
+        "equation_offset": 555412,
+        "equation_type": 4,
+        "evidence": [
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_vmin_equation_max_mv",
+        "label": "NVVDD rail INFO VMIN-slot equation ceiling (not the evaluated VMIN)",
+        "output_flags": 2,
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "read-only: rail INFO VMIN slot (row byte 11) as on Ada, where a new value here did not change the driver VMIN; the evaluated VMIN follows the row byte 7 equation (the *_vmin_mv field)",
+        "runtime_offset": {
+          "current": null,
+          "signed": true,
+          "type": "int32",
+          "units": "uV",
+          "writable": "unknown"
+        },
+        "runtime_role_candidate": "VMIN (rail INFO slot)",
+        "selector": {
+          "absent": false,
+          "offset": 17096,
+          "raw": 3,
+          "width_bits": 8
+        },
+        "shared_references": [
+          {
+            "logical_rail_id": "NVVDD",
+            "role": "VMIN",
+            "selector_index": 3
+          }
+        ],
+        "type": "number",
+        "unchanged_output_minimum_uv": null,
+        "unit_metadata": {
+          "storage_encoding": null,
+          "storage_signed": null,
+          "stored_symbol": null,
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-equation-output-ceiling",
+        "version_metadata": {
+          "format_variant": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 3,
+        "editable": false,
+        "evidence": [
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_vmin_selector_index",
+        "label": "NVVDD VMIN selector",
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "selectors are inspected without edits or runtime evaluation",
+        "selector": {
+          "absent": false,
+          "offset": 17096,
+          "raw": 3,
+          "width_bits": 8
+        },
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "index"
+        },
+        "units": "index",
+        "value_semantics": "selector-index",
+        "version_metadata": {
+          "format_variant": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 750000,
+        "editable": false,
+        "evidence": [
+          {
+            "kind": "nvidia-common-prefix",
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "key": "nvvdd_boot_voltage_uv",
+        "label": "NVVDD stored boot voltage",
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "boot/factory values are preserved",
+        "stored_units": "uV",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "uV",
+          "symbol": "uV"
+        },
+        "units": "uV",
+        "value_semantics": "stored-boot-voltage",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 1055.25,
+          "minimum": 400
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 628.0,
+        "editable": true,
+        "equation_offset": 555484,
+        "equation_type": 1,
+        "evidence": [
+          {
+            "format": "Ada rail row byte 7 (u8) selects the VFE equation of the evaluated VMIN",
+            "kind": "hardware-test",
+            "observed": "that equation pins 560 mV with its clamp; driver VMIN 650 mV; with the clamp at 700 mV in both chains the driver reported 790 mV, the clamp value plus 90 mV both times; a new row byte 11 equation did not change the driver VMIN",
+            "scope": "RTX 2000 Ada 95.07.47.00.19 (10de:28b0)",
+            "set_tested": true,
+            "source": "edited image loaded as an override; read-only driver rail status"
+          },
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "nvvdd_vmin_mv",
+        "label": "NVVDD minimum voltage (VMIN)",
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "experimental: clamp of the equation selected at rail row byte 7, the Ada VMIN layout; the edit writes the clamp minimum and maximum; its chained equations add -86 to 26 mV, so the value stays at most the lowest REL value less 26 mV; on Ada the driver reported the value plus its chained equations; not hardware-tested on Ampere",
+        "runtime_role_candidate": "VMIN",
+        "selector": {
+          "absent": false,
+          "offset": 17092,
+          "raw": 6,
+          "width_bits": 8
+        },
+        "stored_units": "uV",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<f",
+          "storage_signed": true,
+          "stored_symbol": "uV",
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-evaluated-vmin",
+        "version_metadata": {
+          "format_variant": "Ada rail row byte 7 (u8) selects the VFE equation of the evaluated VMIN",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 0,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere NVVDD rail row (row 0) REL +4 and ALT +5 (u8) in the legacy image of every chain; the constant VFE equation (24 bytes) OV +6 selects: clamp minimum and maximum and constant (bytes 3, 7 and 11), written in every chain",
+            "kind": "structural-row-comparison",
+            "observation": "every image selects a constant 1100 mV OV equation on each rail and keeps REL < ALT (if present) < VMIN = OV - 1; no Ampere image points REL or ALT at OV; no other rail row selector or evaluated VMIN byte (row byte 7), VFE equation or clock programming, FLL or voltage policy entry uses the NVVDD OV constant; row byte 10 holds 2 on the NVVDD row and 3 on the MSVDD row, whatever equation that index holds: its meaning is unknown and the fields leave it",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "kind": "vendor-image-comparison",
+            "observation": "against the stock ASUS RTX 5090 image the XOC images point the NVVDD REL and ALT selectors (row +0x0d and +0x0f) at the OV equation, a constant 1200 mV, so REL = ALT = OV; their VFE equations and MSVDD row are unchanged",
+            "set_tested": false,
+            "source": "ASUS RTX 5090 XOC and MSI RTX 5090 Lightning images",
+            "use": "GB20x analogy"
+          },
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "nvvdd_rel_alt_follow_ov",
+        "label": "REL and ALT follow OV (XOC-style flat voltage limit)",
+        "opt_in": true,
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "experimental, opt-in: 1 points the NVVDD REL selector (this image has no ALT selector) at the OV equation (1100 mV) in every chain: REL = OV, a flat voltage limit, as the ASUS XOC and MSI Lightning RTX 5090 images do (confirmed on one RTX 5090); REL is 1081.25 mV in this image; raising REL lets the GPU request a higher voltage on its VF curve, and the board power and thermal limits still apply; the value 1 cannot be undone in the copy; not hardware-tested on Ampere",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "flag"
+        },
+        "units": "flag",
+        "value_semantics": "stored-rail-selector-layout",
+        "version_metadata": {
+          "format_variant": "Ampere NVVDD rail row (row 0) REL +4 and ALT +5 (u8) in the legacy image of every chain; the constant VFE equation (24 bytes) OV +6 selects: clamp minimum and maximum and constant (bytes 3, 7 and 11), written in every chain",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 1100.0,
+        "editable": false,
+        "evidence": [
+          {
+            "format": "Ampere NVVDD rail row (row 0) REL +4 and ALT +5 (u8) in the legacy image of every chain; the constant VFE equation (24 bytes) OV +6 selects: clamp minimum and maximum and constant (bytes 3, 7 and 11), written in every chain",
+            "kind": "structural-row-comparison",
+            "observation": "every image selects a constant 1100 mV OV equation on each rail and keeps REL < ALT (if present) < VMIN = OV - 1; no Ampere image points REL or ALT at OV; no other rail row selector or evaluated VMIN byte (row byte 7), VFE equation or clock programming, FLL or voltage policy entry uses the NVVDD OV constant; row byte 10 holds 2 on the NVVDD row and 3 on the MSVDD row, whatever equation that index holds: its meaning is unknown and the fields leave it",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "kind": "vendor-image-comparison",
+            "observation": "against the stock ASUS RTX 5090 image the XOC images point the NVVDD REL and ALT selectors (row +0x0d and +0x0f) at the OV equation, a constant 1200 mV, so REL = ALT = OV; their VFE equations and MSVDD row are unchanged",
+            "set_tested": false,
+            "source": "ASUS RTX 5090 XOC and MSI RTX 5090 Lightning images",
+            "use": "GB20x analogy"
+          },
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "nvvdd_rel_alt_follow_ov_mv",
+        "label": "NVVDD flat voltage (REL = ALT = OV)",
+        "opt_in": true,
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "read-only while nvvdd_rel_alt_follow_ov is 0: set it to 1, save, open the copy, then set this value",
+        "stored_units": "uV",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": null,
+          "storage_signed": null,
+          "stored_symbol": "uV",
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-follow-ov-voltage",
+        "version_metadata": {
+          "format_variant": "Ampere NVVDD rail row (row 0) REL +4 and ALT +5 (u8) in the legacy image of every chain; the constant VFE equation (24 bytes) OV +6 selects: clamp minimum and maximum and constant (bytes 3, 7 and 11), written in every chain",
+          "schema_version": 1
+        },
+        "vfe_copy_slot": null
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 1100.0,
+          "encoding_minimum": 1081.25,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 1100.0,
+          "minimum": 1081.25
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 1081.25,
+        "editable": true,
+        "equation_offset": 555388,
+        "evidence": [
+          {
+            "format": "Ampere rail row selectors REL (+4) and ALT (+5) of each rail name constant VFE equations: value = clamp maximum (the stock images also store it as the minimum), no slope, no link and no reference from another equation; clamp maximum (byte 7) and constant (byte 11) written in every chain, clamp minimum (byte 3) kept",
+            "kind": "structural-row-comparison",
+            "observation": "REL 900 to 1087.5 mV and OV 1100 mV on every rail of every image, ALT 1100 mV on the desktop GeForce images (absent on the workstation and laptop ones), each with minimum = maximum = constant; the two rails of the GA102 images select equations of their own",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "format": "Ampere rail 20/05/11 with one (01 00) or two (02 01) 17-byte rows; selectors REL +4, ALT +5, OV +6, VMIN +11 (u8, ff absent) as on Ada; VFE 30/09/19/32/18 with 24-byte equations, u8 count (header byte 5) and u8 links (byte 2; children bytes 11/12 and 15/16)",
+            "kind": "structural-row-comparison",
+            "observation": "every rail of every image keeps REL < ALT (if present) < VMIN = OV - 1; REL and OV are constant equations (value, minimum and maximum one constant) on all 35 images; ALT is constant (1100 mV) on the 18 desktop GeForce images and absent (selector 0xff) on the 17 workstation and laptop images; rail 1 of the two-rail GA102 images is named MSVDD by inference only (GPC runs on rail 0; XBAR, DRAM and DISP on rail 1)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "nvvdd_rel_fixed_mv",
+        "label": "NVVDD REL fixed voltage",
+        "opt_in": true,
+        "ordering_group": "nvvdd-rel-alt",
+        "rail_identity": {
+          "api_index_scope": "unknown",
+          "api_rail_index": null,
+          "logical_rail_id": "NVVDD",
+          "power_monitor_rail_id": null,
+          "vbios_row_index": 0
+        },
+        "reason": "experimental, opt-in: the NVVDD REL equation is a constant; the edit writes its constant and clamp maximum in every chain and keeps its clamp minimum, the lowest value offered; from its clamp minimum up to the OV value (1100 mV); raising REL lets the GPU request a higher voltage on its VF curve, and the board power and thermal limits still apply; more voltage means more heat, power and wear; not hardware-tested on Ampere",
+        "runtime_role_candidate": "REL",
+        "stored_units": "uV",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<f",
+          "storage_signed": true,
+          "stored_symbol": "uV",
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-fixed-equation-value",
+        "version_metadata": {
+          "format_variant": "Ampere rail row selectors REL (+4) and ALT (+5) of each rail name constant VFE equations: value = clamp maximum (the stock images also store it as the minimum), no slope, no link and no reference from another equation; clamp maximum (byte 7) and constant (byte 11) written in every chain, clamp minimum (byte 3) kept",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 5000999.0,
+          "encoding_minimum": 0,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 5000999.0,
+          "minimum": 180000.0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 180000.0,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere power row class 0 mA on the NVVDD output current channel (class 1, rail 1, sensor byte 14 = 6)",
+            "kind": "structural-row-comparison",
+            "observation": "row 13 on every corpus image reads channel 19, rated 54-445 A; 29 of the 40 images also store row 18 there (class 0 mA, 5001 A rated and maximum, the no-limit value of 269 Ampere rows); on every image row 12 (class 1 mA, 5001 A, on channel 19 or, on GA102, on sum channel 17) names rows 13 and 18 in the relationship entries of the power policy table (inferred: a combined policy over them); on the RTX 2000 Ada, RTX 4000 Ada and RTX 4000 Ada SFF row 12 is class 0 with unused entries, which may be why row 13 is absent from the RTX 2000 Ada runtime list; rows 16 and 17 read the other NVVDD channel 18 (sensor byte 14 = 5; class 5 mW, the hardware threshold class, or class 0 on the RTX 3090 Ti row 16 and the RTX A2000 row 17; 12.5-250 W; meaning unknown)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 40 GA102-GA107 images (images were added after the 35-image structural checks)"
+          },
+          {
+            "kind": "owner-report",
+            "observation": "with a 72-75 W ceiling and a 70 W boot default the GPU stopped at about 60-64 W with power limit as the reason, also at low CPU load; the stock image stores 45 A in row 13, the lowest seen; the corpus 80 W image of the same GPU stores 90 A there, rows 16 and 17 at 28.125/21.5 W against 18.75/12.5 W, a 1081.25 mV reliability voltage ceiling against 900 mV and other power sensor bytes, and with it flashed (older driver) the laptop reached 80 W; 45 A at 0.85-0.90 V is about 38-41 W of core power, which fits a 60-64 W board power: row 13 is the likely cap (inferred, not proven)",
+            "set_tested": false,
+            "source": "RTX 3050 Ti Laptop GPU owner (10de:25a0, 50 W rated / 55 W maximum stock image, not in the corpus), loader"
+          }
+        ],
+        "experimental": true,
+        "immutable_row_sha256": [
+          "6664b905995998a26ae135b08dcc7170279c862e726051fd2fc49abedd576ba1"
+        ],
+        "key": "nvvdd_output_ocp_max_ma",
+        "label": "NVVDD output current limit ceiling",
+        "opt_in": true,
+        "ordering_group": "nvvdd-output-ocp",
+        "other_nvvdd_rows": [
+          {
+            "class": 5,
+            "maximum": 37500,
+            "minimum": 10000,
+            "power_channel": 18,
+            "rated": 37500,
+            "row": 16,
+            "units": "mW"
+          },
+          {
+            "class": 5,
+            "maximum": 25000,
+            "minimum": 1,
+            "power_channel": 18,
+            "rated": 25000,
+            "row": 17,
+            "units": "mW"
+          }
+        ],
+        "policy_indices": [
+          13
+        ],
+        "power_channel": 19,
+        "raw_bounds": {
+          "maximum": 180000,
+          "minimum": 1,
+          "rated": 180000,
+          "units": "mA"
+        },
+        "reason": "experimental, opt-in: ceiling of the NVVDD output current limit (row 13, class 0 mA, the lowest such row on the NVVDD output current channel); SET and enforcement untested; whether the firmware enforces it is unproven on Ampere; it likely protects the core VRM, which was sized for the stock value; not hardware-tested; once it is raised, the read-only reliability voltage ceiling (nvvdd_rel_max_mv) may be the next limit; values stay below 5001 A, the no-limit value of Ampere power rows, so this row stays a limit; row 18 on the same channel holds that value as rated and maximum and is not counted as a second limit; row 16 is a class-5 mW row on another NVVDD channel (18; 37.5 W rated, 37.5 W maximum; a hardware threshold, meaning unknown, no field) and may bind first; row 17 is a class-5 mW row on another NVVDD channel (18; 25 W rated, 25 W maximum; a hardware threshold, meaning unknown, no field) and may bind first; a hardware threshold that trips would show as a hardware slowdown, not as a power limit (inferred); stored value, not a hardware-safe VRM rating",
+        "stored_units": "mA",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "mA",
+          "symbol": "mA"
+        },
+        "units": "mA",
+        "unlimited_rows": [
+          {
+            "maximum": 5001000,
+            "minimum": 1,
+            "rated": 5001000,
+            "row": 18,
+            "units": "mA"
+          }
+        ],
+        "value_semantics": "stored-policy-maximum",
+        "version_metadata": {
+          "format_variant": "Ampere power row class 0 mA on the NVVDD output current channel (class 1, rail 1, sensor byte 14 = 6)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 5000999.0,
+          "encoding_minimum": 0,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 180000.0,
+          "minimum": 1.0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 180000.0,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere power row class 0 mA on the NVVDD output current channel (class 1, rail 1, sensor byte 14 = 6)",
+            "kind": "structural-row-comparison",
+            "observation": "row 13 on every corpus image reads channel 19, rated 54-445 A; 29 of the 40 images also store row 18 there (class 0 mA, 5001 A rated and maximum, the no-limit value of 269 Ampere rows); on every image row 12 (class 1 mA, 5001 A, on channel 19 or, on GA102, on sum channel 17) names rows 13 and 18 in the relationship entries of the power policy table (inferred: a combined policy over them); on the RTX 2000 Ada, RTX 4000 Ada and RTX 4000 Ada SFF row 12 is class 0 with unused entries, which may be why row 13 is absent from the RTX 2000 Ada runtime list; rows 16 and 17 read the other NVVDD channel 18 (sensor byte 14 = 5; class 5 mW, the hardware threshold class, or class 0 on the RTX 3090 Ti row 16 and the RTX A2000 row 17; 12.5-250 W; meaning unknown)",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 40 GA102-GA107 images (images were added after the 35-image structural checks)"
+          },
+          {
+            "kind": "owner-report",
+            "observation": "with a 72-75 W ceiling and a 70 W boot default the GPU stopped at about 60-64 W with power limit as the reason, also at low CPU load; the stock image stores 45 A in row 13, the lowest seen; the corpus 80 W image of the same GPU stores 90 A there, rows 16 and 17 at 28.125/21.5 W against 18.75/12.5 W, a 1081.25 mV reliability voltage ceiling against 900 mV and other power sensor bytes, and with it flashed (older driver) the laptop reached 80 W; 45 A at 0.85-0.90 V is about 38-41 W of core power, which fits a 60-64 W board power: row 13 is the likely cap (inferred, not proven)",
+            "set_tested": false,
+            "source": "RTX 3050 Ti Laptop GPU owner (10de:25a0, 50 W rated / 55 W maximum stock image, not in the corpus), loader"
+          }
+        ],
+        "experimental": true,
+        "immutable_row_sha256": [
+          "6664b905995998a26ae135b08dcc7170279c862e726051fd2fc49abedd576ba1"
+        ],
+        "key": "nvvdd_output_ocp_rated_ma",
+        "label": "NVVDD output current limit (rated)",
+        "opt_in": true,
+        "ordering_group": "nvvdd-output-ocp",
+        "other_nvvdd_rows": [
+          {
+            "class": 5,
+            "maximum": 37500,
+            "minimum": 10000,
+            "power_channel": 18,
+            "rated": 37500,
+            "row": 16,
+            "units": "mW"
+          },
+          {
+            "class": 5,
+            "maximum": 25000,
+            "minimum": 1,
+            "power_channel": 18,
+            "rated": 25000,
+            "row": 17,
+            "units": "mW"
+          }
+        ],
+        "policy_indices": [
+          13
+        ],
+        "power_channel": 19,
+        "raw_bounds": {
+          "maximum": 180000,
+          "minimum": 1,
+          "rated": 180000,
+          "units": "mA"
+        },
+        "reason": "experimental, opt-in: rated NVVDD output current limit (row 13, class 0 mA on the NVVDD output current channel); a power cap below the board power ceiling may come from it; whether the firmware enforces it is unproven on Ampere; it likely protects the core VRM, which was sized for the stock value; not hardware-tested; once it is raised, the read-only reliability voltage ceiling (nvvdd_rel_max_mv) may be the next limit; values stay below 5001 A, the no-limit value of Ampere power rows, so this row stays a limit; row 18 on the same channel holds that value as rated and maximum and is not counted as a second limit; row 16 is a class-5 mW row on another NVVDD channel (18; 37.5 W rated, 37.5 W maximum; a hardware threshold, meaning unknown, no field) and may bind first; row 17 is a class-5 mW row on another NVVDD channel (18; 25 W rated, 25 W maximum; a hardware threshold, meaning unknown, no field) and may bind first; a hardware threshold that trips would show as a hardware slowdown, not as a power limit (inferred); stored value, not a hardware-safe VRM rating",
+        "stored_units": "mA",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "mA",
+          "symbol": "mA"
+        },
+        "units": "mA",
+        "unlimited_rows": [
+          {
+            "maximum": 5001000,
+            "minimum": 1,
+            "rated": 5001000,
+            "row": 18,
+            "units": "mA"
+          }
+        ],
+        "value_semantics": "stored-policy-rated-default",
+        "version_metadata": {
+          "format_variant": "Ampere power row class 0 mA on the NVVDD output current channel (class 1, rail 1, sensor byte 14 = 6)",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 1,
+          "encoding_minimum": 0,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 0,
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the flag byte of each clock programming entry is decoded bit by bit and bit 4 becomes a per-entry boolean; the code that applies a clock offset to the entries was not traced, so that bit 4 marks the entries an offset moves is inferred",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_ga10x.bin), clock programming table parsers (versions 0x40 and 0x50)"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "the clocks table DRAM row names the DRAM entries of the clock programming table: one per memory clock the performance states use, rising, flag byte 0x03 or 0x13; bit 4 is set on the top memory levels of every image whose entries take this shape (all but the passive RTX A40) and never on the 405 and 810 MHz idle levels; four GA104/GA106 laptop images (RTX 3060, 3070 and 3080 Laptop GPU) also set it on their intermediate level, which the other images leave clear",
+            "source": "Ada, Ampere and GB20x VBIOS corpus"
+          },
+          {
+            "kind": "owner-report",
+            "observation": "down to a -500 MHz offset the memory ran between 6001 and 5501 MHz; below that it left the 6001 MHz level for the 810 MHz one instead of running lower, and larger offsets crashed; 5501 MHz is the only level between them, stored without bit 4",
+            "set_tested": false,
+            "source": "RTX 3050 Laptop GPU owner (Windows), memory offset under load"
+          },
+          {
+            "kind": "hardware-test",
+            "observed": "with bit 4 set on the 5501 MHz level and the memory offset floor lowered to -2000 MHz (table scale; MSI Afterburner reached it), the memory still left the 6001 MHz level for the 810 MHz one below a -500 MHz offset: on that card the bit did not make the level follow the offset",
+            "scope": "one RTX 3050 Laptop GPU (memory levels 405, 810, 5501 and 6001 MHz)",
+            "set_tested": true,
+            "source": "owner report: an edited image loaded as an override (Windows loader, verified byte for byte)"
+          }
+        ],
+        "experimental": true,
+        "key": "memory_point_1_follows_offset",
+        "label": "Memory clock 6001 MHz follows the memory offset",
+        "memory_mhz": 6001,
+        "opt_in": true,
+        "ordering_group": "dram-points",
+        "reason": "experimental, opt-in: bit 4 of the flag byte of the 6001 MHz memory level in the clock programming table; stock images set it on the top memory levels, and a memory offset that takes the memory below the highest level without it drops it to a lower level instead (on one RTX 3050 Laptop GPU to 810 MHz); setting it was expected to let the offset move this level too (inferred), but on that card, tested on its 5501 MHz level with a lower memory offset floor, the memory still dropped to 810 MHz; the levels with it stay the top ones",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "flag"
+        },
+        "units": "flag",
+        "value_semantics": "stored-dram-point-offset",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 500,
+          "minimum": -500
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 0,
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the clocks table GPC row names one clock programming entry whose equation index is the root of the GPC VF curve in the VFE table; the stored GPC frequency deltas of the clocks table are ignored by default and could only raise the curve; a VFE equation adds its next equation to its clamped value (as the voltage equations show), so a constant linked from the root should move every point of the curve (inferred; the curve evaluation was not traced)",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_ga10x.bin), clocks and clock programming table parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "the GPC root is a compare equation with MHz output that no other equation references and that links no next equation; the first unused VFE slot is clean; compare equations with a next link and MHz output are common, and a newer RTX 4090 BIOS fills the older one's first unused slot with a constant equation (a 15 mV voltage constant that links the VMIN equation and that the memory clock programming entries name, see nvvdd_vmin_mv); no image links a constant to the GPC root: two SKUs of one chip (RTX 2080 Ti and TITAN RTX) differ by +45 MHz in the constant term of one polynomial inside the curve's floor and cap, and vendor factory-OC images keep the reference curve",
+            "source": "Ada, Ampere and GB20x VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "gpc_curve_offset_mhz",
+        "label": "GPC curve offset",
+        "opt_in": true,
+        "reason": "experimental, opt-in: a constant MHz equation linked as the next equation of the GPC VF curve root in the VFE table (first unused slot); it is expected to move every point of the stock curve by this many MHz (inferred); a tuning tool's offset still applies on top, and nvidia-smi max clocks and the rated boost do not change; values far from 0 can make the card unstable; 0 restores the stock bytes; not hardware-tested",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": null,
+          "symbol": "MHz"
+        },
+        "units": "MHz",
+        "value_semantics": "stored-gpc-curve-offset",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "DRAM",
+        "clock_row": 2,
+        "current": 3000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "kind": "unit-analogy",
+            "relation": "NVML MHz = 2 * table MHz",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 35 parseable GA102-GA107 images",
+            "use": "analogy with the Ada and GB20x NVML readings; no Ampere NVML reading"
+          }
+        ],
+        "experimental": true,
+        "key": "dram_max_table_mhz",
+        "label": "Memory offset ceiling (table)",
+        "reason": "experimental: firmware memory offset ceiling; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "table MHz"
+        },
+        "units": "table MHz",
+        "value_semantics": "stored-field-value",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 65534,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "DRAM",
+        "clock_row": 2,
+        "current": 6000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "kind": "unit-analogy",
+            "relation": "NVML MHz = 2 * table MHz",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 35 parseable GA102-GA107 images",
+            "use": "analogy with the Ada and GB20x NVML readings; no Ampere NVML reading"
+          }
+        ],
+        "experimental": true,
+        "key": "memory_offset_max_mhz",
+        "label": "Memory offset ceiling",
+        "reason": "experimental: firmware memory offset ceiling; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "MHz"
+        },
+        "units": "MHz",
+        "value_semantics": "stored-field-value",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 0,
+          "minimum": -65536
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "DRAM",
+        "clock_row": 2,
+        "current": -2000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "kind": "unit-analogy",
+            "relation": "NVML MHz = 2 * table MHz",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 35 parseable GA102-GA107 images",
+            "use": "analogy with the Ada and GB20x NVML readings; no Ampere NVML reading"
+          }
+        ],
+        "experimental": true,
+        "key": "memory_offset_min_mhz",
+        "label": "Memory offset floor",
+        "reason": "experimental: firmware offset floor; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "MHz"
+        },
+        "units": "MHz",
+        "value_semantics": "stored-offset-range-minimum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "alias_of": "memory_offset_min_mhz",
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 0,
+          "minimum": -32768
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "DRAM",
+        "clock_row": 2,
+        "current": -1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "dram_min_table_mhz",
+        "label": "Memory offset floor (table)",
+        "reason": "experimental: firmware offset floor; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "table MHz"
+        },
+        "units": "table MHz",
+        "value_semantics": "stored-offset-range-minimum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "GPC",
+        "clock_row": 0,
+        "current": 1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "kind": "unit-analogy",
+            "relation": "NVML MHz = table MHz",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 35 parseable GA102-GA107 images",
+            "use": "analogy with the Ada and GB20x NVML readings; no Ampere NVML reading"
+          }
+        ],
+        "experimental": true,
+        "key": "gpc_offset_max_mhz",
+        "label": "Core (GPC) offset ceiling",
+        "reason": "experimental: firmware offset ceiling; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "MHz"
+        },
+        "units": "MHz",
+        "value_semantics": "stored-offset-range-maximum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 0,
+          "minimum": -32768
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "GPC",
+        "clock_row": 0,
+        "current": -1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          },
+          {
+            "kind": "unit-analogy",
+            "relation": "NVML MHz = table MHz",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "Ampere VBIOS corpus, 35 parseable GA102-GA107 images",
+            "use": "analogy with the Ada and GB20x NVML readings; no Ampere NVML reading"
+          }
+        ],
+        "experimental": true,
+        "key": "gpc_offset_min_mhz",
+        "label": "Core (GPC) offset floor",
+        "reason": "experimental: firmware offset floor; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "MHz"
+        },
+        "units": "MHz",
+        "value_semantics": "stored-offset-range-minimum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "XBAR",
+        "clock_row": 1,
+        "current": 1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "xbar_max_table_mhz",
+        "label": "XBAR offset ceiling (table)",
+        "reason": "experimental: firmware offset ceiling; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "table MHz"
+        },
+        "units": "table MHz",
+        "value_semantics": "stored-offset-range-maximum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 0,
+          "minimum": -32768
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "XBAR",
+        "clock_row": 1,
+        "current": -1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "xbar_min_table_mhz",
+        "label": "XBAR offset floor (table)",
+        "reason": "experimental: firmware offset floor; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "table MHz"
+        },
+        "units": "table MHz",
+        "value_semantics": "stored-offset-range-minimum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "SYS",
+        "clock_row": 3,
+        "current": 1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "sys_max_table_mhz",
+        "label": "SYS offset ceiling (table)",
+        "reason": "experimental: firmware offset ceiling; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "table MHz"
+        },
+        "units": "table MHz",
+        "value_semantics": "stored-offset-range-maximum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 0,
+          "minimum": -32768
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "SYS",
+        "clock_row": 3,
+        "current": -1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "sys_min_table_mhz",
+        "label": "SYS offset floor (table)",
+        "reason": "experimental: firmware offset floor; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "table MHz"
+        },
+        "units": "table MHz",
+        "value_semantics": "stored-offset-range-minimum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 32767,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "VID",
+        "clock_row": 5,
+        "current": 1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "vid_max_table_mhz",
+        "label": "VID offset ceiling (table)",
+        "reason": "experimental: firmware offset ceiling; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "table MHz"
+        },
+        "units": "table MHz",
+        "value_semantics": "stored-offset-range-maximum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 0,
+          "minimum": -32768
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "VID",
+        "clock_row": 5,
+        "current": -1000,
+        "editable": true,
+        "evidence": [
+          {
+            "format": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+            "kind": "nvidia-struct-and-hal-order",
+            "observation": "row usage, ordering byte and fixed bytes match on every image and exactly one sub-entry per row has a nonzero type, as on Ada except VID (type 2); the table ends at the next C-token table; master rows hold signed MHz offset minimum/maximum at bytes 3/5; GPC -1000..1000 and DRAM -1000..3000 on every image except the A40 (0..0 on every domain); every duplicate chain written",
+            "runtime_get": false,
+            "set_tested": false,
+            "source": "https://github.com/OE4T/linux-nvgpu/blob/patches-rel-36/drivers/gpu/nvgpu/include/nvgpu/bios.h"
+          }
+        ],
+        "experimental": true,
+        "key": "vid_min_table_mhz",
+        "label": "VID offset floor (table)",
+        "reason": "experimental: firmware offset floor; edit not hardware-tested",
+        "stored_units": "table MHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<h",
+          "storage_signed": true,
+          "stored_symbol": "table MHz",
+          "symbol": "table MHz"
+        },
+        "units": "table MHz",
+        "value_semantics": "stored-offset-range-minimum",
+        "version_metadata": {
+          "format_variant": "Ampere clocks table C+8 v0x40 (40, header size 0b or 0c, 0d 0a 03, one or two rails, 03 e8 03), ten 13-byte rows with one 3-byte rail sub-entry per rail, in the nvgpu GV HAL order GPC, XBAR, MCLK (DRAM), SYS, HUB, NVD (VID), PWR, DISP, PCIEGEN, HOST",
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": 105.0,
+        "editable": false,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the header is read as 7b1w1b (10 bytes) or 7b1w2b (11 bytes) and each 40-byte entry as 2b3w8d; an entry with class 0 is skipped and class 1 is read; the three words after byte 1 are shifted left by 3 (1/32 C to 1/256 C) and handed to the policy together; header bytes 4, 5, 6 and 9 are kept as four policy indices (0xff: none), the fields the version 0x20 parser (GB20x) fills from its header bytes 7..10, and at load the driver drops the index from byte 9 (sets it to 0xff) when it does not name a policy it read; on GB20x that index (header byte 10 there) names entry 0, the maximum operating temperature, on every image but the XOC-style ones (0xff, every entry disabled)",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), thermal policy table parser (version 0x10)"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "header byte 9 names entry 0 on every desktop and workstation image and on the Turing and Ampere laptop images, entry 1 on the Ada laptop images, and none (0xff) on the Turing XOC images, whose entries are all disabled; the named entry is class 1 with three equal temperatures, one value per product: 86 to 98 C on desktop and workstation products, 102 C on the Turing laptop and Max-Q products, 105 C on the Ampere and Ada laptops; the Ampere and Ada laptop images also store an enabled 89 C entry that no header byte names",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          },
+          {
+            "kind": "read-only-nvml-correlation",
+            "relation": "'GPU Current Temp' + 'GPU Current T.Limit Temp' = the temperature of the entry header byte 9 names (entry 0, 96 C); 'GPU Target Temperature Specification' = the first temperature of the entry header byte 4 names (88 C)",
+            "scope": "one RTX 2000 Ada (95.07.47.00.19): a desktop entry with byte 1 (thermal channel) = 0; not checked on the laptop and Max-Q entries, which have byte 1 = 1",
+            "set_tested": false,
+            "source": "read-only nvidia-smi capture"
+          }
+        ],
+        "experimental": true,
+        "key": "max_operating_temp_c",
+        "label": "Max operating temperature",
+        "lower_limits": [
+          "entry 1 (89 C)"
+        ],
+        "reason": "read-only: this image also stores a lower temperature limit of the same kind that the table header does not name (as on Ampere and Ada laptop images); which one limits the GPU first is not known, so the editor keeps both as stored",
+        "stock_c": 105,
+        "stored_units": "1/32 C",
+        "thermal_policy": 0,
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": null,
+          "storage_signed": null,
+          "stored_symbol": "1/32 C",
+          "symbol": "C"
+        },
+        "units": "C",
+        "value_semantics": "stored-max-operating-temperature",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 500,
+          "minimum": -500
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 0,
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the same array-A reader as on GB20x, in both firmware images: the header must have version 0x10 and is read as 6b when it is 6 bytes long (Turing) and as 7b when it is longer (header byte 6 is kept as a clock flag); the descriptor table is the same in both images, and its entry for the GV clocks HAL of the Turing (v0x35), Ampere and Ada (v0x40) clocks tables maps A0 to the GPC domain (copied to its companion domain) and A1 to the memory clock domain; flag 0 skips an entry, 1 stores the value as the domain's static frequency delta (applied as on GB20x), any other value fails the read; the Ampere and Ada clocks table loader gives every row of one usage the same domain class (usage 1: one the reader accepts; usage 0, fixed: refused); the GPC and memory clock rows have usage 1 on every Turing, Ampere and Ada image; on Turing, whose clocks table loader was not traced, two vendor images ship with A1 enabled",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), factory clock record reader"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "the header is 10 06 05 02 05 02 on every Turing image and 10 07 05 02 05 02 00 on every Ampere and Ada image except three Ada factory-OC images (two RTX 4090, one RTX 4080) with byte 6 = 1; factory-OC images set A0 (flag 1) and B1: 75/1650, 135/1800 and 120/1680 MHz on RTX 2080 Ti images, 120/1890 MHz on an RTX 2080, 30/1845 on an RTX 2080 SUPER, 15 to 60 MHz on RTX 2060/2070 and GTX 16 images; 15 to 45 MHz on RTX 30 images (RTX 3060 to 3090 Ti); 60/2625 MHz on RTX 4090 images, 15/2595 and 75/2640 MHz on RTX 4080 images, 15/2565 MHz on an RTX 4070 SUPER; two RTX 3060 Ti images, an RTX 3070, an RTX 4060, two RTX 4060 Ti and a GTX 1660 Ti laptop image set A0's flag to 1 with 0 MHz, and an RTX 3060, an RTX 4080 SUPER and an RTX 4070 image set B1 alone; the TITAN RTX image stores 60 MHz with flag 0, which the driver skips; Founders Edition, reference, workstation and laptop images store zeros with flag 0; A1 is enabled on two Turing images only (70 and 400 MHz) and B0 nowhere",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "factory_entry": 0,
+        "key": "factory_gpc_offset_mhz",
+        "label": "Factory GPC offset (vendor overclock)",
+        "rated_boost_mhz": null,
+        "reason": "experimental: the factory GPC offset (entry A0 of the factory clock record: a flag and a signed kHz value), which the driver applies at boot as the GPC clock frequency delta while the flag is 1; -500..+500 MHz in whole MHz (the driver truncates to whole MHz); a negative value lowers the clock; a value other than 0 sets the entry's flag, so on a ROM whose entry is off (flag 0, whatever value it stores) it turns one on (not tested on such ROMs); 0 turns it off with flag 0 and 0 kHz, as ROMs without a factory offset store it, so such a ROM goes back to its own bytes even after an edited copy was saved; 0 on an entry that already reads 0 keeps its bytes; a separate mechanism from the GPC curve offset, so both apply; the rated boost (entry B1) stays as stored; values far from the stock one can make the card unstable; not hardware-tested",
+        "stored_flag": 0,
+        "stored_units": "kHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<xi",
+          "storage_signed": true,
+          "stored_symbol": "kHz",
+          "symbol": "MHz"
+        },
+        "units": "MHz",
+        "value_semantics": "stored-factory-gpc-offset",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 5000,
+          "minimum": -5000
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 0,
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the same array-A reader as on GB20x, in both firmware images: the header must have version 0x10 and is read as 6b when it is 6 bytes long (Turing) and as 7b when it is longer (header byte 6 is kept as a clock flag); the descriptor table is the same in both images, and its entry for the GV clocks HAL of the Turing (v0x35), Ampere and Ada (v0x40) clocks tables maps A0 to the GPC domain (copied to its companion domain) and A1 to the memory clock domain; flag 0 skips an entry, 1 stores the value as the domain's static frequency delta (applied as on GB20x), any other value fails the read; the Ampere and Ada clocks table loader gives every row of one usage the same domain class (usage 1: one the reader accepts; usage 0, fixed: refused); the GPC and memory clock rows have usage 1 on every Turing, Ampere and Ada image; on Turing, whose clocks table loader was not traced, two vendor images ship with A1 enabled",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), factory clock record reader"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "the header is 10 06 05 02 05 02 on every Turing image and 10 07 05 02 05 02 00 on every Ampere and Ada image except three Ada factory-OC images (two RTX 4090, one RTX 4080) with byte 6 = 1; factory-OC images set A0 (flag 1) and B1: 75/1650, 135/1800 and 120/1680 MHz on RTX 2080 Ti images, 120/1890 MHz on an RTX 2080, 30/1845 on an RTX 2080 SUPER, 15 to 60 MHz on RTX 2060/2070 and GTX 16 images; 15 to 45 MHz on RTX 30 images (RTX 3060 to 3090 Ti); 60/2625 MHz on RTX 4090 images, 15/2595 and 75/2640 MHz on RTX 4080 images, 15/2565 MHz on an RTX 4070 SUPER; two RTX 3060 Ti images, an RTX 3070, an RTX 4060, two RTX 4060 Ti and a GTX 1660 Ti laptop image set A0's flag to 1 with 0 MHz, and an RTX 3060, an RTX 4080 SUPER and an RTX 4070 image set B1 alone; the TITAN RTX image stores 60 MHz with flag 0, which the driver skips; Founders Edition, reference, workstation and laptop images store zeros with flag 0; A1 is enabled on two Turing images only (70 and 400 MHz) and B0 nowhere",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "an RTX 2080 factory-OC image stores A0/B1 = 120/1890 MHz and A1 = 70 MHz with flag 1: its vendor rates that board at 1890 MHz boost and 14140 MT/s memory, 7000 + 70 = 7070 MHz of memory clock, so A1 is in the memory clock scale nvidia-smi and MSI Afterburner show (half the transfer rate)",
+            "source": "Turing VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "factory_entry": 1,
+        "key": "factory_memory_offset_mhz",
+        "label": "Factory memory offset (vendor overclock)",
+        "reason": "experimental: the factory memory offset (entry A1 of the factory clock record: a flag and a signed kHz value), which the driver applies at boot as the memory clock frequency delta while the flag is 1, in the memory clock that nvidia-smi and MSI Afterburner show (7000 MHz on 14 Gbps GDDR6); tools that show the transfer rate, such as nvidia-settings, and the memory offset floor and ceiling of this editor show twice this number; -5000..+5000 MHz in whole MHz; a negative value lowers the clock; a value other than 0 sets the entry's flag, so on a ROM whose entry is off (flag 0, whatever value it stores) it turns one on (not tested on such ROMs); 0 turns it off with flag 0 and 0 kHz, as ROMs without a factory offset store it, so such a ROM goes back to its own bytes even after an edited copy was saved; 0 on an entry that already reads 0 keeps its bytes; values far from the stock one can make the memory unstable or keep the card from starting; not hardware-tested",
+        "stored_flag": 0,
+        "stored_units": "kHz",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<xi",
+          "storage_signed": true,
+          "stored_symbol": "kHz",
+          "symbol": "MHz"
+        },
+        "units": "MHz",
+        "value_semantics": "stored-factory-memory-offset",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 1,
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_util_policy",
+        "label": "Utilization clock policy",
+        "perf_cf_controllers": [
+          0,
+          1,
+          2
+        ],
+        "perf_cf_policy": 0,
+        "reason": "experimental: bit 7 (active) of PERF_CF policy entry 0, the utilization policy that raises and lowers the GPC, DRAM and video clocks with load through controllers 0..2; off is expected to stop that scaling (inferred); the other bits stay as stored, and the targets, jump thresholds and hysteresis counts of controllers 0..2 are editable only while it is on; that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "flag"
+        },
+        "units": "flag",
+        "value_semantics": "stored-perf-cf-policy-switch",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 99,
+          "encoding_minimum": 10,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 74,
+          "minimum": 10
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "GPC",
+        "current": 40,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_gpc_target_pct",
+        "label": "GPC utilization target",
+        "ordering_group": "perf-cf-gpc",
+        "perf_cf_controller": 0,
+        "reason": "experimental: the GPC utilization target of PERF_CF controller 0 (FXP20.12 at entry byte 3, shown in whole percent; the stored fraction is kept while the percent is unchanged): the load the driver keeps the GPC clock near; lower raises the clock sooner at partial load (more power and heat), higher keeps it lower (inferred); 10 % up to 1 % below the jump threshold; editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stored_raw": 1638,
+        "stored_units": "FXP20.12 fraction",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "FXP20.12 fraction",
+          "symbol": "%"
+        },
+        "units": "%",
+        "value_semantics": "stored-perf-cf-target",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 100,
+          "encoding_minimum": 11,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 100,
+          "minimum": 41
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "GPC",
+        "current": 75,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_gpc_jump_pct",
+        "label": "GPC jump threshold",
+        "ordering_group": "perf-cf-gpc",
+        "perf_cf_controller": 0,
+        "reason": "experimental: the GPC jump threshold of PERF_CF controller 0 (FXP20.12 at entry byte 7, whole percent): above this load the driver is expected to raise the clock at once instead of in steps (inferred); 1 % above the target up to 100 %, the most the driver accepts; editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stored_raw": 3072,
+        "stored_units": "FXP20.12 fraction",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "FXP20.12 fraction",
+          "symbol": "%"
+        },
+        "units": "%",
+        "value_semantics": "stored-perf-cf-jump",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 36,
+          "minimum": 5
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "GPC",
+        "current": 9,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_gpc_hysteresis_down",
+        "label": "GPC clock-down hysteresis",
+        "perf_cf_controller": 0,
+        "reason": "experimental: the decrease hysteresis count of the GPC PERF_CF controller 0 (entry byte 21, samples, inferred): how long the load stays below the target before the clock steps down; higher keeps clocks up longer, lower drops them sooner and may stutter; 5..36 (0.5x to 4x the stock 9); editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stock": 9,
+        "stored_units": "samples",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": "samples",
+          "symbol": "samples"
+        },
+        "units": "samples",
+        "value_semantics": "stored-perf-cf-hysteresis",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 4,
+          "minimum": 1
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "GPC",
+        "current": 1,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_gpc_hysteresis_up",
+        "label": "GPC clock-up hysteresis",
+        "perf_cf_controller": 0,
+        "reason": "experimental: the increase hysteresis count of the GPC PERF_CF controller 0 (entry byte 20, samples, inferred): how long the load stays above the target before the clock steps up; 1..4 (stock 1); editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stock": 1,
+        "stored_units": "samples",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": "samples",
+          "symbol": "samples"
+        },
+        "units": "samples",
+        "value_semantics": "stored-perf-cf-hysteresis",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 99,
+          "encoding_minimum": 10,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 79,
+          "minimum": 10
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "DRAM",
+        "current": 65,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_dram_target_pct",
+        "label": "DRAM utilization target",
+        "ordering_group": "perf-cf-dram",
+        "perf_cf_controller": 1,
+        "reason": "experimental: the DRAM utilization target of PERF_CF controller 1 (FXP20.12 at entry byte 3, shown in whole percent; the stored fraction is kept while the percent is unchanged): the load the driver keeps the DRAM clock near; lower raises the clock sooner at partial load (more power and heat), higher keeps it lower (inferred); 10 % up to 1 % below the jump threshold; editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stored_raw": 2662,
+        "stored_units": "FXP20.12 fraction",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "FXP20.12 fraction",
+          "symbol": "%"
+        },
+        "units": "%",
+        "value_semantics": "stored-perf-cf-target",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 100,
+          "encoding_minimum": 11,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 100,
+          "minimum": 66
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "DRAM",
+        "current": 80,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_dram_jump_pct",
+        "label": "DRAM jump threshold",
+        "ordering_group": "perf-cf-dram",
+        "perf_cf_controller": 1,
+        "reason": "experimental: the DRAM jump threshold of PERF_CF controller 1 (FXP20.12 at entry byte 7, whole percent): above this load the driver is expected to raise the clock at once instead of in steps (inferred); 1 % above the target up to 100 %, the most the driver accepts; editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stored_raw": 3276,
+        "stored_units": "FXP20.12 fraction",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "FXP20.12 fraction",
+          "symbol": "%"
+        },
+        "units": "%",
+        "value_semantics": "stored-perf-cf-jump",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 16,
+          "minimum": 2
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "DRAM",
+        "current": 4,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_dram_hysteresis_down",
+        "label": "DRAM clock-down hysteresis",
+        "perf_cf_controller": 1,
+        "reason": "experimental: the decrease hysteresis count of the DRAM PERF_CF controller 1 (entry byte 21, samples, inferred): how long the load stays below the target before the clock steps down; higher keeps clocks up longer, lower drops them sooner and may stutter; 2..16 (0.5x to 4x the stock 4); editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stock": 4,
+        "stored_units": "samples",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": "samples",
+          "symbol": "samples"
+        },
+        "units": "samples",
+        "value_semantics": "stored-perf-cf-hysteresis",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 4,
+          "minimum": 1
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "DRAM",
+        "current": 1,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_dram_hysteresis_up",
+        "label": "DRAM clock-up hysteresis",
+        "perf_cf_controller": 1,
+        "reason": "experimental: the increase hysteresis count of the DRAM PERF_CF controller 1 (entry byte 20, samples, inferred): how long the load stays above the target before the clock steps up; 1..4 (stock 1); editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stock": 1,
+        "stored_units": "samples",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": "samples",
+          "symbol": "samples"
+        },
+        "units": "samples",
+        "value_semantics": "stored-perf-cf-hysteresis",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 99,
+          "encoding_minimum": 10,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 89,
+          "minimum": 10
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "VID",
+        "current": 75,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_vid_target_pct",
+        "label": "VID utilization target",
+        "ordering_group": "perf-cf-vid",
+        "perf_cf_controller": 2,
+        "reason": "experimental: the VID utilization target of PERF_CF controller 2 (FXP20.12 at entry byte 3, shown in whole percent; the stored fraction is kept while the percent is unchanged): the load the driver keeps the VID clock near; lower raises the clock sooner at partial load (more power and heat), higher keeps it lower (inferred); 10 % up to 1 % below the jump threshold; editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stored_raw": 3072,
+        "stored_units": "FXP20.12 fraction",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "FXP20.12 fraction",
+          "symbol": "%"
+        },
+        "units": "%",
+        "value_semantics": "stored-perf-cf-target",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "encoding_maximum": 100,
+          "encoding_minimum": 11,
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 100,
+          "minimum": 76
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "VID",
+        "current": 90,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_vid_jump_pct",
+        "label": "VID jump threshold",
+        "ordering_group": "perf-cf-vid",
+        "perf_cf_controller": 2,
+        "reason": "experimental: the VID jump threshold of PERF_CF controller 2 (FXP20.12 at entry byte 7, whole percent): above this load the driver is expected to raise the clock at once instead of in steps (inferred); 1 % above the target up to 100 %, the most the driver accepts; editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stored_raw": 3686,
+        "stored_units": "FXP20.12 fraction",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": "FXP20.12 fraction",
+          "symbol": "%"
+        },
+        "units": "%",
+        "value_semantics": "stored-perf-cf-jump",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 36,
+          "minimum": 5
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "VID",
+        "current": 9,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_vid_hysteresis_down",
+        "label": "VID clock-down hysteresis",
+        "perf_cf_controller": 2,
+        "reason": "experimental: the decrease hysteresis count of the VID PERF_CF controller 2 (entry byte 21, samples, inferred): how long the load stays below the target before the clock steps down; higher keeps clocks up longer, lower drops them sooner and may stutter; 5..36 (0.5x to 4x the stock 9); editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stock": 9,
+        "stored_units": "samples",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": "samples",
+          "symbol": "samples"
+        },
+        "units": "samples",
+        "value_semantics": "stored-perf-cf-hysteresis",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 4,
+          "minimum": 1
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "clock_domain": "VID",
+        "current": 1,
+        "depends_on": {
+          "field": "perf_cf_util_policy",
+          "value": 1
+        },
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the controller parser of both firmware images reads the 6-byte header as 4b1w and each entry by its size: 23 bytes as 3b5d, 24..27 as 3b5d1b, 28..31 as 3b5d1b1d, 32..40 as 3b5d1b2d, 41..53 as 3b5d1b2d1b2d and longer ones as on GB20x; the 3b5d part (type nibble, target and jump threshold at bytes 3 and 7, gains, clock domain at byte 19 and the increase and decrease hysteresis counts at bytes 20 and 21) is the same in every size, and the type 1 (utilization) decoder that unpacks it is the GB20x one in both images (the type 5 subclass was traced in gsp_ga10x.bin only, so Turing accepts type 1 alone); policy entries are read as on GB20x; whether a per-chip flag makes GSP-RM skip the VBIOS controllers on these chips was not traced, so that these tables take effect is not proven",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), PERF_CF controller and policy parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "every image stores 8 or 12 controllers (entries of 24 or 28 bytes on Turing, 24, 32 or 49 on Ampere, 49 on Ada) and 8 or 9 policies; policy 0 is active (0x81) and names controllers 0, 1 and 2, utilization controllers (type 1) whose byte 19 is 0, 2 and 5, the GPC, DRAM and VID rows of the clocks table, with increase hysteresis 1 and decrease hysteresis 9, 4 and 9 on every image; targets and jump thresholds vary per product: GPC 40 % with 55 to 75 %, DRAM 40 to 65 % with 55 to 80 %, VID 60 to 75 % with 80 to 90 % (40/75, 65/80 and 65/85 % on every Ada image)",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "perf_cf_vid_hysteresis_up",
+        "label": "VID clock-up hysteresis",
+        "perf_cf_controller": 2,
+        "reason": "experimental: the increase hysteresis count of the VID PERF_CF controller 2 (entry byte 20, samples, inferred): how long the load stays above the target before the clock steps up; 1..4 (stock 1); editable only while the utilization policy is on (stored or in the same edit); that the driver uses these tables on Turing, Ampere and Ada is not proven; not hardware-tested",
+        "section": "advanced",
+        "stock": 1,
+        "stored_units": "samples",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<B",
+          "storage_signed": false,
+          "stored_symbol": "samples",
+          "symbol": "samples"
+        },
+        "units": "samples",
+        "value_semantics": "stored-perf-cf-hysteresis",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 1,
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the GB20x LPWR initialization: each table must have version 0x10 and at most 5 entries, and an entry whose enable bit (bit 0 of its first word) is clear is skipped; GR power gating entries are read as 1d1b (5 bytes, as on GB20x), MSCG entries of 15 bytes as 1d2w1b3w (16 bytes: 1d2w1b3w1b), a 9-byte GR rail gating header as 5b2w (12 bytes: 5b2w3b), whose word at +5 goes times 10 into the GR rail gating idle threshold in both sizes, and DIFR entries of 17 bytes as 1d1b6w (18 bytes: 1d1b6w1b) after the GB20x header (words at +5 times 1000, +7 and +9); the gsp_tu10x.bin parsers of GR power gating and MSCG read the same formats and the same enable bit",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), LPWR VBIOS initialization and table parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "GR power gating (10-byte header, five 5-byte entries) and MSCG (7-byte header, five 15-byte entries) on every image, GR rail gating (9-byte header, five 1-byte entries) on every Ampere and Ada image, DIFR (11-byte header, five 17-byte entries) on every Ada image; GR power gating is enabled on entries 0, 1 and 4 (also 3 on the laptop chips, TU116 and TU117) on Turing, on 0 and 1 (also 3 on most images) on Ampere and on 0..2 on Ada (two RTX 4090 images: 0, 1 and 3, entry 2 stored like an enabled entry switched off); MSCG on entries 0 and 1 (entry 0 alone on one Ampere image); GR rail gating on entries 0 and 1 of the GA102 RTX 3080/3090 and RTX A4500..A6000 images and entry 0 of an A40 image, on no Ada image; DIFR entry 0 on 14 of the 25 Ada images; disabled Ampere and Ada GR power gating entries store 0xffffff80 or 0xffffffc0 and MSCG entries 0xfffffc00, while disabled Turing GR power gating and MSCG entries, GR rail gating entries (0xfe) and Ada DIFR entries (0xfffffffe, 0xffffffee) store what an enabled entry stores with bit 0 cleared; the DIFR words store 1000, 15 and 15 and the GR rail gating word 500 on every image",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "lpwr_gr_power_gating",
+        "label": "GR power gating",
+        "lpwr_entries": [
+          0,
+          1,
+          3
+        ],
+        "lpwr_table": "gr_pg",
+        "reason": "experimental: bit 0 (enable) of the GR power gating entries this image enables in stock (entries 0, 1, 3 of its LPWR table); 0 (Off) clears it, so the driver skips them, and 1 (Stock) sets it again; every other bit and entry stays as stored; Off keeps the graphics engine powered at idle, at a little more idle power; acts only at idle or light load (inferred); low idle times save more power but can cause stutter or, rarely, a black screen at idle; not hardware-tested",
+        "section": "advanced",
+        "switch": "stock-off",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "flag"
+        },
+        "units": "flag",
+        "value_semantics": "stored-lpwr-switch",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": 1,
+          "minimum": 0
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "verified"
+          }
+        },
+        "capability_status": "supported",
+        "current": 1,
+        "editable": true,
+        "evidence": [
+          {
+            "kind": "static-firmware-analysis",
+            "observation": "the GB20x LPWR initialization: each table must have version 0x10 and at most 5 entries, and an entry whose enable bit (bit 0 of its first word) is clear is skipped; GR power gating entries are read as 1d1b (5 bytes, as on GB20x), MSCG entries of 15 bytes as 1d2w1b3w (16 bytes: 1d2w1b3w1b), a 9-byte GR rail gating header as 5b2w (12 bytes: 5b2w3b), whose word at +5 goes times 10 into the GR rail gating idle threshold in both sizes, and DIFR entries of 17 bytes as 1d1b6w (18 bytes: 1d1b6w1b) after the GB20x header (words at +5 times 1000, +7 and +9); the gsp_tu10x.bin parsers of GR power gating and MSCG read the same formats and the same enable bit",
+            "set_tested": false,
+            "source": "GSP-RM firmware 615.78.08 (gsp_tu10x.bin for Turing, gsp_ga10x.bin for Ampere and Ada), LPWR VBIOS initialization and table parsers"
+          },
+          {
+            "kind": "structural-table",
+            "observation": "GR power gating (10-byte header, five 5-byte entries) and MSCG (7-byte header, five 15-byte entries) on every image, GR rail gating (9-byte header, five 1-byte entries) on every Ampere and Ada image, DIFR (11-byte header, five 17-byte entries) on every Ada image; GR power gating is enabled on entries 0, 1 and 4 (also 3 on the laptop chips, TU116 and TU117) on Turing, on 0 and 1 (also 3 on most images) on Ampere and on 0..2 on Ada (two RTX 4090 images: 0, 1 and 3, entry 2 stored like an enabled entry switched off); MSCG on entries 0 and 1 (entry 0 alone on one Ampere image); GR rail gating on entries 0 and 1 of the GA102 RTX 3080/3090 and RTX A4500..A6000 images and entry 0 of an A40 image, on no Ada image; DIFR entry 0 on 14 of the 25 Ada images; disabled Ampere and Ada GR power gating entries store 0xffffff80 or 0xffffffc0 and MSCG entries 0xfffffc00, while disabled Turing GR power gating and MSCG entries, GR rail gating entries (0xfe) and Ada DIFR entries (0xfffffffe, 0xffffffee) store what an enabled entry stores with bit 0 cleared; the DIFR words store 1000, 15 and 15 and the GR rail gating word 500 on every image",
+            "source": "Turing, Ampere and Ada VBIOS corpus"
+          }
+        ],
+        "experimental": true,
+        "key": "lpwr_mscg",
+        "label": "Memory system clock gating (MSCG)",
+        "lpwr_entries": [
+          0,
+          1
+        ],
+        "lpwr_table": "ms",
+        "reason": "experimental: bit 0 (enable) of the Memory system clock gating (MSCG) entries this image enables in stock (entries 0, 1 of its LPWR table); 0 (Off) clears it, so the driver skips them, and 1 (Stock) sets it again; every other bit and entry stays as stored; Off keeps the memory system clocks running at idle, at a little more idle power; acts only at idle or light load (inferred); low idle times save more power but can cause stutter or, rarely, a black screen at idle; not hardware-tested",
+        "section": "advanced",
+        "switch": "stock-off",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": "<I",
+          "storage_signed": false,
+          "stored_symbol": null,
+          "symbol": "flag"
+        },
+        "units": "flag",
+        "value_semantics": "stored-lpwr-switch",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unknown"
+          }
+        },
+        "capability_status": "read-only",
+        "current": null,
+        "editable": false,
+        "evidence": [],
+        "key": "current_limit_a",
+        "label": "Input current limit",
+        "reason": "per-policy units/semantics require independent evidence",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": null,
+          "storage_signed": null,
+          "stored_symbol": null,
+          "symbol": "A"
+        },
+        "units": "A",
+        "value_semantics": "stored-field-value",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unknown"
+          }
+        },
+        "capability_status": "read-only",
+        "current": null,
+        "editable": false,
+        "evidence": [],
+        "key": "ocp_limit_a",
+        "label": "Overcurrent protection limit",
+        "reason": "generic OCP mapping unknown; reviewed per-rail output ceilings use *_output_ocp_max_ma",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": null,
+          "storage_signed": null,
+          "stored_symbol": null,
+          "symbol": "A"
+        },
+        "units": "A",
+        "value_semantics": "stored-field-value",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      },
+      {
+        "bounds": {
+          "hardware_safe_maximum": null,
+          "kind": "encoding-and-preserved-defaults",
+          "maximum": null,
+          "minimum": null
+        },
+        "capability": {
+          "runtime": {
+            "applied": "unknown",
+            "evaluated_value": null,
+            "persistence": "unknown",
+            "writable": "unknown"
+          },
+          "vbios": {
+            "effect": "offline encoded bytes only; firmware acceptance unknown",
+            "persistence": "unknown",
+            "writable": "unsupported"
+          }
+        },
+        "capability_status": "read-only",
+        "current": null,
+        "editable": false,
+        "evidence": [],
+        "key": "msvdd_rel_max_mv",
+        "label": "MSVDD REL ceiling",
+        "reason": "this recognized single-rail layout exposes only logic/NVVDD",
+        "type": "number",
+        "unit_metadata": {
+          "storage_encoding": null,
+          "storage_signed": null,
+          "stored_symbol": null,
+          "symbol": "mV"
+        },
+        "units": "mV",
+        "value_semantics": "stored-field-value",
+        "version_metadata": {
+          "format_variant": null,
+          "schema_version": 1
+        }
+      }
+    ],
+    "file": "evidence\\runs\\OFFLINE-ONLY-multi-channel-v2-20261110.bin",
+    "format": "pci-bit-npds-v3x",
+    "integrity": {
+      "cryptographic_signature": "not verified",
+      "duplicate_image_chains_identical": true,
+      "image_checksums": [
+        {
+          "checksum": 0,
+          "end": 65024,
+          "start": 0
+        },
+        {
+          "checksum": 0,
+          "end": 158208,
+          "start": 65024
+        },
+        {
+          "checksum": 0,
+          "end": 180224,
+          "start": 158208
+        },
+        {
+          "checksum": 0,
+          "end": 609792,
+          "start": 180224
+        }
+      ],
+      "scope": "recognized format integrity; cryptographic signatures unverified",
+      "sha384_object_directory": "not recognized in this table layout",
+      "valid": true
+    },
+    "npds_images": [
+      {
+        "device": 8704,
+        "end": 180224,
+        "last": false,
+        "npds": 158528,
+        "size": 22016,
+        "start": 158208,
+        "type": 224,
+        "vendor": 4318
+      },
+      {
+        "device": 8704,
+        "end": 609792,
+        "last": true,
+        "npds": 180256,
+        "size": 429568,
+        "start": 180224,
+        "type": 224,
+        "vendor": 4318
+      }
+    ],
+    "pci_device": "10de:2520",
+    "pci_images": [
+      {
+        "device": 9504,
+        "end": 65024,
+        "last": false,
+        "pcir": 368,
+        "size": 65024,
+        "start": 0,
+        "type": 0,
+        "vendor": 4318
+      },
+      {
+        "device": 9504,
+        "end": 158208,
+        "last": true,
+        "pcir": 65052,
+        "size": 93184,
+        "start": 65024,
+        "type": 3,
+        "vendor": 4318
+      }
+    ],
+    "schema_version": 1,
+    "sha256": "05268929a79258cf7adba796428e27e9e107d8a0c9d9129fb50229176784caa9",
+    "size": 609792,
+    "source_sha256": "05268929a79258cf7adba796428e27e9e107d8a0c9d9129fb50229176784caa9",
+    "versions": [
+      "94.06.3B.00.0B"
+    ]
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,2 @@
+﻿timestamp,pstate,memory_mhz,graphics_mhz,temperature_c,gpu_load_pct,memory_load_pct,sw_power_cap,sw_thermal_slowdown
+2026/11/10 10:39:44.280, P5, 810, 1702, 59, 15, 1, Active, Active

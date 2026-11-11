@@ -1,0 +1,14 @@
+{"type": "send", "payload": {"getter": "nvmlDeviceGetCurrentClocksThrottleReasons", "event": "enter"}}
+{"type": "send", "payload": {"event": "clock_status_target", "module": "nvml.dll", "rva": "0xdb0f0"}}
+{"type": "send", "payload": {"event": "clock_state_source", "module": "nvml.dll", "rva": "0xdadb0"}}
+{"type": "send", "payload": {"event": "possible_clock_conversion", "module": "nvml.dll", "rva": "0xeb210"}}
+{"type": "send", "payload": {"event": "status_branch", "rva": "0xe08b0"}}
+nvmlDeviceGetCurrentClocksThrottleReasons 0 0x24
+{"type": "send", "payload": {"event": "status_branch_return", "rva": "0xe08b0", "status": 0}}
+{"type": "send", "payload": {"event": "status_branch", "rva": "0xeb210"}}
+{"type": "send", "payload": {"event": "shared_status_read", "offset": 112, "size": 1880, "status": 0, "words": [2123638880, 417747997, 36, 0, 2030758112, 417747997, 63, 0], "violation": [{"index": 0, "perfPointMask": 47, "timesNs": ["1256856152160", "1256856152160", "1256856152160", "1256856152160", "0", "1256856152160"]}, {"index": 1, "perfPointMask": 47, "timesNs": ["1256856152160", "1256856152160", "1256856152160", "1256856152160", "0", "1256856152160"]}, {"index": 2, "perfPointMask": 1, "timesNs": ["1256872302144", "0", "0", "0", "0", "0"]}, {"index": 3, "perfPointMask": 1, "timesNs": ["1256872302144", "0", "0", "0", "0", "0"]}, {"index": 4, "perfPointMask": 47, "timesNs": ["1254868550176", "1207483220960", "1207483220960", "1207483220960", "0", "1207483220960"]}, {"index": 5, "perfPointMask": 0, "timesNs": ["0", "0", "0", "0", "0", "0"]}, {"index": 6, "perfPointMask": 0, "timesNs": ["0", "0", "0", "0", "0", "0"]}, {"index": 7, "perfPointMask": 0, "timesNs": ["0", "0", "0", "0", "0", "0"]}, {"index": 8, "perfPointMask": 0, "timesNs": ["0", "0", "0", "0", "0", "0"]}]}}
+{"type": "send", "payload": {"event": "status_branch_return", "rva": "0xeb210", "status": 0}}
+{"type": "send", "payload": {"getter": "nvmlDeviceGetCurrentClocksThrottleReasons", "event": "leave", "status": 0}}
+nvmlDeviceGetSupportedClocksThrottleReasons 0 0x1ff
+{"type": "send", "payload": {"getter": "nvmlDeviceGetSupportedClocksThrottleReasons", "event": "enter"}}
+{"type": "send", "payload": {"getter": "nvmlDeviceGetSupportedClocksThrottleReasons", "event": "leave", "status": 0}}

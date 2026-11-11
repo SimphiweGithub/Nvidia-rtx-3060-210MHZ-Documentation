@@ -1,0 +1,11 @@
+{
+  "source_sha256": "ddbfc0d391f33d81521677de53a509698dcebcd5c3777487d065222237645738",
+  "candidate_sha256": "5ca227391d26b8597b5941809ded9235a99553488c64a68abb50d92658aa6bec",
+  "base": "Profile2",
+  "memory_offset_mhz": 300,
+  "target_mv": 825,
+  "target_mhz": 1925,
+  "modified_points": 68,
+  "applied": false,
+  "profile3_untouched": true
+}

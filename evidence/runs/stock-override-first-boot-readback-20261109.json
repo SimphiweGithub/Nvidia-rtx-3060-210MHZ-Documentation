@@ -1,0 +1,14 @@
+{
+  "time": "2026-11-09T09:21:19.343711+02:00",
+  "readback_bytes": 516608,
+  "readback_sha256": "4929334ff54a1a660826f68d0c6c5349d1e6109410976bb7e505c73c578c5a7e",
+  "two_reads_equal": true,
+  "versus_payload": {
+    "equal": true,
+    "first_difference": null
+  },
+  "versus_original": {
+    "equal": false,
+    "first_difference": 65024
+  }
+}

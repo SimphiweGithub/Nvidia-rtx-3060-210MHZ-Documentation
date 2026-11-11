@@ -24,7 +24,7 @@ If `CreateFileA` stops first:
 
 1. In the CPU view, inspect `RCX`. On x64 Windows this is `CreateFileA`'s filename pointer. It should resolve to `\\.\NvAdminDevice` if the static route is active.
 2. Capture the **CPU** and **Call Stack** views. The call stack must still contain `nvmlDeviceGetPowerUsage` for this to count as power-query evidence.
-3. Press `F8` once to return from `CreateFileA`; record or capture the `RAX` value. This is the returned handle for the subsequent comparison.
+3. If paused at the entry of `CreateFileA`, run until its return (for example, `Ctrl+F9` in x64dbg), then execute the return instruction if needed and record `RAX`. A single `F8` at API entry only executes one instruction and is not sufficient to get the return value.
 4. Press `F9` to the `DeviceIoControl` breakpoint.
 
 If `DeviceIoControl` stops before `CreateFileA`, record that ordering and capture its CPU and Call Stack views. It can mean that the handle was cached or that a different path was selected; it does not prove the static route executed in that run.
@@ -50,6 +50,6 @@ For the captured IOCTL, the prior run observed `RDX = 0x08DE0008`, `R8` pointing
 
 ## Optional read-only result capture
 
-If an output pointer and a nonzero output length are present, note the pointer and press `F8` once to step over `DeviceIoControl`. Then inspect that same output pointer in Dump and capture it, together with the `RAX` API return value and the value at the bytes-returned pointer. This captures a result buffer; it does not decode vendor fields or change program state.
+At API entry, record and dump the exact `R8` input address and the output address separately. If an output pointer and a nonzero output length are present, record the output and bytes-returned pointers. Run until `DeviceIoControl` returns (`Ctrl+F9`, then execute the return instruction if needed), rather than assuming one `F8` at API entry completes the call. Inspect the same output address and bytes-returned pointer and capture those views with the `RAX` API return value. This captures a result buffer; it does not decode vendor fields or change program state.
 
 After screenshots are taken, press `F9` and let the dedicated probe exit normally. Preserve the CPU, Call Stack, input Dump, and (if present) output Dump screenshots as separate evidence.

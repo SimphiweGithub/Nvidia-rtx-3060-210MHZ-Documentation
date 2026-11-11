@@ -1,0 +1,80 @@
+{
+  "status": "ARITHMETIC HYPOTHESIS ONLY; no firmware image was built or staged",
+  "source_sha256": "34c6676becef4ced24308274e4537f59b5cf0e23b64659bce6f07325debea3ae",
+  "hypothetical_edits": [
+    {
+      "channel": 0,
+      "relationship_range": [
+        2,
+        2
+      ],
+      "reason": "read channel 5 only"
+    },
+    {
+      "channel": 5,
+      "class": 2,
+      "relationship_range": [
+        1,
+        1
+      ],
+      "reason": "derive from channel 10"
+    },
+    {
+      "channel": 3,
+      "class": 2,
+      "relationship_range": [
+        15,
+        15
+      ],
+      "reason": "derive from scaled channel 10"
+    },
+    {
+      "relationship": 15,
+      "kind": 1,
+      "source_channel": 10,
+      "signed_weight": 1410
+    }
+  ],
+  "predicted_first_words_before_rounding_mw": {
+    "C0": 6100,
+    "C1": 4000.146484375,
+    "C3": 2099.853515625,
+    "C5": 6100,
+    "C10": 6100,
+    "C11": 4000.146484375,
+    "C12": 2099.853515625
+  },
+  "limitations": [
+    "Arithmetic assumes existing relation and unit interpretations; firmware may reject, clamp or interpret edits differently.",
+    "Changing a channel class and changing an unused-looking relation are untested; other reference types may use relation 15.",
+    "No prediction for current or voltage fields; power/current/voltage consistency and hardware threshold behavior are unknown.",
+    "Channel 10 itself is presumed constant from prior observations; 6.1 W is not actual measured power.",
+    "Affected board, input and current policies would lose genuine feedback; independent full-board protection is unverified.",
+    "NVVDD channels 18 and 19 remain untouched but their calibration, enforcement and coverage are not established."
+  ],
+  "policy_rows_consuming_affected_channels": {
+    "C0": [
+      2,
+      5,
+      7,
+      8,
+      10,
+      11,
+      19
+    ],
+    "C5": [
+      6,
+      9
+    ],
+    "C11": [
+      0,
+      3,
+      4,
+      14,
+      15
+    ],
+    "C12": [
+      1
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+﻿2026-11-07T21:08:49.7627671+02:00 Starting platform-disable and GPU-restart test; watchdog will restore after 90 seconds.
+2026-11-07T21:08:50.4467509+02:00 752.67 W, 210 MHz, Active
+2026-11-07T21:08:51.8188400+02:00 Platform disabled; requesting NVIDIA GPU device restart.
+2026-11-07T21:08:56.1449460+02:00 Microsoft PnP Utility
+
+Restarting device:         PCI\VEN_10DE&DEV_2520&SUBSYS_0A641028&REV_A1\4&412752a&0&0008
+Device restarted successfully.
+2026-11-07T21:08:56.1510689+02:00 PnP restart exit code: 0
+2026-11-07T21:09:02.3857960+02:00 752.67 W, 210 MHz, Active
+2026-11-07T21:09:02.3904983+02:00 nvidia-smi exit code: 0; platform during sample: CM_PROB_DISABLED -> CM_PROB_DISABLED
+2026-11-07T21:09:02.9537196+02:00 GPU status: OK, CM_PROB_NONE
+2026-11-07T21:09:02.9558170+02:00 A successful PnP restart request alone does not establish that the driver fully unloaded and reinitialized.
+2026-11-07T21:09:07.9134148+02:00 Platform restore status: OK, CM_PROB_NONE
+2026-11-07T21:09:07.9155159+02:00 Test finished; watchdog will independently recheck restoration.

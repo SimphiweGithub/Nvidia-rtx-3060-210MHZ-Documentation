@@ -1,0 +1,308 @@
+﻿Read-only local kernel debugger check
+Timed out: False
+stdout:
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+
+   -- Configuring repositories
+      ----> Repository : LocalInstalled, Enabled: true
+      ----> Repository : UserExtensions, Enabled: true
+
+>>>>>>>>>>>>> Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.015 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+>>>>>>>>>>>>> Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.016 seconds
+   ----> Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----> Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29680.1004 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 19:06:48.739 2026 (UTC + 2:00)), ptr64 TRUE
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 26100 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Edition build lab: 26100.1.amd64fre.ge_release.240331-1435
+Kernel base = 0xfffff807`9da00000 PsLoadedModuleList = 0xfffff807`9e8f54c0
+Debug session time: Sun Nov  8 19:06:49.378 2026 (UTC + 2:00)
+System Uptime: 0 days 9:45:31.066
+lkd> kd: Reading initial command '.reload;.echo SAMPLE1;!process 0 7 python.exe;.echo SAMPLE2;!process 0 7 python.exe;.echo SAMPLE3;!process 0 7 python.exe;.echo END;q'
+Connected to Windows 10 26100 x64 target at (Sun Nov  8 19:06:49.387 2026 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+......................................................
+Loading User Symbols
+
+Loading unloaded module list
+....................................
+SAMPLE1
+PROCESS ffff920c33dac080
+    SessionId: none  Cid: 05c0    Peb: 9737820000  ParentCid: 2320
+    DirBase: 838a8e002  ObjectTable: ffffa2886a16db40  HandleCount: 160.
+    Image: python.exe
+    VadRoot ffff920c293572c0 Vads 95 Clone 0 Private 6759. Modified 61. Locked 0.
+    DeviceMap ffffa2883707f480
+    Token                             ffffa288785c87b0
+    ElapsedTime                       00:00:27.772
+    UserTime                          00:00:00.000
+    KernelTime                        00:00:00.000
+    QuotaPoolUsage[PagedPool]         238640
+    QuotaPoolUsage[NonPagedPool]      13200
+    Working Set Sizes (now,min,max)  (10032, 50, 345) (40128KB, 200KB, 1380KB)
+    PeakWorkingSetSize                10831
+    VirtualSize                       4246 Mb
+    PeakVirtualSize                   4250 Mb
+    PageFaultCount                    11072
+    MemoryPriority                    BACKGROUND
+    BasePriority                      8
+    CommitCharge                      7351
+    Job                               ffff920c2a331060
+
+        THREAD ffff920c35bc2080  Cid 05c0.8754  Teb: 0000009737821000 Win32Thread: ffff920c2fb6bec0 WAIT: (UserRequest) UserMode Non-Alertable
+            ffff920c342683c0  Timer2SynchronizationObject
+            ffff920c30998560  NotificationEvent
+        Not impersonating
+        DeviceMap                 ffffa2883707f480
+        Owning Process            ffff920c33dac080       Image:         python.exe
+        Attached Process          N/A            Image:         N/A
+        Wait Start TickCount      2248795        Ticks: 33 (0:00:00:00.515)
+        Context Switch Count      4479           IdealProcessor: 2             
+        UserTime                  00:00:00.140
+        KernelTime                00:00:05.031
+        Win32 Start Address 0x00007ff6869012a0
+        Stack Init fffffa049841fb70 Current fffffa049841ee40
+        Base fffffa0498420000 Limit fffffa0498419000 Call 0000000000000000
+        Priority 9  BasePriority 8  Decay Boost 1  Priority Floor 16  IoPriority 2  PagePriority 5
+        Scheduling Group: ffff920c16e87080
+Unable to load image \SystemRoot\System32\DriverStore\FileRepository\nvdmi.inf_amd64_38c6812b57a66ef3\nvlddmkm.sys, Win32 error 0n2
+        Child-SP          RetAddr               : Args to Child                                                           : Call Site
+        fffffa04`9841ee80 fffff807`9dd55888     : fffffa04`9841f0e0 fffff807`4799359f 00000000`c000000d ffffa288`78687000 : nt!KiSwapContext+0x76
+        fffffa04`9841efc0 fffffa04`9841f0e0     : fffff807`4799359f 00000000`c000000d ffffa288`78687000 ffff920c`1a761000 : 0xffffa288`78687000
+        fffffa04`9841efc8 fffff807`4799359f     : 00000000`00000000 ffffd400`b0dae2b0 fffffa04`9841f038 fffff807`46e310c6 : 0xfffffa04`9841f0e0
+        fffffa04`9841efd0 00000000`00000000     : ffffd400`b0dae2b0 fffffa04`9841f038 fffff807`46e310c6 00000000`00000000 : 0xffffd400`b0de9180
+
+        THREAD ffff920c36d08080  Cid 05c0.4480  Teb: 0000009737823000 Win32Thread: 0000000000000000 WAIT: (WrQueue) UserMode Alertable
+            ffff920c33b9ae00  QueueObject
+        Not impersonating
+        DeviceMap                 ffffa2883707f480
+        Owning Process            ffff920c33dac080       Image:         python.exe
+        Attached Process          N/A            Image:         N/A
+        Wait Start TickCount      2247015        Ticks: 2090 (0:00:00:32.656)
+        Context Switch Count      22             IdealProcessor: 4             
+        UserTime                  00:00:00.015
+        KernelTime                00:00:00.000
+        Win32 Start Address 0x00007ffb40884990
+        Stack Init fffffa04a1d87b70 Current fffffa04a1d87320
+        Base fffffa04a1d88000 Limit fffffa04a1d81000 Call 0000000000000000
+        Priority 9  BasePriority 8  Decay Boost 1  IoPriority 2  PagePriority 5
+        Scheduling Group: ffff920c16e87080
+        Child-SP          RetAddr               : Args to Child                                                           : Call Site
+        fffffa04`a1d87360 fffff807`9dd55888     : 00000000`00000047 ffffd400`b10a2180 00000000`00000000 ffffd400`b0fca2b0 : nt!KiSwapContext+0x76
+        fffffa04`a1d874a0 fffff807`9dc0e205     : 00000000`00000000 00000000`00000000 ffff920c`36d08080 ffffd400`b0fc0180 : nt!KiSwapThread+0x248
+        fffffa04`a1d87510 fffff807`9dc0c5c6     : ffff920c`00000000 ffffd400`b0fc0180 000001d1`002601e6 00000000`00000000 : nt!KiCommitThreadWait+0x225
+        fffffa04`a1d875b0 fffff807`9dc0b612     : ffff920c`33b9ae00 000001bb`002a0101 00000000`00000001 ffffffff`ffffffff : nt!KeRemoveQueueEx+0x896
+        fffffa04`a1d87650 fffff807`9dd9492f     : ffff920c`387d6950 fffffa04`a1d87a60 ffff920c`38852060 00000000`00000000 : nt!IoRemoveIoCompletion+0x92
+        fffffa04`a1d87770 fffff807`9e0c4f55     : 00000000`00000000 ffff920c`33b9ae00 fffffa04`a1d87900 00000000`00000000 : nt!NtWaitForWorkViaWorkerFactory+0x6bf
+        fffffa04`a1d87970 00007ffb`409c5a24     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiSystemServiceCopyEnd+0x25 (TrapFrame @ fffffa04`a1d879e0)
+        00000097`37fbf588 00000000`00000000     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : 0x00007ffb`409c5a24
+
+        THREAD ffff920c3642e080  Cid 05c0.8260  Teb: 0000009737825000 Win32Thread: 0000000000000000 WAIT: (WrQueue) UserMode Alertable
+            ffff920c33b9ae00  QueueObject
+        Not impersonating
+        DeviceMap                 ffffa2883707f480
+        Owning Process            ffff920c33dac080       Image:         python.exe
+        Attached Process          N/A            Image:         N/A
+        Wait Start TickCount      2247015        Ticks: 2136 (0:00:00:33.375)
+        Context Switch Count      13             IdealProcessor: 6             
+        UserTime                  00:00:00.000
+        KernelTime                00:00:00.000
+        Win32 Start Address 0x00007ffb40884990
+        Stack Init fffffa04a1d8fb70 Current fffffa04a1d8f320
+        Base fffffa04a1d90000 Limit fffffa04a1d89000 Call 0000000000000000
+        Priority 9  BasePriority 8  Decay Boost 1  IoPriority 2  PagePriority 5
+        Scheduling Group: ffff920c16e87080
+        Child-SP          RetAddr               : Args to Child                                                           : Call Site
+        fffffa04`a1d8f360 fffff807`9dd55888     : 00000000`00000047 ffffd400`b10a2180 00000000`00000000 ffffd400`b0fca2b0 : nt!KiSwapContext+0x76
+        fffffa04`a1d8f4a0 fffff807`9dc0e205     : 00000000`00000000 00000000`00000000 ffff920c`3642e080 ffffd400`b0fc0180 : nt!KiSwapThread+0x248
+        fffffa04`a1d8f510 fffff807`9dc0c5c6     : 00000000`00000000 ffffd400`b0fc0180 00000000`00000001 00000000`00000000 : nt!KiCommitThreadWait+0x225
+        fffffa04`a1d8f5b0 fffff807`9dc0b612     : ffff920c`33b9ae00 fffff807`9dca5a01 ffff920c`3642e001 ffffffff`ffffffff : nt!KeRemoveQueueEx+0x896
+        fffffa04`a1d8f650 fffff807`9dd9492f     : ffff920c`387d6950 fffffa04`a1d8fa60 ffff920c`38852060 00000000`00000000 : nt!IoRemoveIoCompletion+0x92
+        fffffa04`a1d8f770 fffff807`9e0c4f55     : 00000000`00000000 0000025b`733eed80 fffffa04`a1d8fa60 00007ffb`40883420 : nt!NtWaitForWorkViaWorkerFactory+0x6bf
+        fffffa04`a1d8f970 00007ffb`409c5a24     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiSystemServiceCopyEnd+0x25 (TrapFrame @ fffffa04`a1d8f9e0)
+        00000097`3829f9f8 00000000`00000000     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : 0x00007ffb`409c5a24
+
+        THREAD ffff920c375de080  Cid 05c0.5318  Teb: 0000009737827000 Win32Thread: 0000000000000000 WAIT: (WrQueue) UserMode Alertable
+            ffff920c33b9ae00  QueueObject
+        Not impersonating
+        DeviceMap                 ffffa2883707f480
+        Owning Process            ffff920c33dac080       Image:         python.exe
+        Attached Process          N/A            Image:         N/A
+        Wait Start TickCount      2247015        Ticks: 2183 (0:00:00:34.109)
+        Context Switch Count      18             IdealProcessor: 8             
+        UserTime                  00:00:00.000
+        KernelTime                00:00:00.000
+        Win32 Start Address 0x00007ffb40884990
+        Stack Init fffffa04a1d97b70 Current fffffa04a1d97320
+        Base fffffa04a1d98000 Limit fffffa04a1d91000 Call 0000000000000000
+        Priority 9  BasePriority 8  Decay Boost 1  IoPriority 2  PagePriority 5
+        Scheduling Group: ffff920c16e87080
+        Child-SP          RetAddr               : Args to Child                                                           : Call Site
+        fffffa04`a1d97360 fffff807`9dd55888     : 00000000`00000047 ffffd400`b0be1180 00000000`00000000 ffffd400`b0b5b2b0 : nt!KiSwapContext+0x76
+        fffffa04`a1d974a0 fffff807`9dc0e205     : 00000000`00000000 00000000`00000000 ffff920c`375de080 ffffd400`b0b51180 : nt!KiSwapThread+0x248
+        fffffa04`a1d97510 fffff807`9dc0c5c6     : 00000000`00000000 ffffd400`b0b51180 0000017f`003b0200 00000000`00000000 : nt!KiCommitThreadWait+0x225
+        fffffa04`a1d975b0 fffff807`9dc0b612     : ffff920c`33b9ae00 000001cd`00720101 00000000`00000001 ffffffff`ffffffff : nt!KeRemoveQueueEx+0x896
+        fffffa04`a1d97650 fffff807`9dd9492f     : ffff920c`387d6950 fffffa04`a1d97a60 ffff920c`38852060 00000000`00000000 : nt!IoRemoveIoCompletion+0x92
+        fffffa04`a1d97770 fffff807`9e0c4f55     : ffff920c`1ffd1560 0000025b`733ef530 fffffa04`a1d97a60 00007ffb`40883420 : nt!NtWaitForWorkViaWorkerFactory+0x6bf
+        fffffa04`a1d97970 00007ffb`409c5a24     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiSystemServiceCopyEnd+0x25 (TrapFrame @ fffffa04`a1d979e0)
+        00000097`3857f668 00000000`00000000     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : 0x00007ffb`409c5a24
+
+
+SAMPLE2
+PROCESS ffff920c33dac080
+    SessionId: none  Cid: 05c0    Peb: 9737820000  ParentCid: 2320
+    DirBase: 838a8e002  ObjectTable: ffffa2886a16db40  HandleCount: 160.
+    Image: python.exe
+    VadRoot ffff920c293572c0 Vads 95 Clone 0 Private 6759. Modified 61. Locked 0.
+    DeviceMap ffffa2883707f480
+    Token                             ffffa288785c87b0
+    ElapsedTime                       00:00:38.720
+    UserTime                          00:00:00.000
+    KernelTime                        00:00:00.000
+    QuotaPoolUsage[PagedPool]         238640
+    QuotaPoolUsage[NonPagedPool]      13200
+    Working Set Sizes (now,min,max)  (10032, 50, 345) (40128KB, 200KB, 1380KB)
+    PeakWorkingSetSize                10831
+    VirtualSize                       4246 Mb
+    PeakVirtualSize                   4250 Mb
+    PageFaultCount                    11072
+    MemoryPriority                    BACKGROUND
+    BasePriority                      8
+    CommitCharge                      7351
+    Job                               ffff920c2a331060
+
+        THREAD ffff920c35bc2080  Cid 05c0.8754  Teb: 0000009737821000 Win32Thread: ffff920c2fb6bec0 WAIT: (UserRequest) UserMode Non-Alertable
+            ffff920c34237c20  Timer2SynchronizationObject
+            ffff920c30998560  NotificationEvent
+        Not impersonating
+        DeviceMap                 ffffa2883707f480
+        Owning Process            ffff920c33dac080       Image:         python.exe
+        Attached Process          N/A            Image:         N/A
+        Wait Start TickCount      2249495        Ticks: 28 (0:00:00:00.437)
+        Context Switch Count      6229           IdealProcessor: 2             
+        UserTime                  00:00:00.187
+        KernelTime                00:00:06.921
+        Win32 Start Address 0x00007ff6869012a0
+        Stack Init fffffa049841fb70 Current fffffa049841ee40
+        Base fffffa0498420000 Limit fffffa0498419000 Call 0000000000000000
+        Priority 16  BasePriority 8  Decay Boost 1  IoPriority 2  PagePriority 5
+        Scheduling Group: ffff920c16e87080
+        Child-SP          RetAddr               : Args to Child                                                           : Call Site
+        fffffa04`9841ee80 fffff807`9dd55888     : 00000000`00000047 ffffd400`b0f1a180 00000000`00000000 ffffd400`b0e8c2b0 : nt!KiSwapContext+0x76
+        fffffa04`9841efc0 fffff807`9dc0e205     : 00000000`00000000 00000000`00000000 ffff920c`35bc2080 ffffd400`b0f1a180 : nt!KiSwapThread+0x248
+        fffffa04`9841f030 fffff807`9dc0d738     : 00000000`00000000 00000000`00000000 00010002`4e564441 4e562a2a`00013884 : nt!KiCommitThreadWait+0x225
+        fffffa04`9841f0d0 00000000`00000000     : ffffd400`b0f1a180 00010002`4e564441 00000000`00000000 00000001`00000000 : nvlddmkm+0xe4e7f8
+
+        THREAD ffff920c36d08080  Cid 05c0.4480  Teb: 0000009737823000 Win32Thread: 0000000000000000 WAIT: (WrQueue) UserMode Alertable
+            ffff920c33b9ae00  QueueObject
+        Not impersonating
+        DeviceMap                 ffffa2883707f480
+        Owning Process            ffff920c33dac080       Image:         python.exe
+        Attached Process          N/A            Image:         N/A
+        Wait Start TickCount      2247015        Ticks: 2553 (0:00:00:39.890)
+        Context Switch Count      22             IdealProcessor: 4             
+        UserTime                  00:00:00.015
+        KernelTime                00:00:00.000
+        Win32 Start Address 0x00007ffb40884990
+        Stack Init fffffa04a1d87b70 Current fffffa04a1d87320
+        Base fffffa04a1d88000 Limit fffffa04a1d81000 Call 0000000000000000
+        Priority 9  BasePriority 8  Decay Boost 1  IoPriority 2  PagePriority 5
+        Scheduling Group: ffff920c16e87080
+        Child-SP          RetAddr               : Args to Child                                                           : Call Site
+        fffffa04`a1d87360 fffff807`9dd55888     : 00000000`00000047 ffffd400`b10a2180 00000000`00000000 ffffd400`b0fca2b0 : nt!KiSwapContext+0x76
+        fffffa04`a1d874a0 fffff807`9dc0e205     : 00000000`00000000 00000000`00000000 ffff920c`36d08080 ffffd400`b0fc0180 : nt!KiSwapThread+0x248
+        fffffa04`a1d87510 fffff807`9dc0c5c6     : ffff920c`00000000 ffffd400`b0fc0180 000001d1`002601e6 00000000`00000000 : nt!KiCommitThreadWait+0x225
+        fffffa04`a1d875b0 fffff807`9dc0b612     : ffff920c`33b9ae00 000001bb`002a0101 00000000`00000001 ffffffff`ffffffff : nt!KeRemoveQueueEx+0x896
+        fffffa04`a1d87650 fffff807`9dd9492f     : ffff920c`387d6950 fffffa04`a1d87a60 ffff920c`38852060 00000000`00000000 : nt!IoRemoveIoCompletion+0x92
+        fffffa04`a1d87770 fffff807`9e0c4f55     : 00000000`00000000 ffff920c`33b9ae00 fffffa04`a1d87900 00000000`00000000 : nt!NtWaitForWorkViaWorkerFactory+0x6bf
+        fffffa04`a1d87970 00007ffb`409c5a24     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiSystemServiceCopyEnd+0x25 (TrapFrame @ fffffa04`a1d879e0)
+        00000097`37fbf588 00000000`00000000     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : 0x00007ffb`409c5a24
+
+        THREAD ffff920c3642e080  Cid 05c0.8260  Teb: 0000009737825000 Win32Thread: 0000000000000000 WAIT: (WrQueue) UserMode Alertable
+            ffff920c33b9ae00  QueueObject
+        Not impersonating
+        DeviceMap                 ffffa2883707f480
+        Owning Process            ffff920c33dac080       Image:         python.exe
+        Attached Process          N/A            Image:         N/A
+        Wait Start TickCount      2247015        Ticks: 2598 (0:00:00:40.593)
+        Context Switch Count      13             IdealProcessor: 6             
+        UserTime                  00:00:00.000
+        KernelTime                00:00:00.000
+        Win32 Start Address 0x00007ffb40884990
+        Stack Init fffffa04a1d8fb70 Current fffffa04a1d8f320
+        Base fffffa04a1d90000 Limit fffffa04a1d89000 Call 0000000000000000
+        Priority 9  BasePriority 8  Decay Boost 1  IoPriority 2  PagePriority 5
+        Scheduling Group: ffff920c16e87080
+        Child-SP          RetAddr               : Args to Child                                                           : Call Site
+        fffffa04`a1d8f360 fffff807`9dd55888     : 00000000`00000047 ffffd400`b10a2180 00000000`00000000 ffffd400`b0fca2b0 : nt!KiSwapContext+0x76
+        fffffa04`a1d8f4a0 fffff807`9dc0e205     : 00000000`00000000 00000000`00000000 ffff920c`3642e080 ffffd400`b0fc0180 : nt!KiSwapThread+0x248
+        fffffa04`a1d8f510 fffff807`9dc0c5c6     : 00000000`00000000 ffffd400`b0fc0180 00000000`00000001 00000000`00000000 : nt!KiCommitThreadWait+0x225
+        fffffa04`a1d8f5b0 fffff807`9dc0b612     : ffff920c`33b9ae00 fffff807`9dca5a01 ffff920c`3642e001 ffffffff`ffffffff : nt!KeRemoveQueueEx+0x896
+        fffffa04`a1d8f650 fffff807`9dd9492f     : ffff920c`387d6950 fffffa04`a1d8fa60 ffff920c`38852060 00000000`00000000 : nt!IoRemoveIoCompletion+0x92
+        fffffa04`a1d8f770 fffff807`9e0c4f55     : 00000000`00000000 0000025b`733eed80 fffffa04`a1d8fa60 00007ffb`40883420 : nt!NtWaitForWorkViaWorkerFactory+0x6bf
+        fffffa04`a1d8f970 00007ffb`409c5a24     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiSystemServiceCopyEnd+0x25 (TrapFrame @ fffffa04`a1d8f9e0)
+        00000097`3829f9f8 00000000`00000000     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : 0x00007ffb`409c5a24
+
+        THREAD ffff920c375de080  Cid 05c0.5318  Teb: 0000009737827000 Win32Thread: 0000000000000000 WAIT: (WrQueue) UserMode Alertable
+            ffff920c33b9ae00  QueueObject
+        Not impersonating
+        DeviceMap                 ffffa2883707f480
+        Owning Process            ffff920c33dac080       Image:         python.exe
+        Attached Process          N/A            Image:         N/A
+        Wait Start TickCount      2247015        Ticks: 2643 (0:00:00:41.296)
+        Context Switch Count      18             IdealProcessor: 8             
+        UserTime                  00:00:00.000
+        KernelTime                00:00:00.000
+        Win32 Start Address 0x00007ffb40884990
+        Stack Init fffffa04a1d97b70 Current fffffa04a1d97320
+        Base fffffa04a1d98000 Limit fffffa04a1d91000 Call 0000000000000000
+        Priority 9  BasePriority 8  Decay Boost 1  IoPriority 2  PagePriority 5
+        Scheduling Group: ffff920c16e87080
+        Child-SP          RetAddr               : Args to Child                                                           : Call Site
+        fffffa04`a1d97360 fffff807`9dd55888     : 00000000`00000047 ffffd400`b0be1180 00000000`00000000 ffffd400`b0b5b2b0 : nt!KiSwapContext+0x76
+        fffffa04`a1d974a0 fffff807`9dc0e205     : 00000000`00000000 00000000`00000000 ffff920c`375de080 ffffd400`b0b51180 : nt!KiSwapThread+0x248
+        fffffa04`a1d97510 fffff807`9dc0c5c6     : 00000000`00000000 ffffd400`b0b51180 0000017f`003b0200 00000000`00000000 : nt!KiCommitThreadWait+0x225
+        fffffa04`a1d975b0 fffff807`9dc0b612     : ffff920c`33b9ae00 000001cd`00720101 00000000`00000001 ffffffff`ffffffff : nt!KeRemoveQueueEx+0x896
+        fffffa04`a1d97650 fffff807`9dd9492f     : ffff920c`387d6950 fffffa04`a1d97a60 ffff920c`38852060 00000000`00000000 : nt!IoRemoveIoCompletion+0x92
+        fffffa04`a1d97770 fffff807`9e0c4f55     : ffff920c`1ffd1560 0000025b`733ef530 fffffa04`a1d97a60 00007ffb`40883420 : nt!NtWaitForWorkViaWorkerFactory+0x6bf
+        fffffa04`a1d97970 00007ffb`409c5a24     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiSystemServiceCopyEnd+0x25 (TrapFrame @ fffffa04`a1d979e0)
+        00000097`3857f668 00000000`00000000     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : 0x00007ffb`409c5a24
+
+
+SAMPLE3
+END
+quit:
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\atlmfc.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\concurrency.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\cpp_rest.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Kernel.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\ObjectiveC.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\stl.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Usb4Kd.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Data.Json.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Geolocation.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Devices.Sensors.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\Windows.Media.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\windows.natvis'
+NatVis script unloaded from 'C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2611.4001.0_x64__8wekyb3d8bbwe\amd64\Visualizers\winrt.natvis'
+
+stderr:

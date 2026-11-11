@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "operation": "normalize",
+  "result": {
+    "manifest": "evidence\\runs\\OFFLINE-ONLY-multi-channel-v2-relocated-20261110.bin.json",
+    "output": "evidence\\runs\\OFFLINE-ONLY-multi-channel-v2-relocated-20261110.bin",
+    "schema_version": 1,
+    "sha256": "b3e7fbf1d597125beb18686ea0b194112b6c79b413d29fd0d8565f7547df5a02"
+  },
+  "schema_version": 1
+}

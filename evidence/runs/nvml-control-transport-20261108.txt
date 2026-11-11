@@ -1,0 +1,5 @@
+{"type": "send", "payload": {"command": "0x2080a637", "module": "nvml.dll", "path": "C:\\WINDOWS\\system32\\DriverStore\\FileRepository\\nvdmi.inf_amd64_38c6812b57a66ef3\\nvml.dll", "rva": "0x8ae00"}}
+{"type": "send", "payload": {"stage": "transport", "module": "win32u.dll", "path": "C:\\WINDOWS\\System32\\win32u.dll", "rva": "0x4fd0"}}
+{"type": "send", "payload": {"stage": "wddm_escape", "type": 0, "size": 96092, "signature": "4e564441", "command": "2080a637", "payloadSize": 96024}}
+{"type": "send", "payload": {"stage": "wddm_escape_return", "status": 0}}
+public_mw=752672 fallback_status=0 fallback_mw=752673
